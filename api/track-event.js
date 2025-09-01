@@ -1,4 +1,4 @@
-import { sql } from '@vercel/postgres';
+import { neon } from '@neondatabase/serverless';
 
 export default async function handler(req, res) {
   // Enable CORS
@@ -17,6 +17,8 @@ export default async function handler(req, res) {
   }
 
   try {
+    const sql = neon(process.env.DATABASE_URL);
+    
     const {
       assessmentId,
       eventType,

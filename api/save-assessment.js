@@ -1,4 +1,4 @@
-import { sql } from '@vercel/postgres';
+import { neon } from '@neondatabase/serverless';
 
 export default async function handler(req, res) {
   // Enable CORS
@@ -17,10 +17,13 @@ export default async function handler(req, res) {
   }
 
   try {
+    const sql = neon(process.env.DATABASE_URL);
+    
     const {
       name,
       email,
       phone,
+      postcode,
       method,
       skinFeel,
       goal,
@@ -29,7 +32,8 @@ export default async function handler(req, res) {
       commitment,
       score,
       qualified,
-      alternativeRecommendation
+      alternativeRecommendation,
+      partnerReferral
     } = req.body;
 
     // Create table if it doesn't exist
@@ -39,6 +43,7 @@ export default async function handler(req, res) {
         name VARCHAR(255) NOT NULL,
         email VARCHAR(255),
         phone VARCHAR(50),
+        postcode VARCHAR(20),
         method VARCHAR(50),
         skin_feel VARCHAR(50),
         goal VARCHAR(50),
@@ -46,8 +51,9 @@ export default async function handler(req, res) {
         area VARCHAR(50),
         commitment VARCHAR(50),
         score INTEGER,
-        qualified BOOLEAN,
+        qualified VARCHAR(20),
         alternative_recommendation TEXT,
+        partner_referral VARCHAR(255),
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
       )
@@ -56,13 +62,14 @@ export default async function handler(req, res) {
     // Insert assessment data
     const result = await sql`
       INSERT INTO assessments (
-        name, email, phone, method, skin_feel, goal, focus, area, 
-        commitment, score, qualified, alternative_recommendation
+        name, email, phone, postcode, method, skin_feel, goal, focus, area, 
+        commitment, score, qualified, alternative_recommendation, partner_referral
       )
       VALUES (
-        ${name}, ${email || null}, ${phone || null}, ${method}, ${skinFeel}, 
-        ${goal}, ${focus}, ${area}, ${commitment}, ${score}, 
-        ${qualified}, ${alternativeRecommendation || null}
+        ${name}, ${email || null}, ${phone || null}, ${postcode || null}, 
+        ${method}, ${skinFeel}, ${goal}, ${focus}, ${area}, ${commitment}, 
+        ${score}, ${qualified}, ${alternativeRecommendation || null}, 
+        ${partnerReferral || null}
       )
       RETURNING id
     `;

@@ -1,4 +1,4 @@
-import { sql } from '@vercel/postgres';
+import { neon } from '@neondatabase/serverless';
 
 // GHL Webhook for automated follow-ups
 const GHL_WEBHOOK = 'https://services.leadconnectorhq.com/hooks/dVD6QbgqAF7fiHM3MCrz/webhook-trigger/355171e7-7010-42a9-b0b8-3dee211db694';
@@ -16,8 +16,10 @@ export default async function handler(req, res) {
   }
 
   try {
+    const sql = neon(process.env.DATABASE_URL);
+    
     // Get assessments that need follow-up
-    const { rows: pendingFollowups } = await sql`
+    const pendingFollowups = await sql`
       SELECT 
         a.*,
         CASE 
