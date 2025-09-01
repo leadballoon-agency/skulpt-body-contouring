@@ -1,0 +1,17 @@
+{
+  "name": "skulpt-body-contouring",
+  "version": "1.0.0",
+  "description": "ProMax Lipo Assessment Tool for Skulpt Body Contouring",
+  "scripts": {
+    "dev": "vercel dev",
+    "build": "echo 'No build required for static site'",
+    "start": "vercel dev"
+  },
+  "dependencies": {
+    "@vercel/postgres": "^0.5.1",
+    "dotenv": "^16.3.1"
+  },
+  "devDependencies": {
+    "vercel": "^32.5.0"
+  }
+}

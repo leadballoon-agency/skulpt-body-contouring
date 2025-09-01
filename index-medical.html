@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skulpt Medical Aesthetics - Advanced Body Contouring After Weight Loss</title>
+    <meta name="description" content="Medical-grade body contouring for post-weight loss transformation. Specializing in ProMax Lipo, Morpheus8, HIFU for Ozempic & Mounjaro patients.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Bebas+Neue&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Medical Header Bar -->
+    <div class="medical-header">
+        <div class="medical-header-content">
+            <span><i class="fas fa-certificate"></i> CQC Registered Clinic</span>
+            <span><i class="fas fa-award"></i> Advanced Practitioners</span>
+            <span><i class="fas fa-shield-alt"></i> Medical Grade Equipment</span>
+        </div>
+    </div>
+    
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="public/images/tmp93edj09q.webp" alt="Skulpt Medical Aesthetics" style="height: 50px; width: auto;">
+            </div>
+            <div class="nav-menu">
+                <a href="#assessment" class="nav-link">Treatment Finder</a>
+                <a href="#technology" class="nav-link">Our Technology</a>
+                <a href="#results" class="nav-link">Results</a>
+                <a href="#book" class="nav-cta">
+                    <i class="fas fa-calendar-check"></i>
+                    Book Consultation
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-background">
+            <div class="gradient-overlay"></div>
+            <div class="medical-grid"></div>
+            <div class="floating-molecules">
+                <div class="molecule molecule-1"></div>
+                <div class="molecule molecule-2"></div>
+                <div class="molecule molecule-3"></div>
+            </div>
+        </div>
+        
+        <div class="hero-content">
+            <div class="trust-indicators">
+                <div class="trust-badge">
+                    <i class="fas fa-microscope"></i>
+                    <span>Medical Grade</span>
+                </div>
+                <div class="trust-badge">
+                    <i class="fas fa-user-md"></i>
+                    <span>Doctor Led</span>
+                </div>
+                <div class="trust-badge">
+                    <i class="fas fa-chart-line"></i>
+                    <span>2,847 Transformations</span>
+                </div>
+            </div>
+            
+            <h1 class="hero-title">
+                <span class="title-small">Post Weight-Loss</span>
+                <span class="title-large">SKIN TIGHTENING</span>
+                <span class="title-elegant">Redefined</span>
+            </h1>
+            
+            <p class="hero-subtitle">
+                Lost weight with Ozempic or Mounjaro? Our medical-grade protocols featuring 
+                <span class="highlight-text">ProMax Lipo, Morpheus8, and HIFU</span> deliver the skin tightening 
+                transformation you deserve.
+            </p>
+            
+            <div class="hero-cta">
+                <button class="btn-luxury" onclick="startAssessment()">
+                    <span class="btn-content">
+                        <i class="fas fa-clipboard-check"></i>
+                        Start Intelligent Treatment Finder
+                    </span>
+                    <span class="btn-shine"></span>
+                </button>
+                <div class="cta-features">
+                    <span><i class="fas fa-check-circle"></i> AI-Powered Matching</span>
+                    <span><i class="fas fa-check-circle"></i> Instant Results</span>
+                    <span><i class="fas fa-check-circle"></i> No Obligation</span>
+                </div>
+            </div>
+            
+            <div class="hero-stats">
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-percentage"></i></div>
+                    <div class="stat-content">
+                        <span class="stat-number" data-value="94">0</span>
+                        <span class="stat-label">Success Rate</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-ruler-vertical"></i></div>
+                    <div class="stat-content">
+                        <span class="stat-number" data-value="5.2">0</span><span class="stat-unit">cm</span>
+                        <span class="stat-label">Avg Reduction</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-clock"></i></div>
+                    <div class="stat-content">
+                        <span class="stat-number" data-value="45">0</span><span class="stat-unit">min</span>
+                        <span class="stat-label">Treatment Time</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Assessment Section -->
+    <section class="assessment-section" id="assessment">
+        <div class="container">
+            <div class="assessment-container">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                
+                <!-- Step 1: Weight Loss Profile -->
+                <div class="assessment-step active" data-step="1">
+                    <div class="step-header">
+                        <span class="step-number">01</span>
+                        <div class="step-header-content">
+                            <h2 class="step-title">Weight Loss Profile</h2>
+                            <p class="step-subtitle">Understanding your transformation helps us customize your treatment</p>
+                        </div>
+                    </div>
+                    
+                    <div class="intelligent-input">
+                        <label class="input-label">Total Weight Lost</label>
+                        <div class="weight-slider-container">
+                            <input type="range" min="5" max="50" value="15" class="weight-slider" id="weightLossAmount" oninput="updateWeightLoss(this.value)">
+                            <div class="weight-display">
+                                <span class="weight-value" id="weightValue">15</span>
+                                <span class="weight-unit">kg</span>
+                            </div>
+                        </div>
+                        <div class="weight-insights" id="weightInsights">
+                            <i class="fas fa-info-circle"></i>
+                            <span>Significant weight loss - skin tightening highly recommended</span>
+                        </div>
+                    </div>
+                    
+                    <div class="timeframe-selector">
+                        <label class="input-label">Timeframe</label>
+                        <div class="timeframe-options">
+                            <button class="timeframe-option" onclick="selectTimeframe('3months')">
+                                <span class="timeframe-number">3</span>
+                                <span class="timeframe-text">months</span>
+                            </button>
+                            <button class="timeframe-option" onclick="selectTimeframe('6months')">
+                                <span class="timeframe-number">6</span>
+                                <span class="timeframe-text">months</span>
+                            </button>
+                            <button class="timeframe-option" onclick="selectTimeframe('12months')">
+                                <span class="timeframe-number">12</span>
+                                <span class="timeframe-text">months</span>
+                            </button>
+                            <button class="timeframe-option" onclick="selectTimeframe('12plus')">
+                                <span class="timeframe-number">12+</span>
+                                <span class="timeframe-text">months</span>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <button class="btn-next" onclick="nextAssessmentStep()">
+                        Continue Analysis
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+
+                <!-- Step 2: Method Analysis -->
+                <div class="assessment-step" data-step="2">
+                    <div class="step-header">
+                        <span class="step-number">02</span>
+                        <div class="step-header-content">
+                            <h2 class="step-title">Method Analysis</h2>
+                            <p class="step-subtitle">Different methods affect skin elasticity differently</p>
+                        </div>
+                    </div>
+                    
+                    <div class="method-cards">
+                        <div class="method-card" onclick="selectMethod('glp1')" data-method="glp1">
+                            <div class="method-card-header">
+                                <div class="method-icon">
+                                    <i class="fas fa-syringe"></i>
+                                </div>
+                                <span class="method-badge">Most Common</span>
+                            </div>
+                            <h3>GLP-1 Medications</h3>
+                            <p>Ozempic, Wegovy, Mounjaro</p>
+                            <div class="method-info">
+                                <span class="info-tag"><i class="fas fa-bolt"></i> Rapid loss</span>
+                                <span class="info-tag"><i class="fas fa-exclamation-triangle"></i> High skin laxity</span>
+                            </div>
+                        </div>
+                        
+                        <div class="method-card" onclick="selectMethod('surgery')" data-method="surgery">
+                            <div class="method-card-header">
+                                <div class="method-icon">
+                                    <i class="fas fa-procedures"></i>
+                                </div>
+                            </div>
+                            <h3>Bariatric Surgery</h3>
+                            <p>Gastric sleeve, bypass</p>
+                            <div class="method-info">
+                                <span class="info-tag"><i class="fas fa-weight"></i> Major loss</span>
+                                <span class="info-tag"><i class="fas fa-calendar"></i> Extended recovery</span>
+                            </div>
+                        </div>
+                        
+                        <div class="method-card" onclick="selectMethod('natural')" data-method="natural">
+                            <div class="method-card-header">
+                                <div class="method-icon">
+                                    <i class="fas fa-apple-alt"></i>
+                                </div>
+                            </div>
+                            <h3>Diet & Exercise</h3>
+                            <p>Traditional approach</p>
+                            <div class="method-info">
+                                <span class="info-tag"><i class="fas fa-hourglass"></i> Gradual loss</span>
+                                <span class="info-tag"><i class="fas fa-thumbs-up"></i> Better elasticity</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="method-insight" id="methodInsight">
+                        <div class="insight-icon"><i class="fas fa-lightbulb"></i></div>
+                        <div class="insight-content">
+                            <strong>Select your method above</strong>
+                            <p>We'll recommend specific treatments based on how you lost weight</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3: Body Mapping -->
+                <div class="assessment-step" data-step="3">
+                    <div class="step-header">
+                        <span class="step-number">03</span>
+                        <div class="step-header-content">
+                            <h2 class="step-title">Body Mapping</h2>
+                            <p class="step-subtitle">Click on areas that need tightening and contouring</p>
+                        </div>
+                    </div>
+                    
+                    <div class="body-mapping-container">
+                        <div class="body-selector">
+                            <div class="body-image">
+                                <svg viewBox="0 0 300 500" class="body-svg">
+                                    <defs>
+                                        <linearGradient id="bodyGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                                            <stop offset="0%" style="stop-color:#f0f0f0;stop-opacity:1" />
+                                            <stop offset="100%" style="stop-color:#e0e0e0;stop-opacity:1" />
+                                        </linearGradient>
+                                        <filter id="glow">
+                                            <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+                                            <feMerge>
+                                                <feMergeNode in="coloredBlur"/>
+                                                <feMergeNode in="SourceGraphic"/>
+                                            </feMerge>
+                                        </filter>
+                                    </defs>
+                                    
+                                    <path class="body-outline" d="M150 60 C175 65, 185 85, 180 110 L175 140 C178 160, 185 180, 185 220 L180 280 C178 320, 175 360, 165 420 L135 420 C125 360, 122 320, 120 280 L115 220 C115 180, 122 160, 125 140 L120 110 C115 85, 125 65, 150 60" fill="url(#bodyGradient)" stroke="#d0d0d0" stroke-width="1"/>
+                                    
+                                    <g class="body-zone" data-area="arms" onclick="toggleArea('arms')">
+                                        <ellipse cx="95" cy="150" rx="25" ry="60" fill="transparent" stroke="#e0e0e0" stroke-width="2" class="zone-shape"/>
+                                        <ellipse cx="205" cy="150" rx="25" ry="60" fill="transparent" stroke="#e0e0e0" stroke-width="2" class="zone-shape"/>
+                                        <text x="95" y="150" class="zone-label" text-anchor="middle">ARMS</text>
+                                    </g>
+                                    
+                                    <g class="body-zone" data-area="abdomen" onclick="toggleArea('abdomen')">
+                                        <ellipse cx="150" cy="220" rx="45" ry="55" fill="transparent" stroke="#e0e0e0" stroke-width="2" class="zone-shape"/>
+                                        <text x="150" y="220" class="zone-label" text-anchor="middle">ABDOMEN</text>
+                                    </g>
+                                    
+                                    <g class="body-zone" data-area="flanks" onclick="toggleArea('flanks')">
+                                        <ellipse cx="150" cy="280" rx="50" ry="30" fill="transparent" stroke="#e0e0e0" stroke-width="2" class="zone-shape"/>
+                                        <text x="150" y="280" class="zone-label" text-anchor="middle">FLANKS</text>
+                                    </g>
+                                    
+                                    <g class="body-zone" data-area="thighs" onclick="toggleArea('thighs')">
+                                        <ellipse cx="125" cy="360" rx="20" ry="45" fill="transparent" stroke="#e0e0e0" stroke-width="2" class="zone-shape"/>
+                                        <ellipse cx="175" cy="360" rx="20" ry="45" fill="transparent" stroke="#e0e0e0" stroke-width="2" class="zone-shape"/>
+                                        <text x="150" y="360" class="zone-label" text-anchor="middle">THIGHS</text>
+                                    </g>
+                                </svg>
+                            </div>
+                            
+                            <div class="selected-areas">
+                                <h4>Selected Areas:</h4>
+                                <div class="selected-areas-list" id="selectedAreasList">
+                                    <span class="no-selection">Click body areas above</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="area-severity">
+                            <h4>Severity Level</h4>
+                            <div class="severity-options">
+                                <button class="severity-btn" onclick="setSeverity('mild')" data-severity="mild">
+                                    <div class="severity-icon">○</div>
+                                    <span>Mild</span>
+                                    <small>Slight laxity</small>
+                                </button>
+                                <button class="severity-btn active" onclick="setSeverity('moderate')" data-severity="moderate">
+                                    <div class="severity-icon">◐</div>
+                                    <span>Moderate</span>
+                                    <small>Visible sagging</small>
+                                </button>
+                                <button class="severity-btn" onclick="setSeverity('severe')" data-severity="severe">
+                                    <div class="severity-icon">●</div>
+                                    <span>Severe</span>
+                                    <small>Significant laxity</small>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button class="btn-next" onclick="nextStep()" disabled id="continueBtn">
+                        Analyze My Profile
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+
+                <!-- Step 4: Additional Concerns -->
+                <div class="assessment-step" data-step="4">
+                    <div class="step-header">
+                        <span class="step-number">04</span>
+                        <div class="step-header-content">
+                            <h2 class="step-title">Additional Concerns</h2>
+                            <p class="step-subtitle">Select any that apply to customize your treatment protocol</p>
+                        </div>
+                    </div>
+                    
+                    <div class="concerns-grid">
+                        <div class="concern-card" onclick="toggleConcern('cellulite')" data-concern="cellulite">
+                            <div class="concern-icon">
+                                <i class="fas fa-water"></i>
+                            </div>
+                            <h4>Cellulite</h4>
+                            <p>Dimpled or orange-peel texture</p>
+                            <div class="treatment-match">Best: ProMax Lipo</div>
+                        </div>
+                        
+                        <div class="concern-card" onclick="toggleConcern('stretch')" data-concern="stretch">
+                            <div class="concern-icon">
+                                <i class="fas fa-wave-square"></i>
+                            </div>
+                            <h4>Stretch Marks</h4>
+                            <p>Visible skin striations</p>
+                            <div class="treatment-match">Best: CO2 Laser</div>
+                        </div>
+                        
+                        <div class="concern-card" onclick="toggleConcern('crepey')" data-concern="crepey">
+                            <div class="concern-icon">
+                                <i class="fas fa-fingerprint"></i>
+                            </div>
+                            <h4>Crepey Skin</h4>
+                            <p>Thin, wrinkled texture</p>
+                            <div class="treatment-match">Best: RF + HIFU</div>
+                        </div>
+                        
+                        <div class="concern-card" onclick="toggleConcern('stubborn')" data-concern="stubborn">
+                            <div class="concern-icon">
+                                <i class="fas fa-layer-group"></i>
+                            </div>
+                            <h4>Stubborn Fat</h4>
+                            <p>Remaining fat deposits</p>
+                            <div class="treatment-match">Best: ProMax Lipo</div>
+                        </div>
+                        
+                        <div class="concern-card" onclick="toggleConcern('scarring')" data-concern="scarring">
+                            <div class="concern-icon">
+                                <i class="fas fa-band-aid"></i>
+                            </div>
+                            <h4>Scarring</h4>
+                            <p>Surgery or injury marks</p>
+                            <div class="treatment-match">Best: Sylfirm X</div>
+                        </div>
+                        
+                        <div class="concern-card" onclick="toggleConcern('pigmentation')" data-concern="pigmentation">
+                            <div class="concern-icon">
+                                <i class="fas fa-adjust"></i>
+                            </div>
+                            <h4>Pigmentation</h4>
+                            <p>Uneven skin tone</p>
+                            <div class="treatment-match">Best: IPL + RF</div>
+                        </div>
+                    </div>
+                    
+                    <button class="btn-analyze" onclick="calculateResults()">
+                        <span class="btn-text">Generate My Treatment Plan</span>
+                        <div class="btn-loader" id="analyzeLoader">
+                            <div class="loader-dot"></div>
+                            <div class="loader-dot"></div>
+                            <div class="loader-dot"></div>
+                        </div>
+                    </button>
+                </div>
+
+                <!-- Results -->
+                <div class="assessment-step" data-step="results">
+                    <div class="results-container">
+                        <!-- Qualification Score -->
+                        <div class="qualification-score">
+                            <div class="score-circle">
+                                <svg width="200" height="200">
+                                    <circle cx="100" cy="100" r="90" fill="none" stroke="#f0f0f0" stroke-width="12"/>
+                                    <circle cx="100" cy="100" r="90" fill="none" stroke="url(#scoreGradient)" stroke-width="12" 
+                                            stroke-dasharray="565" stroke-dashoffset="113" stroke-linecap="round"
+                                            transform="rotate(-90 100 100)" class="score-progress"/>
+                                    <defs>
+                                        <linearGradient id="scoreGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" style="stop-color:#B8860B;stop-opacity:1" />
+                                            <stop offset="100%" style="stop-color:#FFD700;stop-opacity:1" />
+                                        </linearGradient>
+                                    </defs>
+                                </svg>
+                                <div class="score-content">
+                                    <span class="score-number">92</span>
+                                    <span class="score-label">Match Score</span>
+                                </div>
+                            </div>
+                            <h2 class="score-title">Excellent Candidate for Treatment</h2>
+                            <p class="score-subtitle">Your profile indicates optimal conditions for successful body contouring</p>
+                        </div>
+                        
+                        <!-- Treatment Matrix -->
+                        <div class="treatment-matrix">
+                            <h3 class="matrix-title">Your Personalized Treatment Protocol</h3>
+                            
+                            <div class="recommended-treatments" id="recommendedTreatments">
+                                <!-- Dynamically populated -->
+                            </div>
+                            
+                            <div class="treatment-timeline">
+                                <h4>Expected Timeline</h4>
+                                <div class="timeline-track">
+                                    <div class="timeline-point" data-week="0">
+                                        <span class="point-marker"></span>
+                                        <span class="point-label">Initial Session</span>
+                                        <span class="point-desc">Immediate tightening</span>
+                                    </div>
+                                    <div class="timeline-point" data-week="2">
+                                        <span class="point-marker"></span>
+                                        <span class="point-label">Week 2</span>
+                                        <span class="point-desc">Visible improvement</span>
+                                    </div>
+                                    <div class="timeline-point" data-week="6">
+                                        <span class="point-marker"></span>
+                                        <span class="point-label">Week 6</span>
+                                        <span class="point-desc">Dramatic results</span>
+                                    </div>
+                                    <div class="timeline-point" data-week="12">
+                                        <span class="point-marker"></span>
+                                        <span class="point-label">Week 12</span>
+                                        <span class="point-desc">Full transformation</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Pricing -->
+                        <div class="pricing-strategy">
+                            <div class="pricing-card platinum">
+                                <div class="pricing-header">
+                                    <span class="pricing-badge">MEDICAL GRADE</span>
+                                    <h3>Platinum Protocol</h3>
+                                    <p>Comprehensive multi-technology approach</p>
+                                </div>
+                                
+                                <div class="treatment-breakdown">
+                                    <div class="breakdown-item">
+                                        <span class="item-icon"><i class="fas fa-microscope"></i></span>
+                                        <div class="item-content">
+                                            <strong>Advanced Body Analysis</strong>
+                                            <span>3D imaging & consultation</span>
+                                        </div>
+                                        <span class="item-value">£150</span>
+                                    </div>
+                                    <div class="breakdown-item">
+                                        <span class="item-icon"><i class="fas fa-bolt"></i></span>
+                                        <div class="item-content">
+                                            <strong id="primaryTreatment">ProMax Lipo</strong>
+                                            <span>Triple-action contouring</span>
+                                        </div>
+                                        <span class="item-value">£450</span>
+                                    </div>
+                                    <div class="breakdown-item">
+                                        <span class="item-icon"><i class="fas fa-wave-square"></i></span>
+                                        <div class="item-content">
+                                            <strong id="secondaryTreatment">HIFU Lifting</strong>
+                                            <span>Ultrasound skin tightening</span>
+                                        </div>
+                                        <span class="item-value">£350</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="pricing-total">
+                                    <div class="total-regular">
+                                        <span>Regular Price</span>
+                                        <span class="price-strike">£950</span>
+                                    </div>
+                                    <div class="total-special">
+                                        <span>New Patient Special</span>
+                                        <span class="price-final">£395</span>
+                                    </div>
+                                    <div class="savings-badge">
+                                        Save £555 (58% OFF)
+                                    </div>
+                                </div>
+                                
+                                <button class="btn-book-premium" onclick="openPremiumBooking()">
+                                    <span class="btn-content">
+                                        <i class="fas fa-calendar-check"></i>
+                                        Reserve with £95 Deposit
+                                    </span>
+                                </button>
+                                
+                                <div class="payment-options">
+                                    <span><i class="fas fa-credit-card"></i> Payment plans available</span>
+                                    <span><i class="fas fa-undo"></i> Free consultation</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Trust Elements -->
+                        <div class="trust-section">
+                            <div class="certifications">
+                                <div class="cert-item">
+                                    <i class="fas fa-certificate"></i>
+                                    <span>CQC Registered</span>
+                                </div>
+                                <div class="cert-item">
+                                    <i class="fas fa-user-md"></i>
+                                    <span>Doctor Supervised</span>
+                                </div>
+                                <div class="cert-item">
+                                    <i class="fas fa-award"></i>
+                                    <span>Award Winning</span>
+                                </div>
+                                <div class="cert-item">
+                                    <i class="fas fa-shield-alt"></i>
+                                    <span>Fully Insured</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Modal -->
+    <div class="modal" id="bookingModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeBooking()">×</button>
+            
+            <h2>Reserve Your Transformation</h2>
+            <p>Secure your spot with just a £95 deposit</p>
+            
+            <form class="booking-form" id="bookingForm">
+                <div class="form-group">
+                    <input type="text" name="name" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" name="email" placeholder="Email Address" required>
+                </div>
+                <div class="form-group">
+                    <input type="tel" name="phone" placeholder="Phone Number" required>
+                </div>
+                <div class="form-group">
+                    <select name="preferred_time" required>
+                        <option value="">Preferred Time</option>
+                        <option value="morning">Morning (9am-12pm)</option>
+                        <option value="afternoon">Afternoon (12pm-5pm)</option>
+                        <option value="evening">Evening (5pm-8pm)</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="btn-submit">
+                    Complete Booking →
+                </button>
+                
+                <p class="form-note">
+                    <i class="fas fa-lock"></i> Secure payment. Cancel anytime.
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

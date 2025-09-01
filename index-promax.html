@@ -1,0 +1,2036 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skulpt - ProMax Lipo Skin Tightening Assessment</title>
+    <meta name="description" content="Non-surgical skin tightening after weight loss with ProMax Lipo. Perfect for Ozempic & Mounjaro patients. Instant results, no downtime.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --gold: #D4AF37;
+            --gold-soft: #F4E4C1;
+            --rose: #E8B4B8;
+            --cream: #FFFEF9;
+            --charcoal: #2C2A29;
+            --gray: #6B6866;
+            --gray-light: #F5F3F0;
+            --white: #FFFFFF;
+            --red-accent: #EE5A52;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            color: var(--charcoal);
+            line-height: 1.6;
+            background: var(--cream);
+        }
+
+        /* Header */
+        .header {
+            background: var(--white);
+            padding: 1rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 1rem;
+        }
+
+        .logo {
+            height: 40px;
+        }
+
+        .cta-header {
+            background: linear-gradient(135deg, var(--gold) 0%, var(--rose) 100%);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        /* Hero Banner */
+        .hero-mini {
+            text-align: center;
+            padding: 2rem 1rem;
+            background: linear-gradient(180deg, #FFFFFF 0%, #FFF8F3 100%);
+        }
+
+        .trust-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--white);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--gray);
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .trust-badge i {
+            color: var(--gold);
+        }
+
+        .headline {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            color: var(--charcoal);
+            margin-bottom: 0.5rem;
+            font-weight: 400;
+        }
+
+        .headline-accent {
+            color: var(--gold);
+            font-style: italic;
+        }
+
+        .subheadline {
+            color: var(--gray);
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* ProMax Hero Section */
+        .promax-hero {
+            background: var(--white);
+            padding: 2rem 1rem;
+            text-align: center;
+        }
+
+        .promax-badge {
+            display: inline-block;
+            background: var(--red-accent);
+            color: white;
+            padding: 0.25rem 1rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+        }
+
+        .promax-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            color: var(--charcoal);
+            margin-bottom: 1rem;
+        }
+
+        .treatment-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            max-width: 600px;
+            margin: 2rem auto;
+        }
+
+        .feature-card {
+            background: var(--gray-light);
+            padding: 1rem;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .feature-icon {
+            font-size: 1.5rem;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--charcoal);
+            margin-bottom: 0.25rem;
+        }
+
+        .feature-desc {
+            font-size: 0.75rem;
+            color: var(--gray);
+        }
+
+        /* Assessment Tool */
+        .assessment-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+
+        .assessment-card {
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .progress-bar {
+            height: 4px;
+            background: var(--gray-light);
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--gold) 0%, var(--rose) 100%);
+            transition: width 0.5s ease;
+        }
+
+        .step {
+            display: none;
+            padding: 2rem;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .step.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .step-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .step-number {
+            display: inline-block;
+            width: 25px;
+            height: 25px;
+            background: var(--gold);
+            color: white;
+            border-radius: 50%;
+            line-height: 25px;
+            font-size: 0.8rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .step-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            color: var(--charcoal);
+            margin-bottom: 0.5rem;
+        }
+
+        .step-subtitle {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* Option Cards */
+        .options-grid {
+            display: grid;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .option-card {
+            background: var(--white);
+            border: 2px solid var(--gray-light);
+            border-radius: 12px;
+            padding: 1.25rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .option-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.15);
+        }
+
+        .option-card.selected {
+            border-color: var(--gold);
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.05) 0%, rgba(232, 180, 184, 0.05) 100%);
+        }
+
+        .option-icon {
+            font-size: 1.5rem;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .option-title {
+            font-weight: 600;
+            color: var(--charcoal);
+            margin-bottom: 0.25rem;
+        }
+
+        .option-desc {
+            font-size: 0.8rem;
+            color: var(--gray);
+        }
+        
+        .option-points {
+            margin-top: 0.5rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--gold);
+            opacity: 0;
+            transform: translateY(5px);
+            transition: all 0.3s;
+        }
+        
+        .option-card:hover .option-points {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .option-insight,
+        .option-match,
+        .option-speciality {
+            margin-top: 0.5rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 0.25rem 0.5rem;
+            border-radius: 10px;
+            display: inline-block;
+        }
+        
+        .option-insight {
+            color: var(--gold);
+            background: rgba(212, 175, 55, 0.1);
+        }
+        
+        .option-match {
+            color: #22c55e;
+            background: rgba(34, 197, 94, 0.1);
+        }
+        
+        .option-card:has(.option-match:contains('❌')) .option-match {
+            color: #ef4444;
+            background: rgba(239, 68, 68, 0.1);
+        }
+        
+        .option-speciality {
+            color: var(--gold);
+            background: rgba(212, 175, 55, 0.1);
+        }
+        
+        /* Name Input Styles */
+        .name-input-container,
+        .contact-capture-container {
+            max-width: 400px;
+            margin: 2rem auto;
+            text-align: center;
+        }
+        
+        .input-label {
+            display: block;
+            font-size: 1rem;
+            color: var(--gray);
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+        
+        .name-input,
+        .contact-input {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            font-size: 1.1rem;
+            border: 2px solid var(--gray-light);
+            border-radius: 30px;
+            outline: none;
+            transition: all 0.3s;
+            text-align: center;
+            font-family: 'Inter', sans-serif;
+            background: var(--white);
+        }
+        
+        .name-input:focus,
+        .contact-input:focus {
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+        }
+        
+        .input-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .input-helper {
+            display: block;
+            font-size: 0.75rem;
+            color: var(--gray);
+            margin-top: 0.5rem;
+        }
+        
+        .privacy-note {
+            margin-top: 1rem;
+            font-size: 0.75rem;
+            color: var(--gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        
+        /* Points Display */
+        .points-display {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            z-index: 100;
+            animation: slideIn 0.5s ease;
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateX(100px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        .points-circle {
+            background: linear-gradient(135deg, var(--gold) 0%, var(--rose) 100%);
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.3);
+            animation: pointsPulse 2s infinite;
+        }
+        
+        @keyframes pointsPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        #pointsValue {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+        }
+        
+        .points-label {
+            font-size: 0.6rem;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .user-name {
+            color: var(--gold);
+            font-weight: 600;
+        }
+        
+        /* Celebration Animation */
+        .celebration-animation {
+            position: absolute;
+            top: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            pointer-events: none;
+        }
+        
+        .confetti {
+            width: 200px;
+            height: 200px;
+            position: relative;
+        }
+        
+        .confetti::before,
+        .confetti::after {
+            content: '🎉';
+            position: absolute;
+            font-size: 2rem;
+            animation: confettiFloat 3s ease-out;
+        }
+        
+        .confetti::before {
+            left: 20px;
+            animation-delay: 0.2s;
+        }
+        
+        .confetti::after {
+            right: 20px;
+            animation-delay: 0.5s;
+        }
+        
+        @keyframes confettiFloat {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Button */
+        .btn-continue {
+            background: linear-gradient(135deg, var(--gold) 0%, var(--rose) 100%);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s;
+        }
+
+        .btn-continue:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.3);
+        }
+
+        .btn-continue:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Results */
+        .results-container {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .match-score {
+            font-size: 3rem;
+            font-weight: 300;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .match-label {
+            font-size: 0.8rem;
+            color: var(--gray);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+        }
+
+        .treatment-reveal {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(232, 180, 184, 0.1) 100%);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .treatment-logo {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--red-accent);
+            margin-bottom: 1rem;
+        }
+
+        .treatment-benefits {
+            display: grid;
+            gap: 1rem;
+            margin: 1.5rem 0;
+            text-align: left;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: start;
+            gap: 0.75rem;
+        }
+
+        .benefit-icon {
+            color: var(--gold);
+            font-size: 1rem;
+            margin-top: 2px;
+        }
+
+        .benefit-text {
+            flex: 1;
+        }
+
+        .benefit-title {
+            font-weight: 600;
+            color: var(--charcoal);
+            margin-bottom: 0.25rem;
+        }
+
+        .benefit-desc {
+            font-size: 0.85rem;
+            color: var(--gray);
+        }
+
+        .pricing-box {
+            background: var(--white);
+            border: 2px solid var(--gold);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .price-original {
+            text-decoration: line-through;
+            color: var(--gray);
+            font-size: 1rem;
+        }
+
+        .price-special {
+            font-size: 2.5rem;
+            font-weight: 300;
+            color: var(--gold);
+            margin: 0.5rem 0;
+        }
+
+        .price-note {
+            font-size: 0.85rem;
+            color: var(--gray);
+        }
+
+        /* Booking Modal Styles */
+        .booking-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            animation: modalFadeIn 0.3s ease;
+        }
+
+        @keyframes modalFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-backdrop {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+
+        .modal-container {
+            position: relative;
+            background: var(--white);
+            border-radius: 30px;
+            max-width: 600px;
+            width: 100%;
+            max-height: 90vh;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: modalSlideUp 0.4s ease;
+        }
+
+        @keyframes modalSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .modal-close:hover {
+            background: var(--white);
+            transform: rotate(90deg);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .modal-close i {
+            font-size: 1.2rem;
+            color: var(--charcoal);
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.05) 0%, rgba(232, 180, 184, 0.05) 100%);
+            padding: 2rem 2rem 1.5rem;
+            text-align: center;
+            border-bottom: 1px solid var(--gray-light);
+        }
+
+        .modal-badge {
+            display: inline-block;
+            background: var(--gold);
+            color: white;
+            padding: 0.25rem 1rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.75rem;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .modal-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.75rem;
+            color: var(--charcoal);
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+        }
+
+        .modal-subtitle {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+
+        .modal-body {
+            padding: 1.5rem;
+            background: var(--white);
+            overflow-y: auto;
+            max-height: 50vh;
+        }
+
+        .modal-footer {
+            background: var(--gray-light);
+            padding: 1.25rem 1.5rem;
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .trust-points {
+            display: flex;
+            justify-content: space-around;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .trust-points span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.8rem;
+            color: var(--gray);
+            font-weight: 500;
+        }
+
+        .trust-points i {
+            color: var(--gold);
+            font-size: 0.9rem;
+        }
+
+        /* Exclusive Unlock Styles */
+        .exclusive-unlock {
+            background: linear-gradient(135deg, rgba(37, 211, 102, 0.05) 0%, rgba(212, 175, 55, 0.05) 100%);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 2px solid #25D366;
+            position: relative;
+            animation: unlockGlow 2s ease;
+        }
+        
+        @keyframes unlockGlow {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.4); }
+            50% { box-shadow: 0 0 20px 10px rgba(37, 211, 102, 0.2); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+        
+        .unlock-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #25D366;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: badgeBounce 1s ease;
+        }
+        
+        @keyframes badgeBounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-5px); }
+        }
+        
+        .before-after-cta {
+            text-align: center;
+            margin-top: 1rem;
+        }
+        
+        .cta-title {
+            font-size: 1.25rem;
+            color: var(--charcoal);
+            margin-bottom: 0.5rem;
+        }
+        
+        .cta-subtitle {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+        }
+        
+        .whatsapp-button-big {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: #25D366;
+            color: white;
+            padding: 1.125rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.05rem;
+            transition: all 0.3s;
+            box-shadow: 0 5px 20px rgba(37, 211, 102, 0.3);
+            animation: ctaPulse 2s infinite;
+        }
+        
+        @keyframes ctaPulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 5px 20px rgba(37, 211, 102, 0.3); }
+            50% { transform: scale(1.02); box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4); }
+        }
+        
+        .whatsapp-button-big:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 30px rgba(37, 211, 102, 0.5);
+            background: #22c55e;
+        }
+        
+        .whatsapp-button-big i {
+            font-size: 1.5rem;
+        }
+        
+        .whatsapp-promise {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1rem;
+            font-size: 0.85rem;
+            color: var(--gray);
+            flex-wrap: wrap;
+        }
+        
+        .whatsapp-promise i {
+            color: #25D366;
+            margin-right: 0.25rem;
+        }
+        
+        .or-divider {
+            text-align: center;
+            margin: 1.5rem 0;
+            position: relative;
+        }
+        
+        .or-divider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: var(--gray-light);
+        }
+        
+        .or-divider span {
+            background: var(--white);
+            padding: 0 1rem;
+            position: relative;
+            color: var(--gray);
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+        
+        /* WhatsApp Styles */
+        .whatsapp-cta {
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .whatsapp-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: #25D366;
+            color: white;
+            padding: 0.9rem 1.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+        }
+
+        .whatsapp-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+            background: #22c55e;
+        }
+
+        .whatsapp-button i {
+            font-size: 1.3rem;
+        }
+
+        .whatsapp-note {
+            margin-top: 0.5rem;
+            font-size: 0.75rem;
+            color: var(--gray);
+        }
+
+        .results-actions {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--gray-light);
+        }
+
+        .whatsapp-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #25D366;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+
+        .whatsapp-link:hover {
+            color: #22c55e;
+            transform: translateX(3px);
+        }
+
+        .whatsapp-link i {
+            font-size: 1.2rem;
+        }
+
+        /* Floating WhatsApp Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 1000;
+        }
+
+        .whatsapp-float-btn {
+            width: 60px;
+            height: 60px;
+            background: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            transition: all 0.3s;
+            animation: whatsappPulse 2s infinite;
+        }
+
+        @keyframes whatsappPulse {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 6px 30px rgba(37, 211, 102, 0.6);
+            }
+        }
+
+        .whatsapp-float-btn:hover {
+            transform: scale(1.1);
+            background: #22c55e;
+        }
+
+        .whatsapp-float-btn i {
+            color: white;
+            font-size: 2rem;
+        }
+
+        .whatsapp-float-label {
+            position: absolute;
+            right: 70px;
+            bottom: 15px;
+            background: white;
+            padding: 0.5rem 0.75rem;
+            border-radius: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            white-space: nowrap;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--charcoal);
+            opacity: 0;
+            transform: translateX(10px);
+            transition: all 0.3s;
+        }
+
+        .whatsapp-float:hover .whatsapp-float-label {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Mobile Optimization */
+        @media (max-width: 640px) {
+            .modal-container {
+                max-height: 95vh;
+                border-radius: 20px 20px 0 0;
+                margin-top: auto;
+            }
+            
+            .modal-header {
+                padding: 1.5rem 1.5rem 1rem;
+            }
+            
+            .modal-title {
+                font-size: 1.5rem;
+            }
+            
+            .trust-points {
+                flex-direction: column;
+                align-items: center;
+                gap: 0.5rem;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .options-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .treatment-features {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .modal-body {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <img src="public/images/tmp93edj09q.webp" alt="Skulpt" class="logo">
+            <a href="#book" class="cta-header">Book Consultation</a>
+        </div>
+    </header>
+
+    <!-- Mini Hero -->
+    <section class="hero-mini">
+        <div class="trust-badge">
+            <i class="fas fa-check-circle"></i>
+            <span>Non-Surgical • No Downtime • Instant Results</span>
+        </div>
+        
+        <h1 class="headline">
+            Lost Weight? 
+            <span class="headline-accent">Tighten Your Skin</span>
+        </h1>
+        
+        <p class="subheadline">
+            Discover if ProMax Lipo is right for your post-weight-loss transformation
+        </p>
+    </section>
+
+    <!-- ProMax Hero -->
+    <section class="promax-hero">
+        <div class="promax-badge">Exclusive Technology</div>
+        
+        <h2 class="promax-title">ProMax Lipo Triple-Action System</h2>
+        
+        <div class="treatment-features">
+            <div class="feature-card">
+                <div class="feature-icon">🔊</div>
+                <div class="feature-title">Ultrasonic Cavitation</div>
+                <div class="feature-desc">Breaks down stubborn fat</div>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <div class="feature-title">Radio Frequency</div>
+                <div class="feature-desc">Tightens loose skin</div>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">💆‍♀️</div>
+                <div class="feature-title">Vacuum Massage</div>
+                <div class="feature-desc">Smooths & contours</div>
+            </div>
+        </div>
+        
+    </section>
+
+    <!-- Assessment Tool -->
+    <section class="assessment-container">
+        <div class="assessment-card">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress" style="width: 20%"></div>
+            </div>
+            
+            <!-- Step Points Display -->
+            <div class="points-display" style="display: none;">
+                <div class="points-circle">
+                    <span id="pointsValue">0</span>
+                    <span class="points-label">match points</span>
+                </div>
+            </div>
+            
+            <!-- Step 1: Name Capture -->
+            <div class="step active" data-step="1">
+                <div class="step-header">
+                    <span class="step-number">✨</span>
+                    <h2 class="step-title">Let's Start Your Transformation</h2>
+                    <p class="step-subtitle">I'm here to create your personalized skin tightening plan</p>
+                </div>
+                
+                <div class="name-input-container">
+                    <label class="input-label">First, what should I call you?</label>
+                    <input type="text" 
+                           id="userName" 
+                           class="name-input" 
+                           placeholder="Enter your first name"
+                           autocomplete="given-name">
+                    <button class="btn-continue" onclick="saveName()" id="nameBtn" disabled>
+                        Continue →
+                    </button>
+                    <p class="privacy-note">
+                        <i class="fas fa-lock"></i> Your information is 100% secure
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Step 1.5: Contact Capture -->
+            <div class="step" data-step="1.5">
+                <div class="step-header">
+                    <span class="step-number">📱</span>
+                    <h2 class="step-title">Perfect, <span class="user-name"></span>!</h2>
+                    <p class="step-subtitle">How should we send your personalised results?</p>
+                </div>
+                
+                <div class="contact-capture-container">
+                    <div class="input-group">
+                        <label class="input-label">
+                            <i class="fas fa-envelope"></i> Email Address
+                        </label>
+                        <input type="email" 
+                               id="userEmail" 
+                               class="contact-input" 
+                               placeholder="your@email.com"
+                               autocomplete="email">
+                        <span class="input-helper">We'll send your detailed assessment results here</span>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label class="input-label">
+                            <i class="fas fa-phone"></i> Mobile Number (Optional)
+                        </label>
+                        <input type="tel" 
+                               id="userPhone" 
+                               class="contact-input" 
+                               placeholder="07700 000000"
+                               autocomplete="tel">
+                        <span class="input-helper">For WhatsApp updates and exclusive offers</span>
+                    </div>
+                    
+                    <div class="input-group">
+                        <label class="input-label">
+                            <i class="fas fa-map-marker-alt"></i> Postcode
+                        </label>
+                        <input type="text" 
+                               id="userPostcode" 
+                               class="contact-input" 
+                               placeholder="SW1A 1AA"
+                               autocomplete="postal-code"
+                               style="text-transform: uppercase;">
+                        <span class="input-helper">To find the best clinic near you</span>
+                    </div>
+                    
+                    <button class="btn-continue" onclick="saveContact()" id="contactBtn" disabled>
+                        Continue to Assessment →
+                    </button>
+                    
+                    <p class="privacy-note">
+                        <i class="fas fa-lock"></i> We never share your details. Unsubscribe anytime.
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Step 2: Weight Loss Method -->
+            <div class="step" data-step="2">
+                <div class="step-header">
+                    <span class="step-number">1</span>
+                    <h2 class="step-title">Brilliant, <span class="user-name"></span>!</h2>
+                    <p class="step-subtitle">How did you achieve your weight loss?</p>
+                </div>
+                
+                <div class="options-grid">
+                    <div class="option-card" onclick="selectMethod('ozempic')">
+                        <div class="option-icon">💉</div>
+                        <div class="option-title">Ozempic/Wegovy</div>
+                        <div class="option-desc">GLP-1 medication</div>
+                        <div class="option-points">+25 points</div>
+                    </div>
+                    
+                    <div class="option-card" onclick="selectMethod('mounjaro')">
+                        <div class="option-icon">💊</div>
+                        <div class="option-title">Mounjaro</div>
+                        <div class="option-desc">Tirzepatide</div>
+                        <div class="option-points">+25 points</div>
+                    </div>
+                    
+                    <div class="option-card" onclick="selectMethod('other')">
+                        <div class="option-icon">🏃‍♀️</div>
+                        <div class="option-title">Other Method</div>
+                        <div class="option-desc">Diet, surgery, etc.</div>
+                        <div class="option-points">+20 points</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Step 3: The Real Question -->
+            <div class="step" data-step="3">
+                <div class="step-header">
+                    <span class="step-number">2</span>
+                    <h2 class="step-title">Let me ask you something, <span class="user-name"></span>...</h2>
+                    <p class="step-subtitle">When you touch your skin, what do you feel?</p>
+                </div>
+                
+                <div class="options-grid">
+                    <div class="option-card" onclick="selectSkinFeel('loose')">
+                        <div class="option-icon">🤏</div>
+                        <div class="option-title">It's Loose</div>
+                        <div class="option-desc">I can pinch and pull it easily</div>
+                        <div class="option-insight">Perfect for ProMax</div>
+                    </div>
+                    
+                    <div class="option-card" onclick="selectSkinFeel('firm')">
+                        <div class="option-icon">✊</div>
+                        <div class="option-title">Still Firm</div>
+                        <div class="option-desc">Just needs minor toning</div>
+                        <div class="option-insight">Good candidate</div>
+                    </div>
+                    
+                    <div class="option-card" onclick="selectSkinFeel('mixed')">
+                        <div class="option-icon">🤷</div>
+                        <div class="option-title">It Varies</div>
+                        <div class="option-desc">Some areas loose, others okay</div>
+                        <div class="option-insight">Ideal for targeted treatment</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Step 4: The Truth Check -->
+            <div class="step" data-step="4">
+                <div class="step-header">
+                    <span class="step-number">3</span>
+                    <h2 class="step-title">Be honest with yourself, <span class="user-name"></span></h2>
+                    <p class="step-subtitle">What's your main goal?</p>
+                </div>
+                
+                <div class="options-grid">
+                    <div class="option-card" onclick="selectGoal('tighten')">
+                        <div class="option-icon">🎯</div>
+                        <div class="option-title">Tighten Loose Skin</div>
+                        <div class="option-desc">Make my skin snap back</div>
+                        <div class="option-match">✅ Exactly what ProMax does</div>
+                    </div>
+                    
+                    <div class="option-card" onclick="selectGoal('tone')">
+                        <div class="option-icon">💪</div>
+                        <div class="option-title">Tone & Contour</div>
+                        <div class="option-desc">Sculpt and define areas</div>
+                        <div class="option-match">✅ ProMax excels at this</div>
+                    </div>
+                    
+                    <div class="option-card" onclick="selectGoal('spots')">
+                        <div class="option-icon">🎨</div>
+                        <div class="option-title">Remove Dark Spots</div>
+                        <div class="option-desc">Fix pigmentation issues</div>
+                        <div class="option-match">❌ Different treatment needed</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Step 5: Body or Face -->
+            <div class="step" data-step="5">
+                <div class="step-header">
+                    <span class="step-number">4</span>
+                    <h2 class="step-title">Where shall we focus, <span class="user-name"></span>?</h2>
+                    <p class="step-subtitle">Body or face treatment?</p>
+                </div>
+                
+                <div class="options-grid">
+                    <div class="option-card" onclick="selectFocus('body')">
+                        <div class="option-icon">👤</div>
+                        <div class="option-title">Body</div>
+                        <div class="option-desc">Tummy, arms, thighs, etc.</div>
+                        <div class="option-speciality">⭐ Our speciality</div>
+                    </div>
+                    
+                    <div class="option-card" onclick="selectFocus('face')">
+                        <div class="option-icon">😊</div>
+                        <div class="option-title">Face & Neck</div>
+                        <div class="option-desc">Jowls, double chin</div>
+                        <div class="option-speciality">Also available</div>
+                    </div>
+                    
+                    <div class="option-card" onclick="selectFocus('both')">
+                        <div class="option-icon">✨</div>
+                        <div class="option-title">Both</div>
+                        <div class="option-desc">Full transformation</div>
+                        <div class="option-speciality">Package options</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Step 6: Area Selection (Body) -->
+            <div class="step" data-step="6-body">
+                <div class="step-header">
+                    <span class="step-number">5</span>
+                    <h2 class="step-title">Which area bothers you most?</h2>
+                    <p class="step-subtitle">We'll start here first</p>
+                </div>
+                
+                <div class="options-grid">
+                    <div class="option-card" onclick="selectArea('tummy')">
+                        <div class="option-icon">🎯</div>
+                        <div class="option-title">Tummy</div>
+                        <div class="option-desc">Post-weight loss pouch</div>
+                    </div>
+                    
+                    <div class="option-card" onclick="selectArea('arms')">
+                        <div class="option-icon">💪</div>
+                        <div class="option-title">Arms</div>
+                        <div class="option-desc">Bingo wings</div>
+                    </div>
+                    
+                    <div class="option-card" onclick="selectArea('thighs')">
+                        <div class="option-icon">🦵</div>
+                        <div class="option-title">Thighs</div>
+                        <div class="option-desc">Inner thigh sag</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Step 7: Ready to Commit -->
+            <div class="step" data-step="7">
+                <div class="step-header">
+                    <span class="step-number">6</span>
+                    <h2 class="step-title">Final question, <span class="user-name"></span></h2>
+                    <p class="step-subtitle">Are you ready to invest in yourself?</p>
+                </div>
+                
+                <div class="options-grid">
+                    <div class="option-card" onclick="showResults('ready')">
+                        <div class="option-icon">💚</div>
+                        <div class="option-title">Yes, I'm Ready</div>
+                        <div class="option-desc">Let's fix this skin</div>
+                    </div>
+                    
+                    <div class="option-card" onclick="showResults('considering')">
+                        <div class="option-icon">🤔</div>
+                        <div class="option-title">Still Considering</div>
+                        <div class="option-desc">Need more info</div>
+                    </div>
+                    
+                    <div class="option-card" onclick="showResults('price')">
+                        <div class="option-icon">💷</div>
+                        <div class="option-title">Depends on Price</div>
+                        <div class="option-desc">What's the investment?</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Results -->
+            <div class="step" data-step="results">
+                <div class="results-container">
+                    <div class="celebration-animation">
+                        <div class="confetti"></div>
+                    </div>
+                    
+                    <div class="match-score" id="finalScore">96</div>
+                    <div class="match-label">Match Score</div>
+                    
+                    <h2 class="step-title">Amazing news, <span class="user-name"></span>!</h2>
+                    <p class="step-subtitle" id="personalMessage">You're an ideal candidate for ProMax Lipo</p>
+                    
+                    <div class="treatment-reveal">
+                        <div class="treatment-logo">ProMax Lipo</div>
+                        
+                        <div class="treatment-benefits">
+                            <div class="benefit-item">
+                                <i class="fas fa-check-circle benefit-icon"></i>
+                                <div class="benefit-text">
+                                    <div class="benefit-title">Instant Skin Tightening</div>
+                                    <div class="benefit-desc">See results from your first session</div>
+                                </div>
+                            </div>
+                            
+                            <div class="benefit-item">
+                                <i class="fas fa-check-circle benefit-icon"></i>
+                                <div class="benefit-text">
+                                    <div class="benefit-title">No Surgery, No Downtime</div>
+                                    <div class="benefit-desc">Return to normal activities immediately</div>
+                                </div>
+                            </div>
+                            
+                            <div class="benefit-item">
+                                <i class="fas fa-check-circle benefit-icon"></i>
+                                <div class="benefit-text">
+                                    <div class="benefit-title">Triple-Action Technology</div>
+                                    <div class="benefit-desc">Cavitation + RF + Vacuum in one treatment</div>
+                                </div>
+                            </div>
+                            
+                            <div class="benefit-item">
+                                <i class="fas fa-check-circle benefit-icon"></i>
+                                <div class="benefit-text">
+                                    <div class="benefit-title">Proven Results</div>
+                                    <div class="benefit-desc">5-6 sessions for dramatic transformation</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="pricing-box">
+                        <div class="price-original">Consultation Value £150</div>
+                        <div class="price-special">FREE</div>
+                        <div class="price-note">Limited availability this week</div>
+                    </div>
+                    
+                    <div class="exclusive-unlock">
+                        <div class="unlock-badge">
+                            <i class="fas fa-unlock"></i>
+                            <span>Exclusive Access Unlocked!</span>
+                        </div>
+                        
+                        <div class="before-after-cta">
+                            <h3 class="cta-title">🎉 Congratulations <span class="user-name"></span>!</h3>
+                            <p class="cta-subtitle">You've earned exclusive access to our real before & after gallery</p>
+                            
+                            <a href="https://wa.me/447700173390?text=Hi!%20I've%20just%20completed%20your%20assessment%20and%20would%20love%20to%20see%20ProMax%20Lipo%20before%20and%20after%20photos" 
+                               target="_blank" 
+                               class="whatsapp-button-big"
+                               id="whatsappResultsLink">
+                                <i class="fab fa-whatsapp"></i>
+                                <span>View Before & Afters on WhatsApp</span>
+                            </a>
+                            
+                            <p class="whatsapp-promise">
+                                <i class="fas fa-check-circle"></i> Real patient results
+                                <i class="fas fa-check-circle"></i> Instant access
+                                <i class="fas fa-check-circle"></i> Similar cases to yours
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="or-divider">
+                        <span>OR</span>
+                    </div>
+                    
+                    <button class="btn-continue" onclick="bookConsultation()">
+                        Book Your Free ProMax Consultation →
+                    </button>
+                    
+                    <p style="margin-top: 1rem; font-size: 0.85rem; color: var(--gray);">
+                        <i class="fas fa-lock"></i> No obligation • See real results • Meet our experts
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        let currentStep = 1;
+        let totalPoints = 0;
+        let userName = '';
+        let isQualified = true;
+        let alternativeRecommendation = '';
+        let assessment = {
+            name: '',
+            email: '',
+            phone: '',
+            postcode: '',
+            method: '',
+            skinFeel: '',
+            goal: '',
+            focus: '',
+            area: '',
+            commitment: ''
+        };
+        
+        // Partner clinics by region (simplified - you'd expand this)
+        const partnerClinics = {
+            'SW': 'Chelsea Aesthetics - Morpheus8 Specialist',
+            'W': 'Mayfair Skin Clinic - Sylfirm X Expert',
+            'NW': 'Hampstead Beauty - RF Microneedling',
+            'N': 'Islington Aesthetics - Full RF Range',
+            'E': 'Canary Wharf Clinic - Morpheus8 & Sylfirm',
+            'SE': 'Greenwich Skin Centre - RF Specialist',
+            'default': 'London Aesthetics Group - Multiple Locations'
+        };
+        
+        // Qualification scoring
+        const qualificationFactors = {
+            method: { ozempic: 3, mounjaro: 3, other: 2 },
+            skinFeel: { loose: 3, mixed: 2, firm: 1 },
+            goal: { tighten: 3, tone: 3, spots: -1 },
+            focus: { body: 3, both: 2, face: 1 },
+            commitment: { ready: 3, price: 2, considering: 1 }
+        };
+        
+        // Enable/disable name button based on input
+        document.addEventListener('DOMContentLoaded', function() {
+            const nameInput = document.getElementById('userName');
+            const nameBtn = document.getElementById('nameBtn');
+            
+            nameInput.addEventListener('input', function() {
+                if (this.value.trim().length > 0) {
+                    nameBtn.disabled = false;
+                } else {
+                    nameBtn.disabled = true;
+                }
+            });
+            
+            nameInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter' && this.value.trim().length > 0) {
+                    saveName();
+                }
+            });
+        });
+        
+        function saveName() {
+            const nameInput = document.getElementById('userName');
+            userName = nameInput.value.trim();
+            
+            if (userName) {
+                assessment.name = userName;
+                
+                // Update all name placeholders
+                document.querySelectorAll('.user-name').forEach(el => {
+                    el.textContent = userName;
+                });
+                
+                // Go to contact capture step
+                goToStep(1.5);
+            }
+        }
+        
+        // Enable contact button when email is entered
+        document.addEventListener('DOMContentLoaded', function() {
+            // Existing name input code...
+            
+            const emailInput = document.getElementById('userEmail');
+            const phoneInput = document.getElementById('userPhone');
+            const contactBtn = document.getElementById('contactBtn');
+            
+            if (emailInput) {
+                emailInput.addEventListener('input', function() {
+                    const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.value);
+                    contactBtn.disabled = !emailValid;
+                });
+            }
+        });
+        
+        function saveContact() {
+            const emailInput = document.getElementById('userEmail');
+            const phoneInput = document.getElementById('userPhone');
+            const postcodeInput = document.getElementById('userPostcode');
+            
+            if (emailInput && emailInput.value) {
+                assessment.email = emailInput.value.trim();
+                assessment.phone = phoneInput.value.trim();
+                assessment.postcode = postcodeInput.value.trim().toUpperCase();
+                
+                // Show points display after contact capture
+                document.querySelector('.points-display').style.display = 'block';
+                
+                // Send to GHL webhook immediately for nurture sequence
+                sendToGHL({
+                    name: assessment.name,
+                    email: assessment.email,
+                    phone: assessment.phone,
+                    postcode: assessment.postcode,
+                    source: 'assessment_started',
+                    timestamp: new Date().toISOString()
+                });
+                
+                goToStep(2);
+            }
+        }
+        
+        function getPartnerClinic(postcode) {
+            // Extract area code from postcode (first 1-2 letters)
+            const areaCode = postcode.match(/^[A-Z]{1,2}/)?.[0] || '';
+            return partnerClinics[areaCode] || partnerClinics['default'];
+        }
+        
+        function addPoints(points) {
+            const startPoints = totalPoints;
+            totalPoints += points;
+            
+            // Animate points increase
+            let current = startPoints;
+            const increment = points / 20;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= totalPoints) {
+                    current = totalPoints;
+                    clearInterval(timer);
+                }
+                document.getElementById('pointsValue').textContent = Math.round(current);
+            }, 50);
+            
+            // Add celebration effect
+            const circle = document.querySelector('.points-circle');
+            circle.style.transform = 'scale(1.2)';
+            setTimeout(() => {
+                circle.style.transform = 'scale(1)';
+            }, 300);
+        }
+
+        function selectMethod(method) {
+            assessment.method = method;
+            const score = qualificationFactors.method[method];
+            totalPoints += score * 10;
+            
+            document.querySelectorAll('[data-step="2"] .option-card').forEach(card => card.classList.remove('selected'));
+            event.target.closest('.option-card').classList.add('selected');
+            
+            updatePointsDisplay();
+            
+            setTimeout(() => {
+                goToStep(3);
+            }, 500);
+        }
+        
+        function selectSkinFeel(feel) {
+            assessment.skinFeel = feel;
+            const score = qualificationFactors.skinFeel[feel];
+            totalPoints += score * 10;
+            
+            document.querySelectorAll('[data-step="3"] .option-card').forEach(card => card.classList.remove('selected'));
+            event.target.closest('.option-card').classList.add('selected');
+            
+            updatePointsDisplay();
+            
+            setTimeout(() => {
+                goToStep(4);
+            }, 500);
+        }
+        
+        function selectGoal(goal) {
+            assessment.goal = goal;
+            const score = qualificationFactors.goal[goal];
+            
+            document.querySelectorAll('[data-step="4"] .option-card').forEach(card => card.classList.remove('selected'));
+            event.target.closest('.option-card').classList.add('selected');
+            
+            if (goal === 'spots') {
+                isQualified = false;
+                alternativeRecommendation = 'chemical peels or laser treatments';
+            } else {
+                totalPoints += score * 10;
+            }
+            
+            updatePointsDisplay();
+            
+            setTimeout(() => {
+                goToStep(5);
+            }, 500);
+        }
+        
+        function selectFocus(focus) {
+            assessment.focus = focus;
+            const score = qualificationFactors.focus[focus];
+            totalPoints += score * 10;
+            
+            document.querySelectorAll('[data-step="5"] .option-card').forEach(card => card.classList.remove('selected'));
+            event.target.closest('.option-card').classList.add('selected');
+            
+            updatePointsDisplay();
+            
+            setTimeout(() => {
+                if (focus === 'body' || focus === 'both') {
+                    goToStep('6-body');
+                } else {
+                    goToStep(7);
+                }
+            }, 500);
+        }
+
+        function selectArea(area) {
+            assessment.area = area;
+            totalPoints += 10;
+            
+            document.querySelectorAll('[data-step="6-body"] .option-card').forEach(card => card.classList.remove('selected'));
+            event.target.closest('.option-card').classList.add('selected');
+            
+            updatePointsDisplay();
+            
+            setTimeout(() => {
+                goToStep(7);
+            }, 500);
+        }
+        
+        function updatePointsDisplay() {
+            const pointsEl = document.getElementById('pointsValue');
+            if (pointsEl) {
+                pointsEl.textContent = totalPoints;
+            }
+            
+            // Add celebration effect
+            const circle = document.querySelector('.points-circle');
+            if (circle) {
+                circle.style.transform = 'scale(1.2)';
+                setTimeout(() => {
+                    circle.style.transform = 'scale(1)';
+                }, 300);
+            }
+        }
+
+        function goToStep(step) {
+            document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+            document.querySelector(`[data-step="${step}"]`).classList.add('active');
+            
+            // Update progress based on step
+            let progress = 15;
+            if (step === 1.5) progress = 25;  // Contact capture
+            else if (step === 2) progress = 35;  // Weight loss method
+            else if (step === 3) progress = 45;  // Skin feel
+            else if (step === 4) progress = 55;  // Goal
+            else if (step === 5) progress = 65;  // Body/Face
+            else if (step === '6-body') progress = 75;  // Area
+            else if (step === 7) progress = 85;  // Commitment
+            else if (step === 'results') progress = 100;
+            
+            document.getElementById('progress').style.width = progress + '%';
+            
+            currentStep = step;
+        }
+
+        // Send data to GoHighLevel webhook
+        async function sendToGHL(data) {
+            try {
+                const webhookUrl = 'https://services.leadconnectorhq.com/hooks/dVD6QbgqAF7fiHM3MCrz/webhook-trigger/355171e7-7010-42a9-b0b8-3dee211db694';
+                
+                await fetch(webhookUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+                
+                console.log('Sent to GHL:', data);
+            } catch (error) {
+                console.error('Failed to send to GHL:', error);
+                // Still continue - don't break the user experience
+            }
+        }
+        
+        // Save assessment to database
+        async function saveAssessment() {
+            try {
+                const response = await fetch('/api/save-assessment', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        name: userName,
+                        email: assessment.email,
+                        phone: assessment.phone,
+                        postcode: assessment.postcode,
+                        method: assessment.method,
+                        skinFeel: assessment.skinFeel,
+                        goal: assessment.goal,
+                        focus: assessment.focus,
+                        area: assessment.area,
+                        commitment: assessment.commitment,
+                        score: totalPoints,
+                        qualified: isQualified,
+                        alternativeRecommendation: alternativeRecommendation,
+                        partnerReferral: isQualified === 'partner' ? getPartnerClinic(assessment.postcode || 'SW1') : null
+                    })
+                });
+                
+                const data = await response.json();
+                if (data.success) {
+                    sessionStorage.setItem('assessmentId', data.assessmentId);
+                }
+            } catch (error) {
+                console.error('Failed to save assessment:', error);
+            }
+        }
+        
+        // Track events in journey
+        async function trackEvent(eventType, eventData = {}) {
+            const assessmentId = sessionStorage.getItem('assessmentId');
+            if (!assessmentId) return;
+            
+            try {
+                await fetch('/api/track-event', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        assessmentId,
+                        eventType,
+                        eventData
+                    })
+                });
+            } catch (error) {
+                console.error('Failed to track event:', error);
+            }
+        }
+        
+        function showResults(commitment) {
+            assessment.commitment = commitment;
+            const score = qualificationFactors.commitment[commitment];
+            
+            // Calculate REAL qualification score
+            let qualificationScore = 0;
+            let qualificationLevel = '';
+            let recommendedTreatment = 'ProMax Lipo';
+            
+            // Real scoring based on actual suitability
+            if (assessment.method === 'ozempic' || assessment.method === 'mounjaro') {
+                qualificationScore += 30; // GLP-1 users are prime candidates
+            } else {
+                qualificationScore += 15;
+            }
+            
+            if (assessment.skinFeel === 'loose') {
+                qualificationScore += 35; // Perfect for ProMax
+            } else if (assessment.skinFeel === 'mixed') {
+                qualificationScore += 25;
+            } else {
+                qualificationScore += 10;
+            }
+            
+            if (assessment.goal === 'tighten' || assessment.goal === 'tone') {
+                qualificationScore += 30; // Ideal goals
+            } else if (assessment.goal === 'spots') {
+                qualificationScore = 25; // Partner referral opportunity
+                isQualified = 'partner';
+                recommendedTreatment = 'Morpheus8 or Sylfirm X';
+                const partnerClinic = getPartnerClinic(assessment.postcode || 'SW1');
+                alternativeRecommendation = `Good news ${userName}! While ProMax Lipo doesn't treat pigmentation, we work with ${partnerClinic} near you. They specialise in Morpheus8 and Sylfirm X RF microneedling - the gold standard for dark spots and uneven skin tone. We'll arrange your consultation and you'll get our preferred partner rate.`;
+            }
+            
+            if (assessment.commitment === 'ready') {
+                qualificationScore += 15;
+            } else if (assessment.commitment === 'price') {
+                qualificationScore += 10;
+            } else {
+                qualificationScore += 5;
+            }
+            
+            // Determine qualification level
+            if (isQualified === 'partner') {
+                qualificationLevel = 'PARTNER_REFERRAL';
+                totalPoints = 70;
+            } else if (qualificationScore >= 85) {
+                qualificationLevel = 'PERFECT';
+                totalPoints = 95;
+            } else if (qualificationScore >= 70) {
+                qualificationLevel = 'EXCELLENT';
+                totalPoints = 85;
+            } else if (qualificationScore >= 50) {
+                qualificationLevel = 'GOOD';
+                totalPoints = 75;
+            } else if (qualificationScore >= 30) {
+                qualificationLevel = 'POSSIBLE';
+                totalPoints = 60;
+            } else {
+                qualificationLevel = 'ALTERNATIVE';
+                totalPoints = 40;
+                isQualified = false;
+            }
+            
+            // Save assessment to database
+            saveAssessment();
+            
+            // Send qualification data to GHL
+            const ghlData = {
+                name: assessment.name,
+                email: assessment.email,
+                phone: assessment.phone,
+                postcode: assessment.postcode,
+                qualification_score: qualificationScore,
+                qualification_level: qualificationLevel,
+                recommended_treatment: recommendedTreatment,
+                assessment_complete: true,
+                source: 'assessment_completed',
+                full_assessment: assessment
+            };
+            
+            // Add partner referral data if applicable
+            if (qualificationLevel === 'PARTNER_REFERRAL') {
+                ghlData.partner_referral = true;
+                ghlData.partner_clinic = getPartnerClinic(assessment.postcode || 'SW1');
+                ghlData.partner_treatment = recommendedTreatment;
+                ghlData.referral_reason = assessment.goal;
+            }
+            
+            sendToGHL(ghlData);
+            
+            // Show final score with animation
+            setTimeout(() => {
+                document.getElementById('finalScore').textContent = totalPoints;
+                
+                // Personalized message based on REAL qualification
+                let message = '';
+                if (qualificationLevel === 'PERFECT') {
+                    message = `${userName}, you're a PERFECT match for ProMax Lipo! Your loose skin from ${assessment.method === 'ozempic' || assessment.method === 'mounjaro' ? 'GLP-1 weight loss' : 'weight loss'} is exactly what we specialise in.`;
+                } else if (qualificationLevel === 'EXCELLENT') {
+                    message = `Great news ${userName}! You're an excellent candidate for ProMax Lipo. We can definitely help tighten your skin.`;
+                } else if (qualificationLevel === 'GOOD') {
+                    message = `${userName}, ProMax Lipo can help you achieve your goals. Let's discuss your options.`;
+                } else if (qualificationLevel === 'POSSIBLE') {
+                    message = `${userName}, you may benefit from ProMax Lipo. A consultation will determine the best approach.`;
+                } else if (qualificationLevel === 'PARTNER_REFERRAL') {
+                    message = alternativeRecommendation;
+                } else if (qualificationLevel === 'ALTERNATIVE') {
+                    message = alternativeRecommendation || `${userName}, based on your goals, we'd recommend exploring our other treatments that better suit your needs.`;
+                }
+                
+                document.getElementById('personalMessage').textContent = message;
+                
+                // Update WhatsApp link with name and score
+                const whatsappLink = document.getElementById('whatsappResultsLink');
+                const whatsappText = `Hi! I'm ${userName} and I just took your assessment (${totalPoints} points!). I'd love to see ProMax Lipo before and after photos.`;
+                whatsappLink.href = `https://wa.me/447700173390?text=${encodeURIComponent(whatsappText)}`;
+                
+                // Add tracking to WhatsApp button
+                whatsappLink.addEventListener('click', () => {
+                    trackEvent('whatsapp_clicked', { score: totalPoints, qualified: isQualified });
+                });
+                
+                // Show results
+                goToStep('results');
+                document.getElementById('progress').style.width = '100%';
+                
+                // Hide points display after a moment
+                setTimeout(() => {
+                    document.querySelector('.points-display').style.opacity = '0';
+                }, 2000);
+            }, 500);
+        }
+
+        function bookConsultation() {
+            // Track conversion with personalized data
+            console.log('Booking consultation:', {
+                name: userName,
+                score: totalPoints,
+                assessment: assessment
+            });
+            
+            // Track booking intent
+            trackEvent('booking_opened', { score: totalPoints, qualified: isQualified });
+            
+            // Open booking modal
+            openBookingModal();
+        }
+
+        function openBookingModal() {
+            document.getElementById('bookingModal').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+            
+            // Track when booking is actually submitted (you'd call this from the iframe if possible)
+            // For now, we'll track that modal was opened
+        }
+
+        function closeBookingModal() {
+            document.getElementById('bookingModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+    </script>
+
+    <!-- Gorgeous Booking Modal -->
+    <div id="bookingModal" class="booking-modal">
+        <div class="modal-backdrop" onclick="closeBookingModal()"></div>
+        <div class="modal-container">
+            <button class="modal-close" onclick="closeBookingModal()">
+                <i class="fas fa-times"></i>
+            </button>
+            
+            <div class="modal-header">
+                <div class="modal-badge">Limited Availability</div>
+                <h2 class="modal-title">Reserve Your ProMax Lipo Consultation</h2>
+                <p class="modal-subtitle">Start your skin tightening transformation today</p>
+            </div>
+            
+            <div class="modal-body">
+                <iframe 
+                    src="https://link.skintight.uk/widget/booking/85AnUNYWb63J1DyMo1g9" 
+                    style="width: 100%;border:none;overflow: hidden;min-height: 500px;" 
+                    scrolling="no" 
+                    id="85AnUNYWb63J1DyMo1g9_1756752507352">
+                </iframe>
+            </div>
+            
+            <div class="modal-footer">
+                <div class="trust-points">
+                    <span><i class="fas fa-shield-alt"></i> Secure Booking</span>
+                    <span><i class="fas fa-calendar-check"></i> Instant Confirmation</span>
+                    <span><i class="fas fa-undo"></i> Free Cancellation</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://link.skintight.uk/js/form_embed.js" type="text/javascript"></script>
+
+</body>
+</html>

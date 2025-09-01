@@ -1,0 +1,25 @@
+{
+  "functions": {
+    "api/save-assessment.js": {
+      "maxDuration": 10
+    },
+    "api/track-event.js": {
+      "maxDuration": 10
+    },
+    "api/trigger-followup.js": {
+      "maxDuration": 30
+    }
+  },
+  "crons": [
+    {
+      "path": "/api/trigger-followup",
+      "schedule": "0 */2 * * *"
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/",
+      "destination": "/index-promax.html"
+    }
+  ]
+}

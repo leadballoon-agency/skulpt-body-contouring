@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skulpt - Skin Tightening Assessment</title>
+    <meta name="description" content="Discover your personalized skin tightening treatment plan after weight loss. Specializing in ProMax Lipo for Ozempic & Mounjaro patients.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles-elegant.css">
+</head>
+<body>
+    <!-- Simple Elegant Header -->
+    <header class="elegant-header">
+        <div class="header-container">
+            <img src="public/images/tmp93edj09q.webp" alt="Skulpt" class="logo">
+            <nav class="nav-simple">
+                <a href="tel:+44">Call Us</a>
+                <a href="#book">Book Consultation</a>
+            </nav>
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Minimal Hero with Tool Front & Center -->
+    <section class="hero-elegant">
+        <div class="hero-content-elegant">
+            <div class="trust-line">
+                <i class="fas fa-star"></i>
+                <span>2,847 Successful Transformations</span>
+            </div>
+            
+            <h1 class="elegant-title">
+                Lost Weight with Ozempic?
+                <br>
+                <span class="gold-accent">Let's Tighten Your Skin</span>
+            </h1>
+            
+            <p class="elegant-subtitle">
+                Take our 60-second assessment to discover your personalized treatment plan
+            </p>
+        </div>
+    </section>
+
+    <!-- Assessment Tool - Main Feature -->
+    <section class="assessment-hero">
+        <div class="assessment-wrapper">
+            <div class="assessment-header">
+                <h2 class="assessment-title">Your Personal Assessment</h2>
+                <p class="assessment-subtitle">Get instant treatment recommendations</p>
+            </div>
+            
+            <div class="progress-elegant">
+                <div class="progress-fill-elegant" id="progressBar" style="width: 20%"></div>
+            </div>
+            
+            <div class="step-container">
+                <!-- Step 1: Weight Loss -->
+                <div class="step active" data-step="1">
+                    <div class="step-header-elegant">
+                        <span class="step-number-elegant">1</span>
+                        <h3 class="step-title-elegant">Your Weight Loss</h3>
+                        <p class="step-desc">How much weight have you lost?</p>
+                    </div>
+                    
+                    <div class="slider-group">
+                        <label class="slider-label">Weight Lost (kg)</label>
+                        <input type="range" min="5" max="50" value="15" class="elegant-slider" id="weightSlider" oninput="updateWeight(this.value)">
+                        <div class="slider-value"><span id="weightValue">15</span> kg</div>
+                        <div class="slider-insight" id="weightInsight">
+                            Significant weight loss - skin tightening recommended
+                        </div>
+                    </div>
+                    
+                    <button class="btn-elegant" onclick="goToStep(2)">
+                        Continue →
+                    </button>
+                </div>
+
+                <!-- Step 2: Method -->
+                <div class="step" data-step="2">
+                    <div class="step-header-elegant">
+                        <span class="step-number-elegant">2</span>
+                        <h3 class="step-title-elegant">Weight Loss Method</h3>
+                        <p class="step-desc">How did you lose weight?</p>
+                    </div>
+                    
+                    <div class="method-grid">
+                        <div class="method-card-elegant" onclick="selectMethod('glp1', this)">
+                            <i class="fas fa-syringe method-icon-elegant"></i>
+                            <div class="method-name">Ozempic/Mounjaro</div>
+                            <div class="method-desc">GLP-1 medications</div>
+                        </div>
+                        
+                        <div class="method-card-elegant" onclick="selectMethod('surgery', this)">
+                            <i class="fas fa-procedures method-icon-elegant"></i>
+                            <div class="method-name">Surgery</div>
+                            <div class="method-desc">Bariatric procedure</div>
+                        </div>
+                        
+                        <div class="method-card-elegant" onclick="selectMethod('natural', this)">
+                            <i class="fas fa-apple-alt method-icon-elegant"></i>
+                            <div class="method-name">Diet & Exercise</div>
+                            <div class="method-desc">Traditional method</div>
+                        </div>
+                    </div>
+                    
+                    <button class="btn-elegant" onclick="goToStep(3)" id="methodBtn" disabled>
+                        Continue →
+                    </button>
+                </div>
+
+                <!-- Step 3: Areas -->
+                <div class="step" data-step="3">
+                    <div class="step-header-elegant">
+                        <span class="step-number-elegant">3</span>
+                        <h3 class="step-title-elegant">Treatment Areas</h3>
+                        <p class="step-desc">Tap areas you'd like to improve</p>
+                    </div>
+                    
+                    <div class="body-map-container">
+                        <svg viewBox="0 0 200 300" class="body-svg-elegant">
+                            <defs>
+                                <linearGradient id="skinGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#fdf0e6;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#f5e5d5;stop-opacity:1" />
+                                </linearGradient>
+                            </defs>
+                            
+                            <!-- Simple female silhouette -->
+                            <path d="M100 30 C115 35, 120 50, 118 70 L115 100 C117 115, 120 130, 120 160 L118 200 C117 230, 115 250, 110 280 L90 280 C85 250, 83 230, 82 200 L80 160 C80 130, 83 115, 85 100 L82 70 C80 50, 85 35, 100 30" 
+                                  fill="url(#skinGradient)" stroke="#e0d0c0" stroke-width="1"/>
+                            
+                            <!-- Clickable zones -->
+                            <g class="zone-elegant" data-area="arms" onclick="toggleBodyArea('arms')">
+                                <ellipse cx="65" cy="100" rx="15" ry="40" fill="transparent" stroke="#e0d0c0" stroke-width="1.5" class="zone-fill"/>
+                                <ellipse cx="135" cy="100" rx="15" ry="40" fill="transparent" stroke="#e0d0c0" stroke-width="1.5" class="zone-fill"/>
+                            </g>
+                            
+                            <g class="zone-elegant" data-area="tummy" onclick="toggleBodyArea('tummy')">
+                                <ellipse cx="100" cy="150" rx="30" ry="40" fill="transparent" stroke="#e0d0c0" stroke-width="1.5" class="zone-fill"/>
+                            </g>
+                            
+                            <g class="zone-elegant" data-area="hips" onclick="toggleBodyArea('hips')">
+                                <ellipse cx="100" cy="190" rx="35" ry="20" fill="transparent" stroke="#e0d0c0" stroke-width="1.5" class="zone-fill"/>
+                            </g>
+                            
+                            <g class="zone-elegant" data-area="thighs" onclick="toggleBodyArea('thighs')">
+                                <ellipse cx="85" cy="240" rx="12" ry="30" fill="transparent" stroke="#e0d0c0" stroke-width="1.5" class="zone-fill"/>
+                                <ellipse cx="115" cy="240" rx="12" ry="30" fill="transparent" stroke="#e0d0c0" stroke-width="1.5" class="zone-fill"/>
+                            </g>
+                        </svg>
+                        
+                        <div class="selected-areas-elegant" id="selectedAreas">
+                            <span style="color: #999; font-size: 0.875rem;">Tap body areas above</span>
+                        </div>
+                    </div>
+                    
+                    <button class="btn-elegant" onclick="goToStep(4)" id="areasBtn" disabled>
+                        Continue →
+                    </button>
+                </div>
+
+                <!-- Step 4: Concerns -->
+                <div class="step" data-step="4">
+                    <div class="step-header-elegant">
+                        <span class="step-number-elegant">4</span>
+                        <h3 class="step-title-elegant">Skin Concerns</h3>
+                        <p class="step-desc">Select any that apply</p>
+                    </div>
+                    
+                    <div class="concerns-grid-elegant">
+                        <div class="concern-tile" onclick="toggleConcern('loose', this)">
+                            <i class="fas fa-wind concern-icon-elegant"></i>
+                            <div class="concern-name">Loose Skin</div>
+                        </div>
+                        
+                        <div class="concern-tile" onclick="toggleConcern('cellulite', this)">
+                            <i class="fas fa-water concern-icon-elegant"></i>
+                            <div class="concern-name">Cellulite</div>
+                        </div>
+                        
+                        <div class="concern-tile" onclick="toggleConcern('stretch', this)">
+                            <i class="fas fa-grip-lines concern-icon-elegant"></i>
+                            <div class="concern-name">Stretch Marks</div>
+                        </div>
+                        
+                        <div class="concern-tile" onclick="toggleConcern('stubborn', this)">
+                            <i class="fas fa-layer-group concern-icon-elegant"></i>
+                            <div class="concern-name">Stubborn Fat</div>
+                        </div>
+                        
+                        <div class="concern-tile" onclick="toggleConcern('texture', this)">
+                            <i class="fas fa-fingerprint concern-icon-elegant"></i>
+                            <div class="concern-name">Skin Texture</div>
+                        </div>
+                        
+                        <div class="concern-tile" onclick="toggleConcern('tone', this)">
+                            <i class="fas fa-adjust concern-icon-elegant"></i>
+                            <div class="concern-name">Uneven Tone</div>
+                        </div>
+                    </div>
+                    
+                    <button class="btn-elegant" onclick="showResults()">
+                        Get My Results →
+                    </button>
+                </div>
+
+                <!-- Results -->
+                <div class="step" data-step="results">
+                    <div class="results-elegant">
+                        <div class="score-display">
+                            <div class="score-circle-elegant">
+                                <svg width="150" height="150">
+                                    <circle cx="75" cy="75" r="70" fill="none" stroke="#f5f3f0" stroke-width="8"/>
+                                    <circle cx="75" cy="75" r="70" fill="none" stroke="url(#scoreGrad)" stroke-width="8" 
+                                            stroke-dasharray="440" stroke-dashoffset="88" stroke-linecap="round"
+                                            transform="rotate(-90 75 75)" class="score-arc"/>
+                                    <defs>
+                                        <linearGradient id="scoreGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" style="stop-color:#D4AF37;stop-opacity:1" />
+                                            <stop offset="100%" style="stop-color:#E8B4B8;stop-opacity:1" />
+                                        </linearGradient>
+                                    </defs>
+                                </svg>
+                                <div class="score-number-elegant" id="scoreNumber">92</div>
+                                <div class="score-label-elegant">Match Score</div>
+                            </div>
+                        </div>
+                        
+                        <h2 class="step-title-elegant">Perfect Match for Treatment!</h2>
+                        <p class="step-desc">Based on your assessment, here's your personalized plan:</p>
+                        
+                        <div class="treatments-grid" id="recommendedTreatments">
+                            <!-- Populated by JavaScript -->
+                        </div>
+                        
+                        <div class="pricing-elegant">
+                            <div class="price-original">Regular Price £950</div>
+                            <div class="price-special">£395</div>
+                            <div class="price-savings">Save £555 Today</div>
+                            
+                            <button class="btn-elegant" onclick="bookConsultation()">
+                                Book Your Consultation →
+                            </button>
+                            
+                            <p style="margin-top: 1rem; color: var(--gray); font-size: 0.875rem;">
+                                <i class="fas fa-lock"></i> Secure booking with £95 deposit
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Assessment data
+        let assessment = {
+            weight: 15,
+            method: '',
+            areas: [],
+            concerns: []
+        };
+
+        // Update weight
+        function updateWeight(value) {
+            assessment.weight = value;
+            document.getElementById('weightValue').textContent = value;
+            
+            const insight = document.getElementById('weightInsight');
+            if (value < 10) {
+                insight.textContent = 'Mild weight loss - preventive treatment recommended';
+            } else if (value < 20) {
+                insight.textContent = 'Significant weight loss - skin tightening recommended';
+            } else {
+                insight.textContent = 'Major weight loss - comprehensive treatment essential';
+            }
+        }
+
+        // Select method
+        function selectMethod(method, element) {
+            assessment.method = method;
+            document.querySelectorAll('.method-card-elegant').forEach(card => {
+                card.classList.remove('selected');
+            });
+            element.classList.add('selected');
+            document.getElementById('methodBtn').disabled = false;
+        }
+
+        // Toggle body area
+        function toggleBodyArea(area) {
+            const index = assessment.areas.indexOf(area);
+            const zone = document.querySelector(`[data-area="${area}"]`);
+            
+            if (index > -1) {
+                assessment.areas.splice(index, 1);
+                zone.classList.remove('selected');
+            } else {
+                assessment.areas.push(area);
+                zone.classList.add('selected');
+            }
+            
+            updateSelectedAreas();
+            document.getElementById('areasBtn').disabled = assessment.areas.length === 0;
+        }
+
+        // Update selected areas display
+        function updateSelectedAreas() {
+            const container = document.getElementById('selectedAreas');
+            if (assessment.areas.length === 0) {
+                container.innerHTML = '<span style="color: #999; font-size: 0.875rem;">Tap body areas above</span>';
+            } else {
+                container.innerHTML = assessment.areas.map(area => 
+                    `<span class="area-pill">${area.charAt(0).toUpperCase() + area.slice(1)}</span>`
+                ).join('');
+            }
+        }
+
+        // Toggle concern
+        function toggleConcern(concern, element) {
+            const index = assessment.concerns.indexOf(concern);
+            
+            if (index > -1) {
+                assessment.concerns.splice(index, 1);
+                element.classList.remove('selected');
+            } else {
+                assessment.concerns.push(concern);
+                element.classList.add('selected');
+            }
+        }
+
+        // Navigate steps
+        function goToStep(stepNum) {
+            document.querySelectorAll('.step').forEach(step => {
+                step.classList.remove('active');
+            });
+            
+            document.querySelector(`[data-step="${stepNum}"]`).classList.add('active');
+            
+            // Update progress
+            const progress = (stepNum / 4) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+        }
+
+        // Show results
+        function showResults() {
+            // Show loading
+            const lastStep = document.querySelector('[data-step="4"]');
+            lastStep.innerHTML = '<div class="analyzing"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>';
+            
+            setTimeout(() => {
+                // Generate recommendations
+                const treatments = generateRecommendations();
+                
+                // Show results
+                document.querySelectorAll('.step').forEach(step => {
+                    step.classList.remove('active');
+                });
+                document.querySelector('[data-step="results"]').classList.add('active');
+                
+                // Populate treatments
+                const container = document.getElementById('recommendedTreatments');
+                container.innerHTML = treatments.map(t => `
+                    <div class="treatment-card-elegant">
+                        <div class="treatment-header-elegant">
+                            <div class="treatment-name-elegant">${t.name}</div>
+                            <div class="treatment-effectiveness">${t.effectiveness}% effective</div>
+                        </div>
+                        <div class="treatment-description">${t.description}</div>
+                    </div>
+                `).join('');
+                
+                // Update progress
+                document.getElementById('progressBar').style.width = '100%';
+            }, 1500);
+        }
+
+        // Generate recommendations
+        function generateRecommendations() {
+            let treatments = [];
+            
+            if (assessment.method === 'glp1') {
+                treatments.push({
+                    name: 'ProMax Lipo',
+                    description: 'Triple-action fat reduction & skin tightening. Perfect for GLP-1 weight loss.',
+                    effectiveness: 96
+                });
+            }
+            
+            if (assessment.areas.includes('tummy') || assessment.areas.includes('hips')) {
+                treatments.push({
+                    name: 'HIFU',
+                    description: 'Ultrasound lifting for deep tissue tightening.',
+                    effectiveness: 88
+                });
+            }
+            
+            if (assessment.concerns.includes('cellulite')) {
+                treatments.push({
+                    name: 'Morpheus8',
+                    description: 'RF microneedling for skin remodeling.',
+                    effectiveness: 95
+                });
+            }
+            
+            // Ensure at least 2 treatments
+            if (treatments.length < 2) {
+                treatments.push({
+                    name: 'Radio Frequency',
+                    description: 'Non-invasive skin tightening treatment.',
+                    effectiveness: 82
+                });
+            }
+            
+            return treatments.slice(0, 3);
+        }
+
+        // Book consultation
+        function bookConsultation() {
+            alert('Booking system would open here');
+        }
+    </script>
+</body>
+</html>
