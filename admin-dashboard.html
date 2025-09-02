@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skulpt Admin Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: #F8F9FA;
+            color: #1A1A1A;
+        }
+        
+        /* Admin header */
+        .admin-header {
+            background: #1A1A1A;
+            color: white;
+            padding: 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .admin-title {
+            font-size: 20px;
+            font-weight: 600;
+        }
+        
+        .header-stats {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #00A859;
+        }
+        
+        .stat-label {
+            font-size: 12px;
+            opacity: 0.7;
+            margin-top: 4px;
+        }
+        
+        /* Navigation tabs */
+        .nav-tabs {
+            background: white;
+            border-bottom: 1px solid #E5E7EB;
+            padding: 0 20px;
+            position: sticky;
+            top: 72px;
+            z-index: 99;
+        }
+        
+        .tabs-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            gap: 30px;
+        }
+        
+        .tab {
+            padding: 16px 0;
+            border-bottom: 3px solid transparent;
+            cursor: pointer;
+            font-weight: 500;
+            color: #666;
+            transition: all 0.2s;
+        }
+        
+        .tab:hover {
+            color: #0066CC;
+        }
+        
+        .tab.active {
+            color: #0066CC;
+            border-bottom-color: #0066CC;
+        }
+        
+        /* Main content */
+        .dashboard-content {
+            max-width: 1400px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        
+        /* Feedback section */
+        .feedback-grid {
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 30px;
+        }
+        
+        .feedback-list {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .feedback-filters {
+            padding: 20px;
+            border-bottom: 1px solid #E5E7EB;
+            display: flex;
+            gap: 10px;
+        }
+        
+        .filter-btn {
+            padding: 8px 16px;
+            border: 1px solid #E5E7EB;
+            border-radius: 8px;
+            background: white;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+        
+        .filter-btn:hover {
+            border-color: #0066CC;
+            background: #F0F9FF;
+        }
+        
+        .filter-btn.active {
+            background: #0066CC;
+            color: white;
+            border-color: #0066CC;
+        }
+        
+        .feedback-item {
+            padding: 20px;
+            border-bottom: 1px solid #E5E7EB;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .feedback-item:hover {
+            background: #F8F9FA;
+        }
+        
+        .feedback-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 12px;
+        }
+        
+        .feedback-meta {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .feedback-type {
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .type-bug {
+            background: #FEE2E2;
+            color: #DC2626;
+        }
+        
+        .type-feature {
+            background: #E0F2FF;
+            color: #0066CC;
+        }
+        
+        .type-improvement {
+            background: #FEF3C7;
+            color: #D97706;
+        }
+        
+        .feedback-status {
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        
+        .status-new {
+            background: #F3F4F6;
+            color: #6B7280;
+        }
+        
+        .status-in-progress {
+            background: #FEF3C7;
+            color: #D97706;
+        }
+        
+        .status-resolved {
+            background: #D1FAE5;
+            color: #059669;
+        }
+        
+        .feedback-user {
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        
+        .feedback-message {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-bottom: 8px;
+        }
+        
+        .feedback-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            color: #999;
+        }
+        
+        .feedback-actions {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .action-btn {
+            color: #666;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        
+        .action-btn:hover {
+            color: #0066CC;
+        }
+        
+        /* Sidebar stats */
+        .feedback-stats {
+            space-y: 20px;
+        }
+        
+        .stat-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .stat-card-title {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+        
+        .priority-list {
+            space-y: 12px;
+        }
+        
+        .priority-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            background: #F8F9FA;
+            border-radius: 8px;
+        }
+        
+        .priority-label {
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .priority-count {
+            background: #0066CC;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        /* Analytics charts */
+        .analytics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .chart-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+        }
+        
+        .chart-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        
+        /* Bug tracker */
+        .bug-board {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+        
+        .bug-column {
+            background: #F8F9FA;
+            border-radius: 12px;
+            padding: 16px;
+        }
+        
+        .column-header {
+            font-weight: 600;
+            margin-bottom: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .column-count {
+            background: #E5E7EB;
+            color: #666;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+        }
+        
+        .bug-card {
+            background: white;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 12px;
+            cursor: move;
+            transition: all 0.2s;
+        }
+        
+        .bug-card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .bug-severity {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        
+        .severity-critical { background: #DC2626; }
+        .severity-high { background: #F59E0B; }
+        .severity-medium { background: #3B82F6; }
+        .severity-low { background: #10B981; }
+        
+        /* Partner applications */
+        .partner-applications {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .application-item {
+            padding: 24px;
+            border-bottom: 1px solid #E5E7EB;
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+        }
+        
+        .application-info {
+            flex: 1;
+        }
+        
+        .clinic-name {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .clinic-details {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        
+        .clinic-services {
+            display: flex;
+            gap: 8px;
+            margin-top: 12px;
+        }
+        
+        .service-badge {
+            background: #F0F9FF;
+            color: #0066CC;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        
+        .application-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .action-approve {
+            background: #00A859;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        
+        .action-reject {
+            background: white;
+            color: #DC2626;
+            padding: 10px 20px;
+            border: 2px solid #DC2626;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        
+        /* Live feed */
+        .live-feed {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            max-height: 600px;
+            overflow-y: auto;
+        }
+        
+        .feed-item {
+            display: flex;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid #F0F0F0;
+        }
+        
+        .feed-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .feed-content {
+            flex: 1;
+        }
+        
+        .feed-title {
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+        
+        .feed-time {
+            font-size: 12px;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+    <!-- Admin Header -->
+    <header class="admin-header">
+        <div class="header-content">
+            <h1 class="admin-title">Skulpt Admin Dashboard</h1>
+            <div class="header-stats">
+                <div class="stat-item">
+                    <div class="stat-value">247</div>
+                    <div class="stat-label">Active Users</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">1,432</div>
+                    <div class="stat-label">Sessions Completed</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">94%</div>
+                    <div class="stat-label">Satisfaction</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">£142k</div>
+                    <div class="stat-label">Monthly Revenue</div>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Navigation -->
+    <nav class="nav-tabs">
+        <div class="tabs-content">
+            <div class="tab active" onclick="showTab('feedback')">Feedback</div>
+            <div class="tab" onclick="showTab('bugs')">Bug Tracker</div>
+            <div class="tab" onclick="showTab('features')">Feature Requests</div>
+            <div class="tab" onclick="showTab('analytics')">Analytics</div>
+            <div class="tab" onclick="showTab('partners')">Partner Applications</div>
+            <div class="tab" onclick="showTab('live')">Live Activity</div>
+        </div>
+    </nav>
+    
+    <!-- Dashboard Content -->
+    <div class="dashboard-content">
+        
+        <!-- Feedback Tab -->
+        <div id="feedback-tab" class="tab-content">
+            <div class="feedback-grid">
+                <div class="feedback-list">
+                    <div class="feedback-filters">
+                        <button class="filter-btn active">All (47)</button>
+                        <button class="filter-btn">Bugs (12)</button>
+                        <button class="filter-btn">Features (18)</button>
+                        <button class="filter-btn">Improvements (17)</button>
+                    </div>
+                    
+                    <!-- Feedback Items -->
+                    <div class="feedback-item">
+                        <div class="feedback-header">
+                            <div class="feedback-meta">
+                                <span class="feedback-type type-bug">BUG</span>
+                                <span class="feedback-status status-new">NEW</span>
+                            </div>
+                        </div>
+                        <div class="feedback-user">Sarah Mitchell</div>
+                        <div class="feedback-message">
+                            The photo upload doesn't work on my iPhone 12. When I tap the camera button, nothing happens. Running iOS 17.2.
+                        </div>
+                        <div class="feedback-footer">
+                            <span>2 hours ago • iPhone • Assessment Page</span>
+                            <div class="feedback-actions">
+                                <a href="#" class="action-btn">Assign</a>
+                                <a href="#" class="action-btn">Reply</a>
+                                <a href="#" class="action-btn">Mark Fixed</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="feedback-item">
+                        <div class="feedback-header">
+                            <div class="feedback-meta">
+                                <span class="feedback-type type-feature">FEATURE</span>
+                                <span class="feedback-status status-new">NEW</span>
+                            </div>
+                        </div>
+                        <div class="feedback-user">Emma Thompson</div>
+                        <div class="feedback-message">
+                            Would love to see my measurements graph over time. Like a chart showing waist reduction week by week!
+                        </div>
+                        <div class="feedback-footer">
+                            <span>5 hours ago • Android • Dashboard</span>
+                            <div class="feedback-actions">
+                                <a href="#" class="action-btn">👍 12</a>
+                                <a href="#" class="action-btn">Add to Roadmap</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="feedback-item">
+                        <div class="feedback-header">
+                            <div class="feedback-meta">
+                                <span class="feedback-type type-improvement">IMPROVEMENT</span>
+                                <span class="feedback-status status-in-progress">IN PROGRESS</span>
+                            </div>
+                        </div>
+                        <div class="feedback-user">James Wilson</div>
+                        <div class="feedback-message">
+                            The assessment is great but feels a bit long. Maybe make some questions optional?
+                        </div>
+                        <div class="feedback-footer">
+                            <span>Yesterday • Desktop • Assessment</span>
+                            <div class="feedback-actions">
+                                <a href="#" class="action-btn">View Thread</a>
+                                <a href="#" class="action-btn">Close</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Sidebar Stats -->
+                <div class="feedback-stats">
+                    <div class="stat-card">
+                        <h3 class="stat-card-title">Priority Issues</h3>
+                        <div class="priority-list">
+                            <div class="priority-item">
+                                <span class="priority-label">🔴 Critical Bugs</span>
+                                <span class="priority-count">3</span>
+                            </div>
+                            <div class="priority-item">
+                                <span class="priority-label">🟡 High Priority</span>
+                                <span class="priority-count">8</span>
+                            </div>
+                            <div class="priority-item">
+                                <span class="priority-label">🔵 Medium Priority</span>
+                                <span class="priority-count">15</span>
+                            </div>
+                            <div class="priority-item">
+                                <span class="priority-label">🟢 Low Priority</span>
+                                <span class="priority-count">21</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <h3 class="stat-card-title">Response Times</h3>
+                        <canvas id="responseChart" height="150"></canvas>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <h3 class="stat-card-title">Top Feature Requests</h3>
+                        <div class="priority-list">
+                            <div class="priority-item">
+                                <span class="priority-label">Progress Charts</span>
+                                <span class="priority-count">👍 24</span>
+                            </div>
+                            <div class="priority-item">
+                                <span class="priority-label">Apple Watch App</span>
+                                <span class="priority-count">👍 18</span>
+                            </div>
+                            <div class="priority-item">
+                                <span class="priority-label">Meal Plans</span>
+                                <span class="priority-count">👍 15</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Bug Tracker Tab -->
+        <div id="bugs-tab" class="tab-content" style="display: none;">
+            <div class="bug-board">
+                <div class="bug-column">
+                    <div class="column-header">
+                        <span>New</span>
+                        <span class="column-count">5</span>
+                    </div>
+                    <div class="bug-card">
+                        <span class="bug-severity severity-critical"></span>
+                        <strong>Payment failing</strong>
+                        <p style="font-size: 12px; color: #666; margin-top: 8px;">
+                            Stripe integration broken on checkout
+                        </p>
+                    </div>
+                    <div class="bug-card">
+                        <span class="bug-severity severity-high"></span>
+                        <strong>iOS Camera Issue</strong>
+                        <p style="font-size: 12px; color: #666; margin-top: 8px;">
+                            Camera not opening on iPhone 12
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="bug-column">
+                    <div class="column-header">
+                        <span>In Progress</span>
+                        <span class="column-count">3</span>
+                    </div>
+                    <div class="bug-card">
+                        <span class="bug-severity severity-medium"></span>
+                        <strong>Slow Loading</strong>
+                        <p style="font-size: 12px; color: #666; margin-top: 8px;">
+                            Dashboard takes 5+ seconds to load
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="bug-column">
+                    <div class="column-header">
+                        <span>Testing</span>
+                        <span class="column-count">2</span>
+                    </div>
+                    <div class="bug-card">
+                        <span class="bug-severity severity-low"></span>
+                        <strong>Typo in email</strong>
+                        <p style="font-size: 12px; color: #666; margin-top: 8px;">
+                            Welcome email has spelling mistake
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="bug-column">
+                    <div class="column-header">
+                        <span>Resolved</span>
+                        <span class="column-count">18</span>
+                    </div>
+                    <div class="bug-card" style="opacity: 0.6;">
+                        <span class="bug-severity severity-high"></span>
+                        <strong>Login Loop Fixed</strong>
+                        <p style="font-size: 12px; color: #666; margin-top: 8px;">
+                            Users getting stuck at login
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Partner Applications Tab -->
+        <div id="partners-tab" class="tab-content" style="display: none;">
+            <div class="partner-applications">
+                <div class="application-item">
+                    <div class="application-info">
+                        <h3 class="clinic-name">London Aesthetic Clinic</h3>
+                        <div class="clinic-details">
+                            <p>📍 Harley Street, London W1G 9QD</p>
+                            <p>📧 partnerships@londonaesthetic.co.uk</p>
+                            <p>📱 020 7234 5678</p>
+                            <p style="margin-top: 8px;">
+                                <strong>Proposal:</strong> Refer clients needing Morpheus8 for facial treatments. 
+                                Offering 15% commission on referred clients.
+                            </p>
+                        </div>
+                        <div class="clinic-services">
+                            <span class="service-badge">Morpheus8</span>
+                            <span class="service-badge">HIFU</span>
+                            <span class="service-badge">Botox</span>
+                            <span class="service-badge">Fillers</span>
+                        </div>
+                    </div>
+                    <div class="application-actions">
+                        <button class="action-approve">Approve</button>
+                        <button class="action-reject">Reject</button>
+                    </div>
+                </div>
+                
+                <div class="application-item">
+                    <div class="application-info">
+                        <h3 class="clinic-name">Cambridge Body Sculpting</h3>
+                        <div class="clinic-details">
+                            <p>📍 Hills Road, Cambridge CB2 1PG</p>
+                            <p>📧 info@cambridgesculpting.co.uk</p>
+                            <p>📱 01223 456 789</p>
+                            <p style="margin-top: 8px;">
+                                <strong>Proposal:</strong> Cross-referral partnership. They have CoolSculpting, 
+                                we have ProMax Lipo. Split geographic coverage.
+                            </p>
+                        </div>
+                        <div class="clinic-services">
+                            <span class="service-badge">CoolSculpting</span>
+                            <span class="service-badge">EMSculpt</span>
+                            <span class="service-badge">Velashape</span>
+                        </div>
+                    </div>
+                    <div class="application-actions">
+                        <button class="action-approve">Approve</button>
+                        <button class="action-reject">Reject</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Analytics Tab -->
+        <div id="analytics-tab" class="tab-content" style="display: none;">
+            <div class="analytics-grid">
+                <div class="chart-card">
+                    <h3 class="chart-title">Feedback Trend</h3>
+                    <canvas id="feedbackTrend"></canvas>
+                </div>
+                <div class="chart-card">
+                    <h3 class="chart-title">User Satisfaction</h3>
+                    <canvas id="satisfactionChart"></canvas>
+                </div>
+                <div class="chart-card">
+                    <h3 class="chart-title">Platform Health</h3>
+                    <canvas id="healthChart"></canvas>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Live Activity Tab -->
+        <div id="live-tab" class="tab-content" style="display: none;">
+            <div class="live-feed">
+                <div class="feed-item">
+                    <div class="feed-icon" style="background: #F0F9FF;">📝</div>
+                    <div class="feed-content">
+                        <div class="feed-title">New assessment completed</div>
+                        <div class="feed-time">Sarah M. - 92% match - 2 minutes ago</div>
+                    </div>
+                </div>
+                <div class="feed-item">
+                    <div class="feed-icon" style="background: #FEF3C7;">💬</div>
+                    <div class="feed-content">
+                        <div class="feed-title">New feedback received</div>
+                        <div class="feed-time">Bug report: Camera issue - 5 minutes ago</div>
+                    </div>
+                </div>
+                <div class="feed-item">
+                    <div class="feed-icon" style="background: #D1FAE5;">📸</div>
+                    <div class="feed-content">
+                        <div class="feed-title">Progress photo uploaded</div>
+                        <div class="feed-time">Emma T. - Day 30 photo - 8 minutes ago</div>
+                    </div>
+                </div>
+                <div class="feed-item">
+                    <div class="feed-icon" style="background: #E0F2FF;">📅</div>
+                    <div class="feed-content">
+                        <div class="feed-title">Session booked</div>
+                        <div class="feed-time">James K. - Session #4 - 12 minutes ago</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Tab switching
+        function showTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.style.display = 'none';
+            });
+            
+            // Remove active class from all tabs
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected tab
+            document.getElementById(tabName + '-tab').style.display = 'block';
+            
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+        }
+        
+        // Initialize charts
+        const ctx1 = document.getElementById('responseChart');
+        if (ctx1) {
+            new Chart(ctx1, {
+                type: 'line',
+                data: {
+                    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                    datasets: [{
+                        label: 'Avg Response (hours)',
+                        data: [2.5, 1.8, 3.2, 1.5, 2.1, 4.5, 3.8],
+                        borderColor: '#0066CC',
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false
+                }
+            });
+        }
+        
+        // Simulate real-time updates
+        setInterval(() => {
+            // Update live stats
+            const userCount = document.querySelector('.stat-value');
+            if (userCount) {
+                const current = parseInt(userCount.textContent);
+                userCount.textContent = current + Math.floor(Math.random() * 3);
+            }
+        }, 5000);
+        
+        // Drag and drop for bug cards
+        const bugCards = document.querySelectorAll('.bug-card');
+        const bugColumns = document.querySelectorAll('.bug-column');
+        
+        bugCards.forEach(card => {
+            card.draggable = true;
+            
+            card.addEventListener('dragstart', (e) => {
+                e.dataTransfer.effectAllowed = 'move';
+                e.target.style.opacity = '0.5';
+            });
+            
+            card.addEventListener('dragend', (e) => {
+                e.target.style.opacity = '';
+            });
+        });
+        
+        bugColumns.forEach(column => {
+            column.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                e.dataTransfer.dropEffect = 'move';
+            });
+            
+            column.addEventListener('drop', (e) => {
+                e.preventDefault();
+                // Move card to new column
+                const card = document.querySelector('.bug-card[style*="opacity: 0.5"]');
+                if (card) {
+                    column.appendChild(card);
+                    updateColumnCount(column);
+                }
+            });
+        });
+        
+        function updateColumnCount(column) {
+            const count = column.querySelectorAll('.bug-card').length;
+            column.querySelector('.column-count').textContent = count;
+        }
+        
+        // Partner application actions
+        document.querySelectorAll('.action-approve').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const item = e.target.closest('.application-item');
+                item.style.background = '#D1FAE5';
+                e.target.textContent = 'Approved ✓';
+                e.target.disabled = true;
+                
+                // Send approval to database
+                fetch('/api/partners/approve', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        clinicName: item.querySelector('.clinic-name').textContent,
+                        approvedAt: new Date().toISOString()
+                    })
+                });
+            });
+        });
+    </script>
+</body>
+</html>

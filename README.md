@@ -1,89 +1,70 @@
-# Skulpt Body Contouring - ProMax Lipo Assessment Tool
+# Skulpt Body Contouring Platform
 
-A sophisticated, gamified assessment tool for qualifying leads for ProMax Lipo treatments, specifically targeting post-weight-loss clients (especially those using GLP-1 medications like Ozempic/Mounjaro).
+AI-ready body transformation platform for ProMax Lipo treatments.
 
-## Features
+## 🚀 Quick Deploy to Vercel
 
-- **Personalised Journey**: Captures user name and creates personalised experience
-- **Smart Qualification**: Self-qualifying assessment that identifies ideal candidates
-- **Points System**: Gamified experience without being childish
-- **Database Integration**: Tracks complete client journey from assessment to booking
-- **WhatsApp Integration**: Exclusive access to before/after photos post-assessment
-- **Booking System**: Integrated booking modal with tracking
-
-## Tech Stack
-
-- **Frontend**: Vanilla HTML/CSS/JavaScript for maximum performance
-- **Deployment**: Vercel with serverless functions
-- **Database**: Vercel Postgres for persistent data storage
-- **Analytics**: Event tracking for conversion optimization
-
-## Setup
-
-1. Clone the repository:
-```bash
-git clone https://github.com/leadballoon-agency/skulpt-body-contouring.git
-cd skulpt-body-contouring
-```
-
-2. Install dependencies:
+1. **Install dependencies:**
 ```bash
 npm install
 ```
 
-3. Set up environment variables:
-   - Copy `.env.example` to `.env`
-   - Add your Vercel Postgres credentials
-   - Update WhatsApp number if needed
+2. **Set up environment variables in Vercel:**
+   - Go to your Vercel project settings
+   - Add these environment variables:
+     - `DATABASE_URL` - Your Neon database connection string
+     - `CLOUDINARY_CLOUD_NAME` - ddxptienb
+     - `CLOUDINARY_API_KEY` - Your Cloudinary API key
+     - `CLOUDINARY_API_SECRET` - Your Cloudinary secret
+     - `CLOUDINARY_UPLOAD_PRESET` - skulpt_journeys
+     - `WHATSAPP_NUMBER` - 447700173390
+     - `GHL_WEBHOOK_URL` - Your GoHighLevel webhook URL
 
-4. Deploy to Vercel:
+3. **Deploy:**
 ```bash
-vercel
+npx vercel
 ```
 
-## Database Schema
+Follow the prompts:
+- Link to existing project or create new
+- Select the current directory
+- Deploy!
 
-### assessments table
-- Stores complete assessment data
-- Tracks qualification status
-- Links to client journey events
+## 🗄️ Database Setup
 
-### client_journey table
-- Tracks all user interactions
-- Events: assessment_completed, whatsapp_clicked, booking_opened, etc.
-- Enables conversion funnel analysis
+Run the database initialization once:
+```bash
+node init-database.js
+```
 
-## Key Features
+This creates all necessary tables in your Neon database.
 
-### Qualification Logic
-- **Perfect for ProMax**: Loose skin from rapid weight loss
-- **Good candidates**: Skin tightening, toning, cellulite
-- **Not suitable**: Pigmentation issues (recommends alternatives)
+## 🎯 Key Pages
 
-### UK-Specific
-- Uses UK spellings throughout
-- WhatsApp number: +44 7700 173390
-- Focus on GLP-1 weight loss epidemic
+- `/` - Main landing page with assessment tool
+- `/dashboard-reveal.html` - User dashboard after assessment
+- `/admin-dashboard.html` - Admin feedback management
+- `/platform-control-center.html` - Complete platform management
+- `/enhanced-analytics.html` - Analytics and AI readiness
 
-## Analytics Events
+## 📱 Mobile Optimized
 
-- `assessment_completed`: User completes assessment
-- `whatsapp_clicked`: User requests before/afters
-- `booking_opened`: User opens booking modal
-- `booking_completed`: User completes booking (when integrated)
+90% of traffic is mobile - the platform is fully responsive and optimized for iOS/Android.
 
-## Environment Variables
+## 🤖 AI Ready
 
-Required in production:
-- `POSTGRES_URL`: Database connection string
-- `WHATSAPP_NUMBER`: WhatsApp business number
+Infrastructure prepared for:
+- Photo analysis with computer vision
+- Personal AI coach avatar
+- Predictive analytics
+- Smart recommendations
 
-## Deployment
+## 🔐 Security Notes
 
-The site auto-deploys to Vercel on push to main branch.
+- Never commit `.env.local` file
+- Keep API keys secure in Vercel environment variables
+- GDPR compliant data handling
 
-Production URL: [Your Vercel URL]
+## 📧 Support
 
-## License
-
-Private repository - All rights reserved
+Report issues at: https://github.com/anthropics/claude-code/issues

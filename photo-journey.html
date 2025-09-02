@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Skulpt Journey - Visual Progress Tracking</title>
+    <style>
+        :root {
+            --gold: #D4AF37;
+            --charcoal: #2C2A29;
+            --gray: #6B6866;
+            --white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, sans-serif;
+            background: linear-gradient(135deg, #f5f5f5 0%, #ffffff 100%);
+            color: var(--charcoal);
+        }
+
+        .journey-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        .journey-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .journey-title {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--gold) 0%, #E8B4B8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .progress-timeline {
+            display: flex;
+            justify-content: space-between;
+            margin: 3rem 0;
+            position: relative;
+        }
+
+        .progress-timeline::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--gray);
+            opacity: 0.3;
+        }
+
+        .timeline-stage {
+            position: relative;
+            text-align: center;
+            flex: 1;
+        }
+
+        .stage-dot {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--white);
+            border: 3px solid var(--gray);
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 1;
+            transition: all 0.3s;
+        }
+
+        .stage-dot.completed {
+            background: var(--gold);
+            border-color: var(--gold);
+            color: white;
+        }
+
+        .stage-dot.current {
+            border-color: var(--gold);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .photo-capture-section {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin: 2rem 0;
+        }
+
+        .capture-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .capture-card {
+            text-align: center;
+            padding: 1.5rem;
+            border: 2px dashed var(--gray);
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .capture-card:hover {
+            border-color: var(--gold);
+            background: rgba(212, 175, 55, 0.05);
+        }
+
+        .capture-card.has-photo {
+            border-style: solid;
+            border-color: var(--gold);
+        }
+
+        .angle-label {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--charcoal);
+        }
+
+        .photo-preview {
+            width: 100%;
+            height: 200px;
+            background: #f5f5f5;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 1rem 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .photo-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .camera-icon {
+            font-size: 3rem;
+            color: var(--gray);
+            opacity: 0.5;
+        }
+
+        .comparison-view {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .before-after-slider {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin: 2rem auto;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .slider-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 133%; /* 4:3 aspect ratio */
+        }
+
+        .slider-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .slider-handle {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: var(--gold);
+            left: 50%;
+            cursor: ew-resize;
+            z-index: 10;
+        }
+
+        .slider-handle::before {
+            content: '↔';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--gold);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .improvement-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(232, 180, 184, 0.1) 100%);
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--gray);
+        }
+
+        .ai-insights {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border-left: 4px solid var(--gold);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+        }
+
+        .insight-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .share-journey {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 20px;
+            margin: 2rem 0;
+        }
+
+        .share-button {
+            background: linear-gradient(135deg, var(--gold) 0%, #E8B4B8 100%);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin: 0.5rem;
+        }
+
+        .share-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .progress-timeline {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .progress-timeline::before {
+                width: 2px;
+                height: 100%;
+                left: 20px;
+                top: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="journey-container">
+        <div class="journey-header">
+            <h1 class="journey-title">Your Transformation Journey</h1>
+            <p>Track your amazing progress with Skulpt</p>
+        </div>
+
+        <!-- Progress Timeline -->
+        <div class="progress-timeline">
+            <div class="timeline-stage">
+                <div class="stage-dot completed">✓</div>
+                <div class="stage-label">Initial Assessment</div>
+                <div class="stage-date">1 Jan 2025</div>
+            </div>
+            <div class="timeline-stage">
+                <div class="stage-dot completed">✓</div>
+                <div class="stage-label">Session 1</div>
+                <div class="stage-date">8 Jan 2025</div>
+            </div>
+            <div class="timeline-stage">
+                <div class="stage-dot current">3</div>
+                <div class="stage-label">Session 3</div>
+                <div class="stage-date">Today</div>
+            </div>
+            <div class="timeline-stage">
+                <div class="stage-dot">6</div>
+                <div class="stage-label">Final Session</div>
+                <div class="stage-date">Upcoming</div>
+            </div>
+            <div class="timeline-stage">
+                <div class="stage-dot">★</div>
+                <div class="stage-label">Results Review</div>
+                <div class="stage-date">February</div>
+            </div>
+        </div>
+
+        <!-- Photo Capture Section -->
+        <div class="photo-capture-section">
+            <h2>Session 3 Photos</h2>
+            <p>Capture your progress from all angles</p>
+            
+            <div class="capture-grid">
+                <div class="capture-card" onclick="capturePhoto('front')">
+                    <div class="angle-label">Front View</div>
+                    <div class="photo-preview">
+                        <span class="camera-icon">📸</span>
+                    </div>
+                    <button class="capture-btn">Take Photo</button>
+                </div>
+                
+                <div class="capture-card" onclick="capturePhoto('side')">
+                    <div class="angle-label">Side View</div>
+                    <div class="photo-preview">
+                        <span class="camera-icon">📸</span>
+                    </div>
+                    <button class="capture-btn">Take Photo</button>
+                </div>
+                
+                <div class="capture-card" onclick="capturePhoto('back')">
+                    <div class="angle-label">Back View</div>
+                    <div class="photo-preview">
+                        <span class="camera-icon">📸</span>
+                    </div>
+                    <button class="capture-btn">Take Photo</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- AI Insights -->
+        <div class="ai-insights">
+            <div class="insight-title">
+                <span>🤖</span> AI Analysis
+            </div>
+            <p>Great progress! Your skin elasticity has improved by 35% since your first session. The treatment is responding exceptionally well in the abdominal area.</p>
+        </div>
+
+        <!-- Improvement Stats -->
+        <div class="improvement-stats">
+            <div class="stat-card">
+                <div class="stat-value">35%</div>
+                <div class="stat-label">Skin Tightness Improved</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">-4.2cm</div>
+                <div class="stat-label">Waist Reduction</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">3/6</div>
+                <div class="stat-label">Sessions Complete</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">92%</div>
+                <div class="stat-label">Treatment Efficacy</div>
+            </div>
+        </div>
+
+        <!-- Comparison View -->
+        <div class="comparison-view">
+            <h2>Your Amazing Progress</h2>
+            <p>Slide to compare before and after</p>
+            
+            <div class="before-after-slider" id="comparison-slider">
+                <div class="slider-container">
+                    <img src="/api/placeholder/600/800" alt="Before" class="slider-image" style="clip-path: inset(0 50% 0 0);">
+                    <img src="/api/placeholder/600/800" alt="After" class="slider-image">
+                    <div class="slider-handle" id="slider-handle"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Share Journey -->
+        <div class="share-journey">
+            <h2>Share Your Success</h2>
+            <p>Inspire others with your transformation</p>
+            <div>
+                <button class="share-button">📱 Share on Instagram</button>
+                <button class="share-button">💬 Share on WhatsApp</button>
+                <button class="share-button">🔗 Copy Journey Link</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Photo capture functionality
+        async function capturePhoto(angle) {
+            try {
+                // Access device camera
+                const stream = await navigator.mediaDevices.getUserMedia({ 
+                    video: { 
+                        facingMode: angle === 'back' ? 'environment' : 'user',
+                        width: { ideal: 1920 },
+                        height: { ideal: 2560 }
+                    } 
+                });
+                
+                // Create video element
+                const video = document.createElement('video');
+                video.srcObject = stream;
+                video.play();
+                
+                // Capture photo after 3 second countdown
+                setTimeout(() => {
+                    const canvas = document.createElement('canvas');
+                    canvas.width = video.videoWidth;
+                    canvas.height = video.videoHeight;
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(video, 0, 0);
+                    
+                    // Convert to base64
+                    const imageData = canvas.toDataURL('image/jpeg', 0.9);
+                    
+                    // Upload to journey
+                    uploadToJourney(imageData, angle);
+                    
+                    // Stop camera
+                    stream.getTracks().forEach(track => track.stop());
+                }, 3000);
+                
+            } catch (error) {
+                console.error('Camera access denied:', error);
+                // Fallback to file upload
+                const input = document.createElement('input');
+                input.type = 'file';
+                input.accept = 'image/*';
+                input.capture = 'environment';
+                input.onchange = (e) => {
+                    const file = e.target.files[0];
+                    const reader = new FileReader();
+                    reader.onload = (event) => {
+                        uploadToJourney(event.target.result, angle);
+                    };
+                    reader.readAsDataURL(file);
+                };
+                input.click();
+            }
+        }
+
+        async function uploadToJourney(imageData, angle) {
+            const assessmentId = sessionStorage.getItem('assessmentId');
+            
+            const response = await fetch('/api/visual-journey', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    assessmentId: assessmentId,
+                    photoType: 'during', // or 'before', 'after'
+                    treatmentStage: 'promax_session_3',
+                    bodyArea: 'abdomen',
+                    angle: angle,
+                    imageData: imageData
+                })
+            });
+            
+            const result = await response.json();
+            if (result.success) {
+                // Update UI to show photo uploaded
+                updatePhotoCard(angle, imageData);
+                
+                // Show AI insights
+                if (result.aiInsights) {
+                    showAIInsights(result.aiInsights);
+                }
+            }
+        }
+
+        function updatePhotoCard(angle, imageData) {
+            // Update the capture card to show uploaded photo
+            const card = document.querySelector(`.capture-card[onclick="capturePhoto('${angle}')"]`);
+            if (card) {
+                card.classList.add('has-photo');
+                const preview = card.querySelector('.photo-preview');
+                preview.innerHTML = `<img src="${imageData}" alt="${angle} view">`;
+            }
+        }
+
+        function showAIInsights(insights) {
+            const insightDiv = document.querySelector('.ai-insights p');
+            insightDiv.textContent = `Skin tightness score: ${insights.skin_tightness_score}%. ${insights.recommended_next_step}`;
+        }
+
+        // Before/After Slider
+        const slider = document.getElementById('slider-handle');
+        const container = document.getElementById('comparison-slider');
+        let isSliding = false;
+
+        if (slider && container) {
+            slider.addEventListener('mousedown', () => isSliding = true);
+            document.addEventListener('mouseup', () => isSliding = false);
+            document.addEventListener('mousemove', (e) => {
+                if (!isSliding) return;
+                
+                const rect = container.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const percentage = (x / rect.width) * 100;
+                
+                slider.style.left = percentage + '%';
+                container.querySelector('img').style.clipPath = `inset(0 ${100 - percentage}% 0 0)`;
+            });
+        }
+
+        // Load existing journey on page load
+        async function loadJourney() {
+            const assessmentId = sessionStorage.getItem('assessmentId');
+            if (!assessmentId) return;
+            
+            const response = await fetch(`/api/visual-journey?assessmentId=${assessmentId}`);
+            const data = await response.json();
+            
+            if (data.success) {
+                // Update timeline with actual data
+                updateTimeline(data.timeline);
+                
+                // Show progress
+                updateProgress(data.progress);
+            }
+        }
+
+        function updateTimeline(timeline) {
+            // Update the progress timeline with actual stages
+            console.log('Journey timeline:', timeline);
+        }
+
+        function updateProgress(progress) {
+            // Update progress stats
+            document.querySelector('.stat-value').textContent = progress.percentage + '%';
+        }
+
+        // Load journey on page load
+        loadJourney();
+    </script>
+</body>
+</html>

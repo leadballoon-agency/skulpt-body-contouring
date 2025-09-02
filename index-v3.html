@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skulpt - Fix Loose Skin After Weight Loss | Non-Surgical Solutions</title>
+    <meta name="description" content="Lost weight with Ozempic or Mounjaro? Get rid of loose skin without surgery. Free assessment to find your perfect treatment.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #D4AF37;
+            --primary-dark: #B8941F;
+            --secondary: #E8B4B8;
+            --dark: #1A1A1A;
+            --gray: #6B6866;
+            --light-gray: #F8F8F8;
+            --white: #FFFFFF;
+            --success: #22C55E;
+            --warning: #F59E0B;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Glassmorphism Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0;
+            transform: translateY(-100%);
+        }
+        
+        .navbar.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .navbar.scrolled {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.75rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .nav-links {
+            display: none;
+        }
+        
+        @media (min-width: 768px) {
+            .nav-links {
+                display: flex;
+                gap: 2rem;
+                align-items: center;
+            }
+        }
+        
+        .nav-links a {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-cta {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white !important;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .nav-cta::after {
+            display: none !important;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3);
+            color: white !important;
+        }
+        
+        /* Mobile menu button */
+        .mobile-menu-btn {
+            display: block;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--dark);
+            cursor: pointer;
+        }
+        
+        @media (min-width: 768px) {
+            .mobile-menu-btn {
+                display: none;
+            }
+        }
+
+        /* Full Viewport Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: linear-gradient(135deg, #FFFEF9 0%, #FFF0F2 100%);
+            overflow: hidden;
+            padding: 2rem 1rem;
+            text-align: center;
+        }
+        
+        /* Animated background elements */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.08) 0%, transparent 70%);
+            animation: float 20s ease-in-out infinite;
+            pointer-events: none;
+        }
+        
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -50%;
+            left: -20%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(232, 180, 184, 0.08) 0%, transparent 70%);
+            animation: float 20s ease-in-out infinite reverse;
+            pointer-events: none;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(30px, -30px) rotate(120deg); }
+            66% { transform: translate(-20px, 20px) rotate(240deg); }
+        }
+
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(212, 175, 55, 0.1);
+            color: var(--primary);
+            padding: 0.5rem 1.25rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            animation: fadeInUp 0.6s ease-out;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        .highlight {
+            color: var(--primary);
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--gray);
+            margin-bottom: 2rem;
+        }
+
+        .hero-cta {
+            background: var(--primary);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.125rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .hero-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+        }
+
+        .trust-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--gray);
+            font-size: 0.875rem;
+        }
+
+        .trust-item i {
+            color: var(--primary);
+        }
+
+        /* Problem Section */
+        .problem-section {
+            padding: 4rem 1rem;
+            background: var(--white);
+        }
+
+        .section-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .problem-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .problem-card {
+            text-align: center;
+            padding: 1.5rem;
+        }
+
+        .problem-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .problem-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .problem-desc {
+            color: var(--gray);
+            font-size: 0.875rem;
+        }
+
+        /* Solution Section */
+        .solution-section {
+            padding: 4rem 1rem;
+            background: var(--light-gray);
+        }
+
+        .solution-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .solution-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+
+        .solution-number {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            line-height: 40px;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .solution-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        /* Assessment Section */
+        .assessment-section {
+            padding: 4rem 1rem;
+            background: var(--white);
+        }
+
+        .assessment-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .assessment-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .assessment-body {
+            padding: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #E5E5E5;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .option-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .option-card {
+            padding: 1rem;
+            border: 2px solid #E5E5E5;
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .option-card:hover {
+            border-color: var(--primary);
+            background: rgba(212, 175, 55, 0.05);
+        }
+
+        .option-card.selected {
+            border-color: var(--primary);
+            background: rgba(212, 175, 55, 0.1);
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: var(--primary);
+            color: white;
+            padding: 1rem;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.125rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .submit-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Results Modal */
+        .results-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.8);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .results-content {
+            background: white;
+            border-radius: 20px;
+            max-width: 600px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .results-header {
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 1px solid #E5E5E5;
+        }
+
+        .match-score {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .results-body {
+            padding: 2rem;
+        }
+
+        .treatment-recommendation {
+            background: var(--light-gray);
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .cta-buttons button {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .problem-cards {
+                grid-template-columns: 1fr;
+            }
+            
+            .solution-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .trust-indicators {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Glassmorphism Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="logo">SKULPT</div>
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#problem">The Problem</a>
+                <a href="#assessment">Assessment</a>
+                <a href="#assessment" class="nav-cta">Get Started</a>
+            </div>
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Full Viewport Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="hero-badge">🎯 Specialized in GLP-1 Weight Loss Recovery</div>
+            <h1>Lost Weight?<br>Let's Fix That <span class="highlight">Loose Skin</span></h1>
+            <p class="hero-subtitle">Professional non-surgical treatment for your post-weight loss transformation. Find out if you're suitable in just 2 minutes.</p>
+            <button class="cta-button" onclick="scrollToAssessment()">Start Free Assessment →</button>
+            
+            <div class="trust-indicators">
+                <div class="trust-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>5,000+ Transformations</span>
+                </div>
+                <div class="trust-item">
+                    <i class="fas fa-star"></i>
+                    <span>4.9/5 Rating</span>
+                </div>
+                <div class="trust-item">
+                    <i class="fas fa-clock"></i>
+                    <span>2 Minute Assessment</span>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator" onclick="scrollToAssessment()">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section class="problem-section" id="problem">
+        <div class="section-content">
+            <h2 class="section-title">The Weight Loss Skin Problem</h2>
+            <div class="problem-cards">
+                <div class="problem-card">
+                    <div class="problem-icon">💉</div>
+                    <div class="problem-title">Ozempic/Mounjaro Users</div>
+                    <div class="problem-desc">Rapid weight loss leaves skin unable to bounce back naturally</div>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-icon">😔</div>
+                    <div class="problem-title">Confidence Impact</div>
+                    <div class="problem-desc">Loose skin can make you feel worse than before weight loss</div>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-icon">❓</div>
+                    <div class="problem-title">Confusion</div>
+                    <div class="problem-desc">Don't know if surgery is the only option</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section class="solution-section">
+        <div class="section-content">
+            <h2 class="section-title">How We Help You</h2>
+            <div class="solution-grid">
+                <div class="solution-card">
+                    <div class="solution-number">1</div>
+                    <div class="solution-title">Quick Assessment</div>
+                    <p>Answer 5 simple questions about your weight loss and skin concerns</p>
+                </div>
+                <div class="solution-card">
+                    <div class="solution-number">2</div>
+                    <div class="solution-title">Get Matched</div>
+                    <p>Our algorithm matches you with the right non-surgical treatment</p>
+                </div>
+                <div class="solution-card">
+                    <div class="solution-number">3</div>
+                    <div class="solution-title">Connect & Transform</div>
+                    <p>Book with verified providers or get referred to partner clinics</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Assessment Section -->
+    <section class="assessment-section" id="assessment">
+        <div class="assessment-container">
+            <div class="assessment-header">
+                <h2>Your Free Skin Assessment</h2>
+                <p>Let's find the perfect solution for you</p>
+            </div>
+            <div class="assessment-body">
+                <form id="assessmentForm">
+                    <!-- Step 1: Contact Info -->
+                    <div class="form-group">
+                        <label for="name">First Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Phone (Optional)</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+
+                    <!-- Step 2: Weight Loss Method -->
+                    <div class="form-group">
+                        <label>How did you lose weight?</label>
+                        <div class="option-grid">
+                            <div class="option-card" onclick="selectOption(this, 'method', 'ozempic')">
+                                <div>💉</div>
+                                <div>Ozempic/Wegovy</div>
+                            </div>
+                            <div class="option-card" onclick="selectOption(this, 'method', 'mounjaro')">
+                                <div>💊</div>
+                                <div>Mounjaro</div>
+                            </div>
+                            <div class="option-card" onclick="selectOption(this, 'method', 'other')">
+                                <div>🏃‍♀️</div>
+                                <div>Other</div>
+                            </div>
+                        </div>
+                        <input type="hidden" id="method" name="method" required>
+                    </div>
+
+                    <!-- Step 3: Main Concern -->
+                    <div class="form-group">
+                        <label>What's your main concern?</label>
+                        <div class="option-grid">
+                            <div class="option-card" onclick="selectOption(this, 'concern', 'loose')">
+                                <div>👐</div>
+                                <div>Loose Skin</div>
+                            </div>
+                            <div class="option-card" onclick="selectOption(this, 'concern', 'texture')">
+                                <div>🌊</div>
+                                <div>Skin Texture</div>
+                            </div>
+                            <div class="option-card" onclick="selectOption(this, 'concern', 'fat')">
+                                <div>💪</div>
+                                <div>Stubborn Fat</div>
+                            </div>
+                        </div>
+                        <input type="hidden" id="concern" name="concern" required>
+                    </div>
+
+                    <!-- Step 4: Area -->
+                    <div class="form-group">
+                        <label>Which area bothers you most?</label>
+                        <div class="option-grid">
+                            <div class="option-card" onclick="selectOption(this, 'area', 'tummy')">
+                                <div>🎯</div>
+                                <div>Tummy</div>
+                            </div>
+                            <div class="option-card" onclick="selectOption(this, 'area', 'arms')">
+                                <div>💪</div>
+                                <div>Arms</div>
+                            </div>
+                            <div class="option-card" onclick="selectOption(this, 'area', 'thighs')">
+                                <div>🦵</div>
+                                <div>Thighs</div>
+                            </div>
+                        </div>
+                        <input type="hidden" id="area" name="area" required>
+                    </div>
+
+                    <!-- Step 5: Timeline -->
+                    <div class="form-group">
+                        <label>When would you like to start?</label>
+                        <div class="option-grid">
+                            <div class="option-card" onclick="selectOption(this, 'timeline', 'now')">
+                                <div>⚡</div>
+                                <div>ASAP</div>
+                            </div>
+                            <div class="option-card" onclick="selectOption(this, 'timeline', 'soon')">
+                                <div>📅</div>
+                                <div>This Month</div>
+                            </div>
+                            <div class="option-card" onclick="selectOption(this, 'timeline', 'exploring')">
+                                <div>🔍</div>
+                                <div>Just Looking</div>
+                            </div>
+                        </div>
+                        <input type="hidden" id="timeline" name="timeline" required>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Get My Results →</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results Modal -->
+    <div class="results-modal" id="resultsModal">
+        <div class="results-content">
+            <div class="results-header">
+                <div class="match-score">95%</div>
+                <h2>Perfect Match!</h2>
+                <p>You're an ideal candidate for non-surgical treatment</p>
+            </div>
+            <div class="results-body">
+                <div class="treatment-recommendation">
+                    <h3>Recommended: ProMax Lipo</h3>
+                    <p>Based on your assessment, ProMax Lipo's triple-action technology (Ultrasonic Cavitation + RF + Vacuum) is perfect for tightening your loose skin from GLP-1 weight loss.</p>
+                    <ul>
+                        <li>✅ No surgery required</li>
+                        <li>✅ No downtime</li>
+                        <li>✅ Results from first session</li>
+                        <li>✅ 6 sessions for full transformation</li>
+                    </ul>
+                </div>
+                
+                <div class="cta-buttons">
+                    <button class="submit-btn" onclick="bookConsultation()">Book Free Consultation</button>
+                    <button class="submit-btn" style="background: #25D366" onclick="requestBeforeAfters()">
+                        <i class="fab fa-whatsapp"></i> See Before/Afters
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Skulpt Body Contouring. All rights reserved.</p>
+        <p>Not medical advice. Consult your doctor before any treatment.</p>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        let lastScroll = 0;
+        const navbar = document.getElementById('navbar');
+        
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll > 100) {
+                navbar.classList.add('visible', 'scrolled');
+            } else {
+                navbar.classList.remove('visible', 'scrolled');
+            }
+            
+            lastScroll = currentScroll;
+        });
+        
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('mobile-active');
+        }
+        
+        // Simple form handling
+        let assessment = {};
+
+        function selectOption(element, field, value) {
+            // Remove selected from siblings
+            element.parentElement.querySelectorAll('.option-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            
+            // Add selected to clicked
+            element.classList.add('selected');
+            
+            // Store value
+            assessment[field] = value;
+            document.getElementById(field).value = value;
+        }
+
+        function scrollToAssessment() {
+            document.getElementById('assessment').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Form submission
+        document.getElementById('assessmentForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            // Collect form data
+            const formData = new FormData(e.target);
+            const data = Object.fromEntries(formData);
+            
+            // Simple qualification logic
+            let qualified = true;
+            let score = 70;
+            
+            if (data.method === 'ozempic' || data.method === 'mounjaro') {
+                score += 15;
+            }
+            
+            if (data.concern === 'loose') {
+                score += 10;
+            }
+            
+            if (data.timeline === 'now') {
+                score += 5;
+            }
+            
+            // Save to sessionStorage for other pages
+            sessionStorage.setItem('assessment', JSON.stringify(data));
+            sessionStorage.setItem('score', score);
+            
+            // Show results
+            document.querySelector('.match-score').textContent = score + '%';
+            document.getElementById('resultsModal').style.display = 'flex';
+            
+            // Send to backend/GHL webhook
+            fetch('/api/save-assessment', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            }).catch(err => console.log('Could not save assessment:', err));
+            
+            // Setup for visual journey tracking
+            sessionStorage.setItem('assessmentId', `skulpt_${Date.now()}`);
+            sessionStorage.setItem('assessmentEmail', data.email);
+            
+            // Add visual journey button after a short delay
+            setTimeout(() => {
+                const resultsBody = document.querySelector('.results-body');
+                if (resultsBody && !document.getElementById('visualJourneyBtn')) {
+                    const journeySection = document.createElement('div');
+                    journeySection.style.marginTop = '2rem';
+                    journeySection.style.padding = '1.5rem';
+                    journeySection.style.background = 'linear-gradient(135deg, #FFF5E6 0%, #FFFEF9 100%)';
+                    journeySection.style.borderRadius = '15px';
+                    journeySection.innerHTML = `
+                        <h4 style="color: #D4AF37; margin-bottom: 0.5rem;">📸 Track Your Transformation</h4>
+                        <p style="color: #6B6866; margin-bottom: 1rem; font-size: 0.9rem;">
+                            Document your journey with professional progress photos
+                        </p>
+                        <button id="visualJourneyBtn" class="btn-primary" onclick="startVisualJourney()" style="background: linear-gradient(135deg, #D4AF37 0%, #E8B4B8 100%); color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 25px; font-weight: 600; cursor: pointer;">
+                            Start Visual Journey
+                        </button>
+                    `;
+                    resultsBody.appendChild(journeySection);
+                }
+            }, 500);
+        });
+
+        function startVisualJourney() {
+            // Navigate to the Cloudinary photo upload widget
+            window.location.href = '/cloudinary-widget-v2.html';
+        }
+        
+        function bookConsultation() {
+            // Open booking widget or redirect
+            window.location.href = 'https://link.skintight.uk/widget/booking/85AnUNYWb63J1DyMo1g9';
+        }
+
+        function requestBeforeAfters() {
+            const phone = '447700173390';
+            const message = encodeURIComponent('Hi! I just completed my assessment and would love to see ProMax Lipo before/after photos.');
+            window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('resultsModal').addEventListener('click', (e) => {
+            if (e.target === e.currentTarget) {
+                e.currentTarget.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

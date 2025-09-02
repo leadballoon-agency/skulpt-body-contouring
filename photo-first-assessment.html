@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Start Your Transformation | Skulpt</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://widget.cloudinary.com/v2.0/global/all.js" type="text/javascript"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            max-width: 500px;
+            width: 100%;
+            overflow: hidden;
+            animation: slideUp 0.5s ease;
+        }
+        
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #0066CC 0%, #0052A3 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .logo {
+            width: 120px;
+            margin-bottom: 1rem;
+        }
+        
+        .step-indicator {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .step-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            transition: all 0.3s;
+        }
+        
+        .step-dot.active {
+            background: white;
+            width: 24px;
+            border-radius: 4px;
+        }
+        
+        .content {
+            padding: 2rem;
+        }
+        
+        .welcome-message {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .welcome-message h1 {
+            font-size: 1.8rem;
+            color: #1A1A1A;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .welcome-message p {
+            color: #6C757D;
+            line-height: 1.6;
+        }
+        
+        .photo-upload-area {
+            border: 3px dashed #E5E7EB;
+            border-radius: 12px;
+            padding: 3rem 2rem;
+            text-align: center;
+            transition: all 0.3s;
+            cursor: pointer;
+            background: #F8F9FA;
+        }
+        
+        .photo-upload-area:hover {
+            border-color: #0066CC;
+            background: #F0F9FF;
+        }
+        
+        .upload-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1rem;
+            background: linear-gradient(135deg, #0066CC 0%, #0052A3 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .upload-icon svg {
+            width: 30px;
+            height: 30px;
+            fill: white;
+        }
+        
+        .upload-title {
+            font-size: 1.2rem;
+            color: #1A1A1A;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .upload-subtitle {
+            color: #6C757D;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        
+        .upload-benefits {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+        
+        .benefit {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+            color: #6C757D;
+        }
+        
+        .benefit svg {
+            width: 16px;
+            height: 16px;
+            fill: #00A859;
+        }
+        
+        .privacy-note {
+            background: #F0F9FF;
+            border-left: 3px solid #0066CC;
+            padding: 1rem;
+            margin-top: 2rem;
+            border-radius: 6px;
+        }
+        
+        .privacy-note h4 {
+            color: #0066CC;
+            font-size: 0.9rem;
+            margin-bottom: 0.25rem;
+            font-weight: 600;
+        }
+        
+        .privacy-note p {
+            color: #6C757D;
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+        
+        .skip-link {
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+        
+        .skip-link a {
+            color: #6C757D;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        
+        .skip-link a:hover {
+            color: #0066CC;
+            text-decoration: underline;
+        }
+        
+        /* Chat-style interface for questions */
+        .chat-container {
+            max-height: 400px;
+            overflow-y: auto;
+            padding: 1rem;
+        }
+        
+        .chat-message {
+            margin-bottom: 1rem;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .bot-message {
+            background: #F8F9FA;
+            padding: 1rem;
+            border-radius: 12px 12px 12px 0;
+            margin-right: 2rem;
+        }
+        
+        .user-message {
+            background: linear-gradient(135deg, #0066CC 0%, #0052A3 100%);
+            color: white;
+            padding: 1rem;
+            border-radius: 12px 12px 0 12px;
+            margin-left: 2rem;
+            text-align: right;
+        }
+        
+        .quick-replies {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        
+        .quick-reply {
+            background: white;
+            border: 2px solid #E5E7EB;
+            padding: 0.75rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.9rem;
+        }
+        
+        .quick-reply:hover {
+            border-color: #0066CC;
+            background: #F0F9FF;
+        }
+        
+        .photo-preview {
+            width: 100%;
+            max-width: 300px;
+            margin: 1rem auto;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        
+        .photo-preview img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .analysis-result {
+            background: linear-gradient(135deg, #F0F9FF 0%, #FFFFFF 100%);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-top: 1rem;
+        }
+        
+        .analysis-score {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+        
+        .score-label {
+            color: #6C757D;
+            font-size: 0.9rem;
+        }
+        
+        .score-value {
+            font-size: 2rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #0066CC 0%, #0052A3 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .recommendation-card {
+            background: white;
+            border: 2px solid #E5E7EB;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-top: 1rem;
+        }
+        
+        .recommendation-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .recommendation-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #00A859 0%, #008847 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .recommendation-icon svg {
+            width: 24px;
+            height: 24px;
+            fill: white;
+        }
+        
+        .recommendation-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1A1A1A;
+        }
+        
+        .recommendation-details {
+            color: #6C757D;
+            line-height: 1.6;
+            font-size: 0.9rem;
+        }
+        
+        .cta-button {
+            background: linear-gradient(135deg, #0066CC 0%, #0052A3 100%);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 1.5rem;
+            transition: all 0.2s;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(0, 102, 204, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="step-indicator">
+                <div class="step-dot active"></div>
+                <div class="step-dot"></div>
+                <div class="step-dot"></div>
+                <div class="step-dot"></div>
+            </div>
+            <h2 style="font-size: 1rem; font-weight: 400; opacity: 0.9;">Your Transformation Journey</h2>
+        </div>
+        
+        <div class="content" id="step1">
+            <div class="welcome-message">
+                <h1>Let's Capture Your Starting Point</h1>
+                <p>Every incredible transformation starts with a single photo. This becomes your "Day 1" - the moment everything changes.</p>
+            </div>
+            
+            <div class="photo-upload-area" onclick="openPhotoUpload()">
+                <div class="upload-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M19 7v2.99s-1.99.01-2 0V7h-3s.01-1.99 0-2h3V2h2v3h3v2h-3zm-3 4V8h-3V5H5c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-8h-3zM5 19l3-4 2 3 3-4 4 5H5z"/>
+                    </svg>
+                </div>
+                <div class="upload-title">Take or Upload Your Photo</div>
+                <div class="upload-subtitle">100% Private & Secure</div>
+                
+                <div class="upload-benefits">
+                    <div class="benefit">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                        </svg>
+                        <span>AI Analysis</span>
+                    </div>
+                    <div class="benefit">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                        </svg>
+                        <span>Instant Results</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="privacy-note">
+                <h4>🔒 Your Privacy Matters</h4>
+                <p>Photos are encrypted, never shared, and you can delete them anytime. We use medical-grade security standards.</p>
+            </div>
+            
+            <div class="skip-link">
+                <a href="#" onclick="skipPhoto()">I'll do this later →</a>
+            </div>
+        </div>
+        
+        <div class="content" id="step2" style="display: none;">
+            <div class="chat-container">
+                <div class="chat-message">
+                    <div class="bot-message">
+                        <strong>Sarah from Skulpt:</strong><br>
+                        Thanks for trusting us with your photo! I can see you're serious about making a change. What brought you here today?
+                    </div>
+                </div>
+                
+                <div class="quick-replies">
+                    <button class="quick-reply" onclick="selectReason('weight-loss')">Lost weight, have loose skin</button>
+                    <button class="quick-reply" onclick="selectReason('facial')">Facial concerns</button>
+                    <button class="quick-reply" onclick="selectReason('body')">Want to reshape my body</button>
+                    <button class="quick-reply" onclick="selectReason('explore')">Just exploring options</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="content" id="step3" style="display: none;">
+            <div class="photo-preview" id="photoPreview">
+                <!-- User's photo will appear here -->
+            </div>
+            
+            <div class="analysis-result">
+                <h3 style="margin-bottom: 1rem;">AI Analysis Complete</h3>
+                
+                <div class="analysis-score">
+                    <span class="score-label">Treatment Suitability Score</span>
+                    <span class="score-value">92%</span>
+                </div>
+                
+                <div class="recommendation-card">
+                    <div class="recommendation-header">
+                        <div class="recommendation-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                            </svg>
+                        </div>
+                        <div class="recommendation-title">Perfect for ProMax Lipo</div>
+                    </div>
+                    <div class="recommendation-details">
+                        Based on your photo analysis, you're an excellent candidate for our non-surgical treatment. We can achieve significant skin tightening in just 6 sessions.
+                    </div>
+                </div>
+                
+                <button class="cta-button" onclick="bookConsultation()">
+                    Book Your Free Consultation
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        let userData = {
+            photoUrl: null,
+            timestamp: new Date().toISOString(),
+            journey: []
+        };
+        
+        function openPhotoUpload() {
+            // Initialize Cloudinary widget
+            const widget = cloudinary.createUploadWidget({
+                cloudName: 'ddxptienb',
+                uploadPreset: 'skulpt_assessment',
+                sources: ['local', 'camera'],
+                multiple: false,
+                cropping: true,
+                croppingAspectRatio: null,
+                showSkipCropButton: false,
+                resourceType: 'image',
+                clientAllowedFormats: ['png', 'jpg', 'jpeg'],
+                maxFileSize: 10000000,
+                styles: {
+                    palette: {
+                        window: "#FFFFFF",
+                        windowBorder: "#0066CC",
+                        tabIcon: "#0066CC",
+                        menuIcons: "#5A616A",
+                        textDark: "#000000",
+                        textLight: "#FFFFFF",
+                        link: "#0066CC",
+                        action: "#0066CC",
+                        inactiveTabIcon: "#B0B0B0",
+                        error: "#F44235",
+                        inProgress: "#0066CC",
+                        complete: "#20B832",
+                        sourceBg: "#F8F9FA"
+                    },
+                    fonts: {
+                        default: {
+                            active: true
+                        }
+                    }
+                }
+            }, (error, result) => {
+                if (!error && result && result.event === "success") {
+                    handlePhotoUpload(result.info);
+                }
+            });
+            
+            widget.open();
+        }
+        
+        function handlePhotoUpload(photoInfo) {
+            userData.photoUrl = photoInfo.secure_url;
+            userData.photoId = photoInfo.public_id;
+            
+            // Show the photo in preview
+            document.getElementById('photoPreview').innerHTML = `
+                <img src="${photoInfo.secure_url}" alt="Your photo">
+            `;
+            
+            // Move to conversational questions
+            document.getElementById('step1').style.display = 'none';
+            document.getElementById('step2').style.display = 'block';
+            
+            // Update step indicator
+            document.querySelectorAll('.step-dot')[0].classList.remove('active');
+            document.querySelectorAll('.step-dot')[1].classList.add('active');
+            
+            // Track this moment
+            userData.journey.push({
+                action: 'photo_uploaded',
+                timestamp: new Date().toISOString()
+            });
+            
+            // Send to webhook immediately (stealth onboarding!)
+            sendToWebhook({
+                event: 'photo_captured',
+                ...userData
+            });
+        }
+        
+        function skipPhoto() {
+            document.getElementById('step1').style.display = 'none';
+            document.getElementById('step2').style.display = 'block';
+            
+            userData.journey.push({
+                action: 'skipped_photo',
+                timestamp: new Date().toISOString()
+            });
+        }
+        
+        function selectReason(reason) {
+            userData.primaryConcern = reason;
+            
+            // Add to chat
+            const chatContainer = document.querySelector('.chat-container');
+            chatContainer.innerHTML += `
+                <div class="chat-message">
+                    <div class="user-message">${getReasonText(reason)}</div>
+                </div>
+            `;
+            
+            // Show appropriate follow-up based on reason
+            setTimeout(() => {
+                if (reason === 'weight-loss') {
+                    askWeightLossMethod();
+                } else if (reason === 'facial') {
+                    askFacialConcerns();
+                } else {
+                    showAnalysis();
+                }
+            }, 500);
+        }
+        
+        function getReasonText(reason) {
+            const texts = {
+                'weight-loss': "I've lost weight and have loose skin",
+                'facial': "I have facial concerns",
+                'body': "I want to reshape my body",
+                'explore': "Just exploring my options"
+            };
+            return texts[reason];
+        }
+        
+        function askWeightLossMethod() {
+            const chatContainer = document.querySelector('.chat-container');
+            chatContainer.innerHTML += `
+                <div class="chat-message">
+                    <div class="bot-message">
+                        <strong>Sarah:</strong><br>
+                        Congratulations on your weight loss! That's incredible. Quick question - how did you lose the weight? This helps me recommend the perfect treatment.
+                    </div>
+                </div>
+            `;
+            
+            // Update quick replies
+            document.querySelector('.quick-replies').innerHTML = `
+                <button class="quick-reply" onclick="selectMethod('ozempic')">Ozempic/Wegovy</button>
+                <button class="quick-reply" onclick="selectMethod('mounjaro')">Mounjaro</button>
+                <button class="quick-reply" onclick="selectMethod('natural')">Diet & Exercise</button>
+                <button class="quick-reply" onclick="selectMethod('surgery')">Weight loss surgery</button>
+            `;
+        }
+        
+        function selectMethod(method) {
+            userData.weightLossMethod = method;
+            
+            // This is THE key qualifying question for ProMax Lipo
+            if (method === 'ozempic' || method === 'mounjaro') {
+                userData.qualificationScore = 95;
+                userData.recommendedTreatment = 'ProMax Lipo';
+            }
+            
+            // Show analysis
+            showAnalysis();
+        }
+        
+        function showAnalysis() {
+            document.getElementById('step2').style.display = 'none';
+            document.getElementById('step3').style.display = 'block';
+            
+            // Update step indicator
+            document.querySelectorAll('.step-dot')[1].classList.remove('active');
+            document.querySelectorAll('.step-dot')[2].classList.add('active');
+            
+            // Send complete data to webhook
+            sendToWebhook({
+                event: 'assessment_complete',
+                ...userData
+            });
+        }
+        
+        function sendToWebhook(data) {
+            fetch('https://services.leadconnectorhq.com/hooks/dVD6QbgqAF7fiHM3MCrz/webhook-trigger/355171e7-7010-42a9-b0b8-3dee211db694', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            });
+        }
+        
+        function bookConsultation() {
+            window.location.href = 'https://link.skintight.uk/widget/booking/85AnUNYWb63J1DyMo1g9';
+        }
+    </script>
+</body>
+</html>

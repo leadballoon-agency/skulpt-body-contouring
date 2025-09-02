@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Your Transformation Journey | Skulpt</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://widget.cloudinary.com/v2.0/global/all.js"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: #F8F9FA;
+            overflow-x: hidden;
+        }
+        
+        /* The WOW reveal animation */
+        .reveal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, #0066CC 0%, #0052A3 100%);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: fadeOut 3s ease forwards;
+            animation-delay: 3s;
+        }
+        
+        @keyframes fadeOut {
+            to {
+                opacity: 0;
+                pointer-events: none;
+            }
+        }
+        
+        .reveal-content {
+            text-align: center;
+            color: white;
+            animation: scaleIn 0.5s ease;
+        }
+        
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        .reveal-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            font-size: 40px;
+        }
+        
+        .reveal-title {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        
+        .reveal-subtitle {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+        
+        /* Dashboard header */
+        .dashboard-header {
+            background: white;
+            border-bottom: 1px solid #E5E7EB;
+            padding: 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .user-welcome {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .user-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #0066CC 0%, #00A859 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 20px;
+        }
+        
+        .user-info h2 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+        
+        .user-info p {
+            font-size: 13px;
+            color: #666;
+        }
+        
+        .header-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .header-btn {
+            padding: 8px 16px;
+            border-radius: 8px;
+            border: none;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .header-btn.primary {
+            background: #0066CC;
+            color: white;
+        }
+        
+        .header-btn.secondary {
+            background: #F0F9FF;
+            color: #0066CC;
+        }
+        
+        /* Journey timeline - the core of the platform */
+        .journey-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        
+        .journey-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .journey-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        
+        .journey-subtitle {
+            color: #666;
+            font-size: 16px;
+        }
+        
+        /* Visual journey timeline */
+        .timeline {
+            position: relative;
+            padding: 40px 0;
+        }
+        
+        .timeline-line {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #E5E7EB;
+            transform: translateX(-50%);
+        }
+        
+        .timeline-progress {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            width: 2px;
+            height: 20%;
+            background: linear-gradient(to bottom, #0066CC 0%, #00A859 100%);
+            transform: translateX(-50%);
+            transition: height 1s ease;
+        }
+        
+        /* Milestone cards */
+        .milestone {
+            display: flex;
+            align-items: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+        
+        .milestone:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+        
+        .milestone-content {
+            flex: 1;
+            padding: 0 40px;
+        }
+        
+        .milestone-card {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        
+        .milestone-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+        
+        .milestone-date {
+            font-size: 12px;
+            color: #999;
+            margin-bottom: 8px;
+        }
+        
+        .milestone-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .milestone-description {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-bottom: 16px;
+        }
+        
+        .milestone-action {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #0066CC;
+            font-weight: 500;
+            font-size: 14px;
+        }
+        
+        .milestone-dot {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: white;
+            border: 3px solid #E5E7EB;
+            z-index: 1;
+        }
+        
+        .milestone-dot.active {
+            border-color: #0066CC;
+            background: #0066CC;
+        }
+        
+        .milestone-dot.completed {
+            border-color: #00A859;
+            background: #00A859;
+        }
+        
+        /* Start journey CTA - photo upload */
+        .start-journey {
+            background: linear-gradient(135deg, #F0F9FF 0%, #E0F2FF 100%);
+            border: 2px dashed #0066CC;
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+        
+        .start-journey::before {
+            content: 'DAY 1';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #0066CC;
+            color: white;
+            padding: 4px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .start-icon {
+            width: 80px;
+            height: 80px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 36px;
+            box-shadow: 0 4px 20px rgba(0,102,204,0.2);
+        }
+        
+        .start-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .start-description {
+            color: #666;
+            font-size: 16px;
+            margin-bottom: 24px;
+        }
+        
+        .start-btn {
+            background: #0066CC;
+            color: white;
+            padding: 14px 32px;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .start-btn:hover {
+            background: #0052A3;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(0,102,204,0.3);
+        }
+        
+        /* Features grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+        
+        .feature-card {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+        }
+        
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            background: #F0F9FF;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+            font-size: 24px;
+        }
+        
+        .feature-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .feature-description {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        /* Feedback widget - always accessible */
+        .feedback-fab {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            width: 56px;
+            height: 56px;
+            background: #0066CC;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(0,102,204,0.3);
+            transition: all 0.3s;
+            z-index: 999;
+        }
+        
+        .feedback-fab:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 30px rgba(0,102,204,0.4);
+        }
+        
+        /* Feedback panel */
+        .feedback-panel {
+            position: fixed;
+            bottom: 88px;
+            right: 24px;
+            width: 360px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            padding: 24px;
+            display: none;
+            z-index: 998;
+            animation: slideUp 0.3s ease;
+        }
+        
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .feedback-panel.active {
+            display: block;
+        }
+        
+        .feedback-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .feedback-title {
+            font-size: 18px;
+            font-weight: 600;
+        }
+        
+        .feedback-close {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: #F0F0F0;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .feedback-options {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        
+        .feedback-option {
+            padding: 12px;
+            border: 2px solid #E5E7EB;
+            border-radius: 8px;
+            background: white;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.2s;
+        }
+        
+        .feedback-option:hover {
+            border-color: #0066CC;
+            background: #F0F9FF;
+        }
+        
+        .feedback-option-icon {
+            font-size: 24px;
+            margin-bottom: 4px;
+        }
+        
+        .feedback-option-label {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .feedback-textarea {
+            width: 100%;
+            min-height: 100px;
+            padding: 12px;
+            border: 2px solid #E5E7EB;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 14px;
+            resize: vertical;
+            margin-bottom: 16px;
+        }
+        
+        .feedback-submit {
+            width: 100%;
+            padding: 12px;
+            background: #0066CC;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        
+        /* Community section */
+        .community-section {
+            background: white;
+            border-radius: 20px;
+            padding: 32px;
+            margin: 40px 0;
+        }
+        
+        .community-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+        
+        .community-title {
+            font-size: 20px;
+            font-weight: 600;
+        }
+        
+        .community-members {
+            display: flex;
+            gap: 12px;
+        }
+        
+        .member-story {
+            display: flex;
+            gap: 16px;
+            padding: 16px;
+            background: #F8F9FA;
+            border-radius: 12px;
+            margin-bottom: 16px;
+        }
+        
+        .member-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        
+        .member-content {
+            flex: 1;
+        }
+        
+        .member-name {
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        
+        .member-progress {
+            font-size: 13px;
+            color: #00A859;
+            margin-bottom: 8px;
+        }
+        
+        .member-message {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.5;
+        }
+        
+        /* Mobile optimization */
+        @media (max-width: 768px) {
+            .timeline-line {
+                left: 40px;
+            }
+            
+            .timeline-progress {
+                left: 40px;
+            }
+            
+            .milestone {
+                flex-direction: column !important;
+            }
+            
+            .milestone-dot {
+                left: 40px;
+            }
+            
+            .milestone-content {
+                padding-left: 80px;
+                padding-right: 20px;
+            }
+            
+            .feedback-panel {
+                left: 20px;
+                right: 20px;
+                width: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- The WOW Reveal -->
+    <div class="reveal-overlay">
+        <div class="reveal-content">
+            <div class="reveal-icon">✨</div>
+            <h1 class="reveal-title">Welcome to Your Journey</h1>
+            <p class="reveal-subtitle">Your personal transformation platform is ready</p>
+        </div>
+    </div>
+    
+    <!-- Dashboard Header -->
+    <header class="dashboard-header">
+        <div class="header-content">
+            <div class="user-welcome">
+                <div class="user-avatar" id="userAvatar">S</div>
+                <div class="user-info">
+                    <h2>Welcome back, <span id="userName">Sarah</span>!</h2>
+                    <p>Your journey started today • 0% complete</p>
+                </div>
+            </div>
+            <div class="header-actions">
+                <button class="header-btn secondary" onclick="openSettings()">Settings</button>
+                <button class="header-btn primary" onclick="bookSession()">Book Session</button>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Journey Timeline -->
+    <div class="journey-container">
+        <div class="journey-header">
+            <h1 class="journey-title">Your Body Transformation Journey</h1>
+            <p class="journey-subtitle">Not just treatment - a complete lifestyle transformation</p>
+        </div>
+        
+        <!-- Start Journey CTA -->
+        <div class="start-journey">
+            <div class="start-icon">📸</div>
+            <h2 class="start-title">Start Your Visual Journey</h2>
+            <p class="start-description">
+                Take your first "Day 1" photo. This becomes your baseline.<br>
+                Watch your amazing transformation unfold week by week.
+            </p>
+            <button class="start-btn" onclick="startPhotoJourney()">
+                Take My Day 1 Photo
+            </button>
+        </div>
+        
+        <!-- Timeline -->
+        <div class="timeline">
+            <div class="timeline-line"></div>
+            <div class="timeline-progress" id="timelineProgress"></div>
+            
+            <!-- Milestone 1: Assessment Complete -->
+            <div class="milestone">
+                <div class="milestone-content">
+                    <div class="milestone-card">
+                        <div class="milestone-date">Today</div>
+                        <h3 class="milestone-title">✅ Assessment Complete</h3>
+                        <p class="milestone-description">
+                            You're a 92% match for ProMax Lipo treatment. Your personalized plan is ready.
+                        </p>
+                        <div class="milestone-action">
+                            <span>View your results</span>
+                            <span>→</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="milestone-dot completed"></div>
+            </div>
+            
+            <!-- Milestone 2: Consultation -->
+            <div class="milestone">
+                <div class="milestone-content">
+                    <div class="milestone-card">
+                        <div class="milestone-date">Next Step</div>
+                        <h3 class="milestone-title">Free Consultation</h3>
+                        <p class="milestone-description">
+                            Meet your practitioner, see the equipment, discuss your goals. No pressure, just answers.
+                        </p>
+                        <div class="milestone-action" onclick="bookConsultation()">
+                            <span>Book your slot</span>
+                            <span>→</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="milestone-dot active"></div>
+            </div>
+            
+            <!-- Milestone 3: First Session -->
+            <div class="milestone">
+                <div class="milestone-content">
+                    <div class="milestone-card">
+                        <div class="milestone-date">Week 1</div>
+                        <h3 class="milestone-title">First Treatment Session</h3>
+                        <p class="milestone-description">
+                            Your transformation begins. Most clients see initial tightening immediately after session 1.
+                        </p>
+                        <div class="milestone-action">
+                            <span>What to expect</span>
+                            <span>→</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="milestone-dot"></div>
+            </div>
+            
+            <!-- Milestone 4: Halfway Point -->
+            <div class="milestone">
+                <div class="milestone-content">
+                    <div class="milestone-card">
+                        <div class="milestone-date">Week 3-4</div>
+                        <h3 class="milestone-title">Halfway Milestone</h3>
+                        <p class="milestone-description">
+                            Dramatic visible results. Time for progress photos and measurements. Friends will notice!
+                        </p>
+                        <div class="milestone-action">
+                            <span>See examples</span>
+                            <span>→</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="milestone-dot"></div>
+            </div>
+            
+            <!-- Milestone 5: Completion -->
+            <div class="milestone">
+                <div class="milestone-content">
+                    <div class="milestone-card">
+                        <div class="milestone-date">Week 6-8</div>
+                        <h3 class="milestone-title">Transformation Complete</h3>
+                        <p class="milestone-description">
+                            Your new body is ready. But this isn't the end - it's the beginning of maintaining your results.
+                        </p>
+                        <div class="milestone-action">
+                            <span>Maintenance plans</span>
+                            <span>→</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="milestone-dot"></div>
+            </div>
+        </div>
+        
+        <!-- Features Grid -->
+        <div class="features-grid">
+            <div class="feature-card" onclick="openMeasurements()">
+                <div class="feature-icon">📏</div>
+                <h3 class="feature-title">Track Measurements</h3>
+                <p class="feature-description">
+                    Record waist, hips, arms measurements. See your progress in real numbers.
+                </p>
+            </div>
+            
+            <div class="feature-card" onclick="openNutrition()">
+                <div class="feature-icon">🥗</div>
+                <h3 class="feature-title">Nutrition Guidance</h3>
+                <p class="feature-description">
+                    Personalized meal plans to maintain your results and boost skin health.
+                </p>
+            </div>
+            
+            <div class="feature-card" onclick="openCommunity()">
+                <div class="feature-icon">👥</div>
+                <h3 class="feature-title">Support Community</h3>
+                <p class="feature-description">
+                    Connect with others on the same journey. Share wins, get motivation.
+                </p>
+            </div>
+        </div>
+        
+        <!-- Community Section -->
+        <div class="community-section">
+            <div class="community-header">
+                <h2 class="community-title">Others on the Journey</h2>
+                <span style="color: #666; font-size: 14px;">247 active members</span>
+            </div>
+            
+            <div class="member-story">
+                <img class="member-avatar" src="/api/placeholder/48/48" alt="Emma">
+                <div class="member-content">
+                    <div class="member-name">Emma T.</div>
+                    <div class="member-progress">Lost 4 stone with Mounjaro • Session 4 of 6</div>
+                    <div class="member-message">
+                        "Can't believe the difference already! My tummy is actually tightening. Wish I'd done this sooner!"
+                    </div>
+                </div>
+            </div>
+            
+            <div class="member-story">
+                <img class="member-avatar" src="/api/placeholder/48/48" alt="James">
+                <div class="member-content">
+                    <div class="member-name">James K.</div>
+                    <div class="member-progress">Lost 3 stone with Ozempic • Completed treatment</div>
+                    <div class="member-message">
+                        "6 months post-treatment and skin is still tight. The maintenance plan really works."
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Feedback Widget -->
+    <div class="feedback-fab" onclick="toggleFeedback()">
+        💬
+    </div>
+    
+    <div class="feedback-panel" id="feedbackPanel">
+        <div class="feedback-header">
+            <h3 class="feedback-title">How can we improve?</h3>
+            <button class="feedback-close" onclick="toggleFeedback()">×</button>
+        </div>
+        
+        <div class="feedback-options">
+            <button class="feedback-option" onclick="selectFeedbackType('bug')">
+                <div class="feedback-option-icon">🐛</div>
+                <div class="feedback-option-label">Report Bug</div>
+            </button>
+            <button class="feedback-option" onclick="selectFeedbackType('feature')">
+                <div class="feedback-option-icon">💡</div>
+                <div class="feedback-option-label">Suggest Feature</div>
+            </button>
+            <button class="feedback-option" onclick="selectFeedbackType('love')">
+                <div class="feedback-option-icon">❤️</div>
+                <div class="feedback-option-label">Love It</div>
+            </button>
+            <button class="feedback-option" onclick="selectFeedbackType('help')">
+                <div class="feedback-option-icon">❓</div>
+                <div class="feedback-option-label">Need Help</div>
+            </button>
+        </div>
+        
+        <textarea class="feedback-textarea" id="feedbackText" placeholder="Tell us more..."></textarea>
+        
+        <button class="feedback-submit" onclick="submitFeedback()">Send Feedback</button>
+    </div>
+    
+    <script>
+        // Get user data from localStorage (set during assessment)
+        const userData = JSON.parse(localStorage.getItem('userData')) || {
+            firstName: 'Friend',
+            email: '',
+            assessmentScore: 92
+        };
+        
+        // Personalize dashboard
+        document.getElementById('userName').textContent = userData.firstName;
+        document.getElementById('userAvatar').textContent = userData.firstName[0].toUpperCase();
+        
+        // Animate timeline progress
+        setTimeout(() => {
+            document.getElementById('timelineProgress').style.height = '20%';
+        }, 1000);
+        
+        // Start photo journey - THIS is when they trust enough to upload
+        function startPhotoJourney() {
+            // Initialize Cloudinary widget
+            const widget = cloudinary.createUploadWidget({
+                cloudName: 'ddxptienb',
+                uploadPreset: 'skulpt_journey',
+                sources: ['local', 'camera'],
+                multiple: false,
+                cropping: true,
+                resourceType: 'image',
+                folder: `users/${userData.id}/journey`,
+                tags: ['day1', 'before'],
+                context: {
+                    user: userData.firstName,
+                    day: 'Day 1',
+                    type: 'before'
+                },
+                styles: {
+                    palette: {
+                        window: "#FFFFFF",
+                        windowBorder: "#0066CC",
+                        tabIcon: "#0066CC",
+                        menuIcons: "#5A616A",
+                        textDark: "#000000",
+                        textLight: "#FFFFFF",
+                        link: "#0066CC",
+                        action: "#0066CC",
+                        inactiveTabIcon: "#B0B0B0",
+                        error: "#F44235",
+                        inProgress: "#0066CC",
+                        complete: "#20B832",
+                        sourceBg: "#F8F9FA"
+                    }
+                }
+            }, (error, result) => {
+                if (!error && result && result.event === "success") {
+                    handlePhotoUpload(result.info);
+                }
+            });
+            
+            widget.open();
+        }
+        
+        function handlePhotoUpload(photoInfo) {
+            // Save first photo
+            userData.day1Photo = photoInfo.secure_url;
+            userData.journeyStarted = new Date().toISOString();
+            localStorage.setItem('userData', JSON.stringify(userData));
+            
+            // Update UI
+            document.querySelector('.start-journey').innerHTML = `
+                <div style="text-align: center;">
+                    <img src="${photoInfo.secure_url}" style="width: 200px; height: 200px; object-fit: cover; border-radius: 12px; margin-bottom: 20px;">
+                    <h3 style="color: #00A859; margin-bottom: 8px;">Journey Started! 🎉</h3>
+                    <p style="color: #666;">Your Day 1 photo is saved. Let's book your first session!</p>
+                    <button class="start-btn" onclick="bookSession()" style="margin-top: 16px;">
+                        Book First Session
+                    </button>
+                </div>
+            `;
+            
+            // Send to database
+            savePhotoToDatabase(photoInfo);
+            
+            // Update progress
+            document.getElementById('timelineProgress').style.height = '30%';
+        }
+        
+        function savePhotoToDatabase(photoInfo) {
+            fetch('/api/photos', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    userId: userData.id,
+                    photoUrl: photoInfo.secure_url,
+                    photoId: photoInfo.public_id,
+                    type: 'before',
+                    day: 1,
+                    timestamp: new Date().toISOString()
+                })
+            });
+        }
+        
+        // Feedback system
+        let feedbackType = null;
+        
+        function toggleFeedback() {
+            const panel = document.getElementById('feedbackPanel');
+            panel.classList.toggle('active');
+        }
+        
+        function selectFeedbackType(type) {
+            feedbackType = type;
+            
+            // Visual feedback
+            document.querySelectorAll('.feedback-option').forEach(opt => {
+                opt.style.borderColor = '#E5E7EB';
+            });
+            event.target.closest('.feedback-option').style.borderColor = '#0066CC';
+            
+            // Focus textarea
+            document.getElementById('feedbackText').focus();
+        }
+        
+        function submitFeedback() {
+            const feedback = {
+                type: feedbackType,
+                message: document.getElementById('feedbackText').value,
+                userId: userData.id,
+                page: 'dashboard',
+                timestamp: new Date().toISOString()
+            };
+            
+            // Send to database
+            fetch('/api/feedback', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(feedback)
+            });
+            
+            // Show success
+            document.getElementById('feedbackPanel').innerHTML = `
+                <div style="text-align: center; padding: 40px;">
+                    <div style="font-size: 48px; margin-bottom: 16px;">✅</div>
+                    <h3 style="margin-bottom: 8px;">Thanks for your feedback!</h3>
+                    <p style="color: #666;">We read every message and use them to improve.</p>
+                </div>
+            `;
+            
+            setTimeout(() => {
+                toggleFeedback();
+                // Reset panel
+                location.reload();
+            }, 2000);
+        }
+        
+        function bookConsultation() {
+            window.location.href = 'https://link.skintight.uk/widget/booking/85AnUNYWb63J1DyMo1g9';
+        }
+        
+        function bookSession() {
+            window.location.href = 'https://link.skintight.uk/widget/booking/85AnUNYWb63J1DyMo1g9';
+        }
+        
+        function openSettings() {
+            // Settings modal
+        }
+        
+        function openMeasurements() {
+            // Measurements tracker
+        }
+        
+        function openNutrition() {
+            // Nutrition guide
+        }
+        
+        function openCommunity() {
+            // Community page
+        }
+    </script>
+</body>
+</html>

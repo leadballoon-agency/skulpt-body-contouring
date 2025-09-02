@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fix Your Loose Skin | 60-Second Assessment</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: linear-gradient(135deg, #F5F5F7 0%, #FFFFFF 100%);
+            min-height: 100vh;
+            color: #1A1A1A;
+        }
+        
+        /* HERO IS THE ASSESSMENT - No scrolling needed! */
+        .hero-assessment {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .assessment-card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            max-width: 500px;
+            width: 100%;
+            overflow: hidden;
+            animation: slideUp 0.5s ease;
+        }
+        
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Micro-interactions for trust */
+        .live-counter {
+            background: #F0F9FF;
+            padding: 12px;
+            text-align: center;
+            font-size: 14px;
+            color: #0066CC;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { background: #F0F9FF; }
+            50% { background: #E0F2FF; }
+        }
+        
+        .assessment-header {
+            padding: 30px;
+            text-align: center;
+            border-bottom: 1px solid #F0F0F0;
+        }
+        
+        .trust-badges {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .trust-badge {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .trust-badge svg {
+            width: 16px;
+            height: 16px;
+            fill: #00A859;
+        }
+        
+        h1 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        
+        .subtitle {
+            color: #666;
+            font-size: 14px;
+        }
+        
+        /* Progress indicator - always visible */
+        .progress-steps {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            padding: 20px;
+            background: #FAFAFA;
+        }
+        
+        .step-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #E0E0E0;
+            transition: all 0.3s;
+        }
+        
+        .step-dot.active {
+            background: #0066CC;
+            width: 24px;
+            border-radius: 4px;
+        }
+        
+        .step-dot.completed {
+            background: #00A859;
+        }
+        
+        /* Question area */
+        .question-area {
+            padding: 30px;
+            min-height: 400px;
+        }
+        
+        /* Start with the PROBLEM not their name! */
+        .problem-question {
+            text-align: center;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .question-text {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .question-context {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+        
+        /* Big, thumb-friendly options */
+        .option-grid {
+            display: grid;
+            gap: 12px;
+        }
+        
+        .option-btn {
+            background: white;
+            border: 2px solid #E5E7EB;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .option-btn:hover {
+            border-color: #0066CC;
+            background: #F0F9FF;
+        }
+        
+        .option-btn:active {
+            transform: scale(0.98);
+        }
+        
+        .option-btn.selected {
+            border-color: #0066CC;
+            background: #F0F9FF;
+        }
+        
+        .option-btn.selected::after {
+            content: '✓';
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            color: #0066CC;
+            font-weight: bold;
+        }
+        
+        .option-main {
+            font-weight: 600;
+            font-size: 16px;
+            margin-bottom: 4px;
+        }
+        
+        .option-sub {
+            font-size: 13px;
+            color: #666;
+        }
+        
+        /* Smart insights that appear */
+        .insight-bubble {
+            background: linear-gradient(135deg, #F0F9FF 0%, #E0F2FF 100%);
+            border-left: 3px solid #0066CC;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            animation: slideIn 0.5s ease;
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .insight-text {
+            font-size: 14px;
+            color: #0066CC;
+            line-height: 1.5;
+        }
+        
+        /* Text input - only when needed */
+        .elegant-input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #E5E7EB;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.2s;
+        }
+        
+        .elegant-input:focus {
+            outline: none;
+            border-color: #0066CC;
+            background: #F0F9FF;
+        }
+        
+        /* Continue button - always visible */
+        .continue-btn {
+            background: #0066CC;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+            transition: all 0.2s;
+        }
+        
+        .continue-btn:hover {
+            background: #0052A3;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0,102,204,0.2);
+        }
+        
+        .continue-btn:disabled {
+            background: #E0E0E0;
+            color: #999;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        /* Skip option for low-commitment */
+        .skip-option {
+            text-align: center;
+            margin-top: 15px;
+        }
+        
+        .skip-link {
+            color: #666;
+            font-size: 14px;
+            text-decoration: none;
+        }
+        
+        .skip-link:hover {
+            color: #0066CC;
+            text-decoration: underline;
+        }
+        
+        /* Results that feel REAL */
+        .results-screen {
+            padding: 30px;
+            text-align: center;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .match-score {
+            font-size: 48px;
+            font-weight: bold;
+            background: linear-gradient(135deg, #0066CC 0%, #00A859 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+        
+        .match-reason {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+        
+        .personalized-insights {
+            background: #F8F9FA;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        
+        .insight-item {
+            display: flex;
+            align-items: start;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .insight-icon {
+            width: 24px;
+            height: 24px;
+            background: #0066CC;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .insight-icon svg {
+            width: 14px;
+            height: 14px;
+            fill: white;
+        }
+        
+        .insight-content {
+            flex: 1;
+        }
+        
+        .insight-title {
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 2px;
+        }
+        
+        .insight-detail {
+            font-size: 13px;
+            color: #666;
+        }
+        
+        /* Immediate value - downloadable guide */
+        .value-offer {
+            background: linear-gradient(135deg, #00A859 0%, #008847 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+        
+        .value-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .value-description {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-bottom: 15px;
+        }
+        
+        .value-btn {
+            background: white;
+            color: #00A859;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        
+        /* Social proof during assessment */
+        .social-proof {
+            background: #FFFEF0;
+            border-left: 3px solid #FFA500;
+            padding: 12px;
+            margin: 15px 0;
+            font-size: 13px;
+            color: #666;
+            animation: slideIn 0.5s ease;
+        }
+        
+        .social-proof strong {
+            color: #FFA500;
+        }
+        
+        /* Mobile optimizations */
+        @media (max-width: 480px) {
+            .assessment-card {
+                border-radius: 0;
+                height: 100vh;
+                max-width: 100%;
+            }
+            
+            .option-btn {
+                padding: 18px;
+            }
+            
+            .question-text {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero-assessment">
+        <div class="assessment-card">
+            <!-- Live social proof -->
+            <div class="live-counter">
+                <span id="liveCount">47</span> people are taking this assessment right now
+            </div>
+            
+            <!-- Trust signals upfront -->
+            <div class="assessment-header">
+                <div class="trust-badges">
+                    <div class="trust-badge">
+                        <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                        <span>60 seconds</span>
+                    </div>
+                    <div class="trust-badge">
+                        <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                        <span>No payment</span>
+                    </div>
+                    <div class="trust-badge">
+                        <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                        <span>Private</span>
+                    </div>
+                </div>
+                <h1>Is Your Loose Skin Treatable?</h1>
+                <p class="subtitle">Get your personalized assessment in 60 seconds</p>
+            </div>
+            
+            <!-- Progress always visible -->
+            <div class="progress-steps">
+                <div class="step-dot active"></div>
+                <div class="step-dot"></div>
+                <div class="step-dot"></div>
+                <div class="step-dot"></div>
+                <div class="step-dot"></div>
+            </div>
+            
+            <!-- Question Area -->
+            <div class="question-area">
+                <!-- Step 1: Start with their PROBLEM -->
+                <div class="problem-question" id="step1">
+                    <div class="question-text">What happened to your body?</div>
+                    <div class="question-context">This helps us understand your skin's condition</div>
+                    
+                    <div class="option-grid">
+                        <button class="option-btn" onclick="selectAnswer('weight-loss', 1)">
+                            <div class="option-main">I lost a lot of weight</div>
+                            <div class="option-sub">And now I have loose skin</div>
+                        </button>
+                        
+                        <button class="option-btn" onclick="selectAnswer('pregnancy', 1)">
+                            <div class="option-main">I had a baby</div>
+                            <div class="option-sub">My tummy won't tighten up</div>
+                        </button>
+                        
+                        <button class="option-btn" onclick="selectAnswer('aging', 1)">
+                            <div class="option-main">Getting older</div>
+                            <div class="option-sub">Skin is losing elasticity</div>
+                        </button>
+                        
+                        <button class="option-btn" onclick="selectAnswer('always', 1)">
+                            <div class="option-main">Always been this way</div>
+                            <div class="option-sub">Want to finally fix it</div>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Step 2: Weight loss method (conditional) -->
+                <div class="problem-question" id="step2" style="display: none;">
+                    <div class="question-text">Amazing achievement! How did you lose the weight?</div>
+                    <div class="question-context">Different methods affect skin differently</div>
+                    
+                    <div class="option-grid">
+                        <button class="option-btn" onclick="selectAnswer('ozempic', 2)">
+                            <div class="option-main">Ozempic or Wegovy</div>
+                            <div class="option-sub">GLP-1 medication</div>
+                        </button>
+                        
+                        <button class="option-btn" onclick="selectAnswer('mounjaro', 2)">
+                            <div class="option-main">Mounjaro</div>
+                            <div class="option-sub">Tirzepatide injection</div>
+                        </button>
+                        
+                        <button class="option-btn" onclick="selectAnswer('natural', 2)">
+                            <div class="option-main">Diet & Exercise</div>
+                            <div class="option-sub">The traditional way</div>
+                        </button>
+                        
+                        <button class="option-btn" onclick="selectAnswer('surgery', 2)">
+                            <div class="option-main">Weight loss surgery</div>
+                            <div class="option-sub">Gastric band/bypass</div>
+                        </button>
+                    </div>
+                    
+                    <!-- Smart insight appears after selection -->
+                    <div class="insight-bubble" id="ozempicInsight" style="display: none;">
+                        <div class="insight-text">
+                            <strong>We see this every day!</strong> Ozempic causes rapid weight loss - average 15% body weight in 68 weeks. Your skin couldn't keep up. The good news? We specialize in exactly this.
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Step 3: How much loose skin -->
+                <div class="problem-question" id="step3" style="display: none;">
+                    <div class="question-text">Quick test: Pinch your loose skin</div>
+                    <div class="question-context">Pull it away from your body - what happens?</div>
+                    
+                    <div class="option-grid">
+                        <button class="option-btn" onclick="selectAnswer('mild', 3)">
+                            <div class="option-main">Snaps back quickly</div>
+                            <div class="option-sub">Just a bit loose</div>
+                        </button>
+                        
+                        <button class="option-btn" onclick="selectAnswer('moderate', 3)">
+                            <div class="option-main">Slow to return</div>
+                            <div class="option-sub">Definitely loose</div>
+                        </button>
+                        
+                        <button class="option-btn" onclick="selectAnswer('severe', 3)">
+                            <div class="option-main">Doesn't snap back</div>
+                            <div class="option-sub">Very loose</div>
+                        </button>
+                        
+                        <button class="option-btn" onclick="selectAnswer('extreme', 3)">
+                            <div class="option-main">Hanging folds</div>
+                            <div class="option-sub">Significant excess</div>
+                        </button>
+                    </div>
+                    
+                    <div class="social-proof" style="display: none;" id="socialProof">
+                        <strong>Sarah from Cambridge</strong> had the same level of skin laxity - see her results after 6 sessions
+                    </div>
+                </div>
+                
+                <!-- Step 4: Location (for personalization) -->
+                <div class="problem-question" id="step4" style="display: none;">
+                    <div class="question-text">Where are you located?</div>
+                    <div class="question-context">To check if you're near our Peterborough clinic</div>
+                    
+                    <input type="text" class="elegant-input" id="postcode" placeholder="Enter your postcode (e.g., PE1 1AA)" />
+                    
+                    <button class="continue-btn" onclick="checkLocation()">Check availability →</button>
+                    
+                    <div class="skip-option">
+                        <a href="#" class="skip-link" onclick="skipLocation()">Skip this step</a>
+                    </div>
+                </div>
+                
+                <!-- Step 5: Contact (now they trust us) -->
+                <div class="problem-question" id="step5" style="display: none;">
+                    <div class="question-text">You're perfect for treatment! 🎉</div>
+                    <div class="question-context">Let's get your personalized plan</div>
+                    
+                    <input type="text" class="elegant-input" id="firstName" placeholder="Your first name" style="margin-bottom: 15px;" />
+                    <input type="email" class="elegant-input" id="email" placeholder="Your email address" />
+                    
+                    <button class="continue-btn" onclick="showResults()">Get My Results →</button>
+                    
+                    <div style="margin-top: 15px; font-size: 12px; color: #999; text-align: center;">
+                        🔒 We never share your information
+                    </div>
+                </div>
+                
+                <!-- Results Screen -->
+                <div class="results-screen" id="results" style="display: none;">
+                    <div class="match-score" id="matchScore">92%</div>
+                    <div class="match-reason" id="matchReason">Excellent candidate for ProMax Lipo</div>
+                    
+                    <div class="personalized-insights">
+                        <div class="insight-item">
+                            <div class="insight-icon">
+                                <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                            </div>
+                            <div class="insight-content">
+                                <div class="insight-title">Your skin type</div>
+                                <div class="insight-detail" id="skinInsight">Moderate laxity from rapid weight loss - ideal for non-surgical tightening</div>
+                            </div>
+                        </div>
+                        
+                        <div class="insight-item">
+                            <div class="insight-icon">
+                                <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                            </div>
+                            <div class="insight-content">
+                                <div class="insight-title">Expected results</div>
+                                <div class="insight-detail">89% skin tightening achievable in 6-8 sessions</div>
+                            </div>
+                        </div>
+                        
+                        <div class="insight-item">
+                            <div class="insight-icon">
+                                <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                            </div>
+                            <div class="insight-content">
+                                <div class="insight-title">Timeline</div>
+                                <div class="insight-detail">First results visible after 2 sessions (2-3 weeks)</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- IMMEDIATE VALUE -->
+                    <div class="value-offer">
+                        <div class="value-title">Your Free Treatment Guide</div>
+                        <div class="value-description">
+                            "The Complete Guide to Fixing Loose Skin After Weight Loss" - 
+                            Includes before/after photos, costs, and what to expect
+                        </div>
+                        <button class="value-btn" onclick="downloadGuide()">Download Now (PDF)</button>
+                    </div>
+                    
+                    <button class="continue-btn" onclick="bookConsultation()">
+                        Book Your Free Consultation
+                    </button>
+                    
+                    <div style="margin-top: 15px;">
+                        <a href="#" class="skip-link" onclick="requestCallback()">Prefer a call? Request callback</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Store user journey
+        const userData = {
+            startTime: new Date(),
+            answers: {},
+            trustScore: 0
+        };
+        
+        // Simulate live counter
+        setInterval(() => {
+            const count = document.getElementById('liveCount');
+            const current = parseInt(count.textContent);
+            const change = Math.random() > 0.5 ? 1 : -1;
+            const newCount = Math.max(20, Math.min(80, current + change));
+            count.textContent = newCount;
+        }, 5000);
+        
+        function selectAnswer(answer, step) {
+            // Store answer
+            userData.answers[`step${step}`] = answer;
+            
+            // Visual feedback
+            event.target.classList.add('selected');
+            
+            // Show insights for specific answers
+            if (answer === 'ozempic' || answer === 'mounjaro') {
+                document.getElementById('ozempicInsight').style.display = 'block';
+                userData.trustScore += 20;
+            }
+            
+            if (step === 3 && (answer === 'moderate' || answer === 'severe')) {
+                document.getElementById('socialProof').style.display = 'block';
+            }
+            
+            // Auto-advance after 500ms
+            setTimeout(() => {
+                nextStep(step);
+            }, 500);
+        }
+        
+        function nextStep(currentStep) {
+            // Hide current step
+            document.getElementById(`step${currentStep}`).style.display = 'none';
+            
+            // Update progress
+            document.querySelectorAll('.step-dot')[currentStep - 1].classList.remove('active');
+            document.querySelectorAll('.step-dot')[currentStep - 1].classList.add('completed');
+            
+            // Show next step
+            let nextStepNum = currentStep + 1;
+            
+            // Skip step 2 if not weight loss
+            if (currentStep === 1 && userData.answers.step1 !== 'weight-loss') {
+                nextStepNum = 3;
+            }
+            
+            if (nextStepNum <= 5) {
+                document.getElementById(`step${nextStepNum}`).style.display = 'block';
+                document.querySelectorAll('.step-dot')[nextStepNum - 1].classList.add('active');
+            }
+        }
+        
+        function checkLocation() {
+            const postcode = document.getElementById('postcode').value;
+            userData.postcode = postcode;
+            
+            // Calculate distance (fake for demo)
+            const distance = postcode.startsWith('PE') ? 5 : 45;
+            userData.distance = distance;
+            
+            nextStep(4);
+        }
+        
+        function skipLocation() {
+            nextStep(4);
+        }
+        
+        function showResults() {
+            userData.firstName = document.getElementById('firstName').value;
+            userData.email = document.getElementById('email').value;
+            
+            // Hide step 5
+            document.getElementById('step5').style.display = 'none';
+            
+            // Calculate personalized score
+            let score = 70;
+            if (userData.answers.step2 === 'ozempic' || userData.answers.step2 === 'mounjaro') {
+                score += 20;
+            }
+            if (userData.answers.step3 === 'moderate') {
+                score += 5;
+            }
+            
+            // Update results with REAL personalization
+            document.getElementById('matchScore').textContent = score + '%';
+            
+            if (userData.answers.step2 === 'ozempic') {
+                document.getElementById('skinInsight').textContent = 
+                    'Ozempic-induced skin laxity - responds excellently to ProMax Lipo treatment';
+            }
+            
+            // Show results
+            document.getElementById('results').style.display = 'block';
+            
+            // Update all progress dots
+            document.querySelectorAll('.step-dot').forEach(dot => {
+                dot.classList.remove('active');
+                dot.classList.add('completed');
+            });
+            
+            // Send to webhook
+            sendToWebhook();
+        }
+        
+        function sendToWebhook() {
+            fetch('https://services.leadconnectorhq.com/hooks/dVD6QbgqAF7fiHM3MCrz/webhook-trigger/355171e7-7010-42a9-b0b8-3dee211db694', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    ...userData,
+                    completionTime: new Date(),
+                    timeSpent: (new Date() - userData.startTime) / 1000
+                })
+            });
+        }
+        
+        function downloadGuide() {
+            // This provides IMMEDIATE value
+            window.open('/guide/loose-skin-treatment-guide.pdf', '_blank');
+            
+            // Track this high-intent action
+            userData.downloadedGuide = true;
+        }
+        
+        function bookConsultation() {
+            // They're fully qualified and engaged
+            window.location.href = 'https://link.skintight.uk/widget/booking/85AnUNYWb63J1DyMo1g9';
+        }
+        
+        function requestCallback() {
+            // Lower commitment option
+            // Show callback form or schedule
+        }
+    </script>
+</body>
+</html>

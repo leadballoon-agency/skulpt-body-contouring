@@ -3,12 +3,14 @@
   "version": "1.0.0",
   "description": "ProMax Lipo Assessment Tool for Skulpt Body Contouring",
   "scripts": {
-    "dev": "vercel dev",
+    "dev": "npx serve . -l 3000",
+    "vercel-dev": "vercel dev",
     "build": "echo 'No build required for static site'",
-    "start": "vercel dev"
+    "start": "npx serve . -l 3000"
   },
   "dependencies": {
     "@neondatabase/serverless": "^0.6.0",
+    "cloudinary": "^1.41.0",
     "dotenv": "^16.3.1"
   },
   "devDependencies": {
