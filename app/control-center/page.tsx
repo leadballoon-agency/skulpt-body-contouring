@@ -313,7 +313,13 @@ export default function ControlCenterPage() {
 }
 
 // Component helpers
-function MetricCard({ title, value, change, icon, color }: any) {
+function MetricCard({ title, value, change, icon, color }: { 
+  title: string; 
+  value: string; 
+  change: string; 
+  icon: string; 
+  color: 'blue' | 'green' | 'purple' | 'amber' 
+}) {
   const colorClasses = {
     blue: 'from-blue-500 to-blue-600',
     green: 'from-green-500 to-green-600',
