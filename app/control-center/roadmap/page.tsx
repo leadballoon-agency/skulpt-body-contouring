@@ -159,7 +159,7 @@ export default function RoadmapPage() {
   const [selectedCategory, setSelectedCategory] = useState<string>('all')
 
   const quarters = ['Q1 2025', 'Q2 2025', 'Q3 2025', 'Q4 2025']
-  const categories = [...new Set(roadmapData.map(item => item.category))]
+  const categories = Array.from(new Set(roadmapData.map(item => item.category)))
 
   const filteredItems = roadmapData.filter(item => {
     const quarterMatch = selectedQuarter === 'all' || item.quarter === selectedQuarter
