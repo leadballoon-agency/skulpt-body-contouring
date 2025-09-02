@@ -341,7 +341,15 @@ function MetricCard({ title, value, change, icon, color }: {
   )
 }
 
-function SystemHealthCard({ title, status, details }: any) {
+function SystemHealthCard({ title, status, details }: {
+  title: string;
+  status: 'ready' | 'warning' | 'error';
+  details: Array<{
+    label: string;
+    value: string;
+    status: 'green' | 'blue' | 'yellow' | 'red';
+  }>;
+}) {
   const statusColors = {
     ready: 'bg-green-500',
     warning: 'bg-yellow-500',
@@ -362,7 +370,7 @@ function SystemHealthCard({ title, status, details }: any) {
         <div className={`w-3 h-3 rounded-full ${statusColors[status]} animate-pulse`} />
       </div>
       <div className="space-y-3">
-        {details.map((detail: any, i: number) => (
+        {details.map((detail, i) => (
           <div key={i} className="flex justify-between items-center">
             <span className="text-sm text-gray-600">{detail.label}</span>
             <span className={`text-xs px-2 py-1 rounded-full font-medium ${detailColors[detail.status]}`}>
@@ -375,7 +383,16 @@ function SystemHealthCard({ title, status, details }: any) {
   )
 }
 
-function BugColumn({ title, count, bugs }: any) {
+function BugColumn({ title, count, bugs }: {
+  title: string;
+  count: number;
+  bugs: Array<{
+    id: string;
+    priority: 'critical' | 'high' | 'medium' | 'low';
+    title: string;
+    time: string;
+  }>;
+}) {
   const priorityColors = {
     critical: 'bg-red-100 text-red-800',
     high: 'bg-orange-100 text-orange-800',
@@ -390,7 +407,7 @@ function BugColumn({ title, count, bugs }: any) {
         <span className="bg-blue-600 text-white text-xs px-2 py-1 rounded-full">{count}</span>
       </div>
       <div className="space-y-2">
-        {bugs.map((bug: any) => (
+        {bugs.map((bug) => (
           <div key={bug.id} className="bg-white p-3 rounded-lg shadow-sm">
             <span className={`text-xs px-2 py-1 rounded ${priorityColors[bug.priority]} font-semibold`}>
               {bug.priority.toUpperCase()}
@@ -407,7 +424,13 @@ function BugColumn({ title, count, bugs }: any) {
   )
 }
 
-function FeatureRequest({ title, description, votes, status, tags }: any) {
+function FeatureRequest({ title, description, votes, status, tags }: {
+  title: string;
+  description: string;
+  votes: number;
+  status: 'planned' | 'in-progress' | 'completed';
+  tags: string[];
+}) {
   const statusColors = {
     planned: 'bg-blue-100 text-blue-800',
     'in-progress': 'bg-orange-100 text-orange-800',
@@ -444,7 +467,11 @@ function FeatureRequest({ title, description, votes, status, tags }: any) {
   )
 }
 
-function AIFeature({ title, description, status }: any) {
+function AIFeature({ title, description, status }: {
+  title: string;
+  description: string;
+  status: string;
+}) {
   return (
     <div className="bg-white/10 backdrop-blur p-4 rounded-lg border border-white/20">
       <h4 className="font-semibold mb-2">{title}</h4>
@@ -457,7 +484,10 @@ function AIFeature({ title, description, status }: any) {
   )
 }
 
-function DataMetric({ label, value }: any) {
+function DataMetric({ label, value }: {
+  label: string;
+  value: string;
+}) {
   return (
     <div className="flex justify-between p-3 bg-gray-50 rounded-lg">
       <span className="text-gray-600">{label}</span>
