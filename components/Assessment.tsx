@@ -461,7 +461,11 @@ export default function Assessment() {
                   <select
                     value={formData.preferences?.treatmentType || 'any'}
                     onChange={(e) => updateFormData({
-                      preferences: { ...formData.preferences, treatmentType: e.target.value as any }
+                      preferences: { 
+                        treatmentType: e.target.value as 'non-invasive' | 'minimally-invasive' | 'surgical' | 'any',
+                        budget: formData.preferences?.budget || 'under-5k',
+                        timeline: formData.preferences?.timeline || 'flexible'
+                      }
                     })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
                   >
@@ -479,7 +483,11 @@ export default function Assessment() {
                   <select
                     value={formData.preferences?.budget || '5k-10k'}
                     onChange={(e) => updateFormData({
-                      preferences: { ...formData.preferences, budget: e.target.value as any }
+                      preferences: { 
+                        treatmentType: formData.preferences?.treatmentType || 'any',
+                        budget: e.target.value as 'under-5k' | '5k-10k' | '10k-20k' | 'over-20k',
+                        timeline: formData.preferences?.timeline || 'flexible'
+                      }
                     })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
                   >
@@ -497,7 +505,11 @@ export default function Assessment() {
                   <select
                     value={formData.preferences?.timeline || 'flexible'}
                     onChange={(e) => updateFormData({
-                      preferences: { ...formData.preferences, timeline: e.target.value as any }
+                      preferences: { 
+                        treatmentType: formData.preferences?.treatmentType || 'any',
+                        budget: formData.preferences?.budget || 'under-5k',
+                        timeline: e.target.value as 'immediate' | '1-3months' | '3-6months' | 'flexible'
+                      }
                     })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
                   >
