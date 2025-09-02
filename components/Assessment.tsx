@@ -365,7 +365,12 @@ export default function Assessment() {
                   <select
                     value={formData.lifestyle?.exercise || 'moderate'}
                     onChange={(e) => updateFormData({
-                      lifestyle: { ...formData.lifestyle, exercise: e.target.value as any }
+                      lifestyle: { 
+                        exercise: e.target.value as 'none' | 'light' | 'moderate' | 'heavy',
+                        diet: formData.lifestyle?.diet || 'good',
+                        smoking: formData.lifestyle?.smoking || false,
+                        alcohol: formData.lifestyle?.alcohol || 'none'
+                      }
                     })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
                   >
@@ -383,7 +388,12 @@ export default function Assessment() {
                   <select
                     value={formData.lifestyle?.diet || 'good'}
                     onChange={(e) => updateFormData({
-                      lifestyle: { ...formData.lifestyle, diet: e.target.value as any }
+                      lifestyle: { 
+                        exercise: formData.lifestyle?.exercise || 'moderate',
+                        diet: e.target.value as 'poor' | 'fair' | 'good' | 'excellent',
+                        smoking: formData.lifestyle?.smoking || false,
+                        alcohol: formData.lifestyle?.alcohol || 'none'
+                      }
                     })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
                   >
@@ -400,7 +410,12 @@ export default function Assessment() {
                       type="checkbox"
                       checked={formData.lifestyle?.smoking || false}
                       onChange={(e) => updateFormData({
-                        lifestyle: { ...formData.lifestyle, smoking: e.target.checked }
+                        lifestyle: { 
+                          exercise: formData.lifestyle?.exercise || 'moderate',
+                          diet: formData.lifestyle?.diet || 'good',
+                          smoking: e.target.checked,
+                          alcohol: formData.lifestyle?.alcohol || 'none'
+                        }
                       })}
                       className="mr-2"
                     />
@@ -415,7 +430,12 @@ export default function Assessment() {
                   <select
                     value={formData.lifestyle?.alcohol || 'none'}
                     onChange={(e) => updateFormData({
-                      lifestyle: { ...formData.lifestyle, alcohol: e.target.value as any }
+                      lifestyle: { 
+                        exercise: formData.lifestyle?.exercise || 'moderate',
+                        diet: formData.lifestyle?.diet || 'good',
+                        smoking: formData.lifestyle?.smoking || false,
+                        alcohol: e.target.value as 'none' | 'moderate' | 'heavy' | 'occasional'
+                      }
                     })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
                   >
