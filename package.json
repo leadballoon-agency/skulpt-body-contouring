@@ -1,19 +1,35 @@
 {
   "name": "skulpt-body-contouring",
   "version": "1.0.0",
-  "description": "ProMax Lipo Assessment Tool for Skulpt Body Contouring",
+  "description": "Next.js Body Contouring Assessment Tool for Skulpt",
   "scripts": {
-    "dev": "npx serve . -l 3000",
-    "vercel-dev": "vercel dev",
-    "build": "echo 'No build required for static site'",
-    "start": "npx serve . -l 3000"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "type-check": "tsc --noEmit"
   },
   "dependencies": {
     "@neondatabase/serverless": "^0.6.0",
     "cloudinary": "^1.41.0",
-    "dotenv": "^16.3.1"
+    "dotenv": "^16.3.1",
+    "next": "^14.2.0",
+    "react": "^18.3.0",
+    "react-dom": "^18.3.0"
   },
   "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/react": "^18.3.0",
+    "@types/react-dom": "^18.3.0",
+    "autoprefixer": "^10.4.20",
+    "eslint": "^8.0.0",
+    "eslint-config-next": "^14.2.0",
+    "postcss": "^8.4.41",
+    "tailwindcss": "^3.4.0",
+    "typescript": "^5.5.0",
     "vercel": "^32.5.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   }
 }

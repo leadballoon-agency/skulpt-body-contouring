@@ -1,0 +1,28 @@
+VERCEL ENVIRONMENT VARIABLES TO ADD:
+=====================================
+
+Copy these exactly as shown into your Vercel Environment Variables settings:
+
+DATABASE_URL
+postgresql://neondb_owner:npg_EYRN1mcWAO8v@ep-royal-boat-a5jhfv69-pooler.eu-west-2.aws.neon.tech/neondb?sslmode=require
+
+NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME
+ddxptienb
+
+CLOUDINARY_API_KEY
+328228365677867
+
+CLOUDINARY_API_SECRET
+zNlVKmhF-9-xYBZ1Jezqdd-BT08
+
+NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET
+skulpt_journeys
+
+WHATSAPP_NUMBER
+447700173390
+
+GHL_WEBHOOK_URL
+https://services.leadconnectorhq.com/hooks/dVD6QbgqAF7fiHM3MCrz/webhook-trigger/355171e7-7010-42a9-b0b8-3dee211db694
+
+=====================================
+IMPORTANT: Add these in Vercel Dashboard > Settings > Environment Variables
