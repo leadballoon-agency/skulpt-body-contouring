@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react'
 import Script from 'next/script'
+import Navbar from '@/components/Navbar'
 // LeadBalloon widgets will be injected via script - no imports needed
 
 export default function TummyResetPage() {
@@ -97,6 +98,7 @@ export default function TummyResetPage() {
 
   return (
     <>
+      <Navbar />
       <div className="min-h-screen bg-gradient-to-b from-black via-gray-900 to-black">
       {/* Urgent Header Bar */}
       <div className="bg-gradient-to-r from-red-600 to-red-700 text-white py-2 px-4 text-center sticky top-0 z-50">
@@ -174,9 +176,9 @@ export default function TummyResetPage() {
           <div className="text-center">
             <button 
               onClick={() => {
-                const assessmentSection = document.getElementById('claim-offer')
-                if (assessmentSection) {
-                  assessmentSection.scrollIntoView({ behavior: 'smooth' })
+                const bookingSection = document.getElementById('booking-section')
+                if (bookingSection) {
+                  bookingSection.scrollIntoView({ behavior: 'smooth' })
                 }
               }}
               className="inline-block px-10 py-5 bg-gradient-to-r from-amber-500 to-amber-600 text-black text-xl font-bold rounded-lg hover:from-amber-400 hover:to-amber-500 transition-all transform hover:scale-105 shadow-2xl animate-pulse"
@@ -281,7 +283,7 @@ export default function TummyResetPage() {
       {/* Widget sections hidden for deployment */}
 
       {/* Visual Results Gallery - Interactive Body Area Selector */}
-      <section className="py-16 bg-black">
+      <section id="booking-section" className="py-16 bg-black">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">

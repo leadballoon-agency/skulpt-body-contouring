@@ -33,6 +33,11 @@ export default function Navbar() {
     setIsMobileMenuOpen(false)
   }
 
+  const navigateToPage = (path: string) => {
+    window.location.href = path
+    setIsMobileMenuOpen(false)
+  }
+
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 py-4 transition-all duration-500 ${
@@ -56,7 +61,7 @@ export default function Navbar() {
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center space-x-8">
           <button
-            onClick={() => scrollToSection('home')}
+            onClick={() => navigateToPage('/')}
             className="text-dark hover:text-primary-500 font-medium transition-colors relative group"
           >
             Home
@@ -64,10 +69,18 @@ export default function Navbar() {
           </button>
           
           <button
-            onClick={() => scrollToSection('about')}
+            onClick={() => navigateToPage('/tummy-reset')}
             className="text-dark hover:text-primary-500 font-medium transition-colors relative group"
           >
-            About
+            Tummy Reset
+            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-500 transition-all group-hover:w-full" />
+          </button>
+          
+          <button
+            onClick={() => navigateToPage('/skintite')}
+            className="text-dark hover:text-primary-500 font-medium transition-colors relative group"
+          >
+            SkinTite
             <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-500 transition-all group-hover:w-full" />
           </button>
           
@@ -76,14 +89,6 @@ export default function Navbar() {
             className="text-dark hover:text-primary-500 font-medium transition-colors relative group"
           >
             Treatment
-            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-500 transition-all group-hover:w-full" />
-          </button>
-          
-          <button
-            onClick={() => scrollToSection('process')}
-            className="text-dark hover:text-primary-500 font-medium transition-colors relative group"
-          >
-            Process
             <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-500 transition-all group-hover:w-full" />
           </button>
           
@@ -117,28 +122,28 @@ export default function Navbar() {
         <div className="md:hidden mt-4 bg-white bg-opacity-95 backdrop-blur-md rounded-lg mx-4 shadow-lg">
           <div className="px-6 py-4 space-y-4">
             <button
-              onClick={() => scrollToSection('home')}
+              onClick={() => navigateToPage('/')}
               className="block w-full text-left text-dark hover:text-primary-500 font-medium py-2"
             >
               Home
             </button>
             <button
-              onClick={() => scrollToSection('about')}
+              onClick={() => navigateToPage('/tummy-reset')}
               className="block w-full text-left text-dark hover:text-primary-500 font-medium py-2"
             >
-              About
+              Tummy Reset
+            </button>
+            <button
+              onClick={() => navigateToPage('/skintite')}
+              className="block w-full text-left text-dark hover:text-primary-500 font-medium py-2"
+            >
+              SkinTite
             </button>
             <button
               onClick={() => scrollToSection('treatment')}
               className="block w-full text-left text-dark hover:text-primary-500 font-medium py-2"
             >
               Treatment
-            </button>
-            <button
-              onClick={() => scrollToSection('process')}
-              className="block w-full text-left text-dark hover:text-primary-500 font-medium py-2"
-            >
-              Process
             </button>
             <button
               onClick={() => scrollToSection('faq')}

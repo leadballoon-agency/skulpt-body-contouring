@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useRef, useEffect } from 'react'
+import Navbar from '@/components/Navbar'
 
 export default function SkinTitePage() {
   const [showVideo, setShowVideo] = useState(false)
@@ -68,6 +69,7 @@ export default function SkinTitePage() {
 
   return (
     <>
+      <Navbar />
       {/* Hero Section */}
       <section className="relative min-h-screen bg-black text-white overflow-hidden">
         {/* Background image - same as main page */}
