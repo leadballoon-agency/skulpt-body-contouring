@@ -16,8 +16,8 @@ body {
   :root {
     --background: 0 0% 100%;
     --foreground: 224 71.4% 4.1%;
-    --primary: 211 100% 40%; /* #0066CC */
-    --primary-dark: 211 100% 32%; /* #0052A3 */
+    --primary: 38 92% 50%; /* #F59E0B - Gold */
+    --primary-dark: 38 92% 40%; /* Darker Gold */
     --primary-foreground: 0 0% 100%;
     --secondary: 220 14.3% 95.9%;
     --secondary-foreground: 220.9 39.3% 11%;
@@ -29,7 +29,7 @@ body {
     --destructive-foreground: 210 20% 98%;
     --border: 220 13% 91%; /* #E5E7EB */
     --input: 220 13% 91%;
-    --ring: 211 100% 40%;
+    --ring: 38 92% 50%;
     --radius: 0.5rem;
     --dark: 0 0% 10%; /* #1A1A1A */
     --gray: 211 9% 53%; /* #6C757D */

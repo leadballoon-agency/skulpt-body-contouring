@@ -1,34 +1,58 @@
 'use client'
 
+import { useEffect, useState } from 'react'
 import Navbar from '@/components/Navbar'
 import StealthAssessment from '@/components/StealthAssessment'
 import FAQ from '@/components/FAQ'
 
 export default function HomePage() {
+  const [selectedArea, setSelectedArea] = useState<string | null>(null)
+  
+  useEffect(() => {
+    // Force scroll to top on page load/refresh
+    window.scrollTo(0, 0)
+    // Also handle browser's scroll restoration
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual'
+    }
+  }, [])
+
   return (
     <main className="min-h-screen">
       <Navbar />
       
       {/* Hero Section */}
-      <section className="min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-50 via-white to-accent-50 relative" id="home">
+      <section className="min-h-screen flex items-center justify-center overflow-hidden relative" id="home">
         {/* Background Elements */}
         <div className="absolute inset-0">
-          <div className="absolute top-10 left-10 w-72 h-72 bg-primary-100 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
-          <div className="absolute top-0 right-4 w-72 h-72 bg-accent-100 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
-          <div className="absolute -bottom-8 left-20 w-72 h-72 bg-primary-100 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
+          {/* Background image */}
+          <div 
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-40"
+            style={{
+              backgroundImage: `url('/images/background for hero section /3.png')`,
+            }}
+          />
+          {/* Dark overlay for elegance */}
+          <div className="absolute inset-0 bg-gradient-to-br from-black/90 via-black/85 to-black/80" />
+          
+          {/* Subtle animated gold accents */}
+          <div className="absolute inset-0">
+            <div className="absolute top-20 -right-20 w-96 h-96 bg-amber-500 rounded-full mix-blend-screen filter blur-3xl opacity-10 animate-blob"></div>
+            <div className="absolute -bottom-20 -left-20 w-96 h-96 bg-amber-600 rounded-full mix-blend-screen filter blur-3xl opacity-10 animate-blob animation-delay-4000"></div>
+          </div>
         </div>
 
         <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
-          <div className="inline-block bg-orange-100 text-primary-500 px-6 py-2 rounded-full text-sm font-semibold mb-8 fade-in-up">
+          <div className="inline-block bg-amber-500/10 backdrop-blur-md border border-amber-500/30 text-amber-400 px-6 py-2 rounded-full text-sm font-semibold mb-8 fade-in-up">
             ⚠️ The Truth About Weight Loss Injections
           </div>
           
-          <h1 className="text-5xl md:text-7xl font-bold text-dark leading-tight mb-6">
+          <h1 className="text-5xl md:text-7xl font-bold text-white leading-tight mb-6 drop-shadow-2xl">
             Lost Weight?<br />
-            Let's Fix That <span className="text-primary-500">Loose Skin</span>
+            Let's Fix That <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-amber-600">Loose Skin</span>
           </h1>
           
-          <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto mb-10">
+          <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-10 drop-shadow-lg">
             Professional non-surgical treatment for your post-weight loss transformation. 
             Find out if you're suitable in just 2 minutes.
           </p>
@@ -39,29 +63,29 @@ export default function HomePage() {
               const assessmentBtn = document.querySelector('[data-assessment-trigger]') as HTMLButtonElement
               if (assessmentBtn) assessmentBtn.click()
             }}
-            className="bg-primary-500 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-primary-600 transition-all hover:-translate-y-1 hover:shadow-xl mb-12"
+            className="bg-gradient-to-r from-amber-500 to-amber-600 text-black px-10 py-5 rounded-lg text-lg font-bold hover:from-amber-400 hover:to-amber-500 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl shadow-amber-500/25 mb-12 transform hover:scale-105"
           >
             Start Free Assessment →
           </button>
           
-          <div className="flex flex-wrap justify-center gap-8 text-gray-600">
-            <div className="flex items-center gap-2">
-              <svg className="w-5 h-5 text-primary-500" fill="currentColor" viewBox="0 0 20 20">
+          <div className="flex flex-wrap justify-center gap-6 text-gray-300">
+            <div className="flex items-center gap-2 bg-white/5 backdrop-blur-sm px-4 py-2 rounded-full border border-white/10">
+              <svg className="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
               </svg>
-              <span>5,000+ Transformations</span>
+              <span className="text-sm">5,000+ Transformations</span>
             </div>
-            <div className="flex items-center gap-2">
-              <svg className="w-5 h-5 text-primary-500" fill="currentColor" viewBox="0 0 20 20">
+            <div className="flex items-center gap-2 bg-white/5 backdrop-blur-sm px-4 py-2 rounded-full border border-white/10">
+              <svg className="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 20 20">
                 <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
               </svg>
-              <span>4.9/5 Rating</span>
+              <span className="text-sm">4.9/5 Rating</span>
             </div>
-            <div className="flex items-center gap-2">
-              <svg className="w-5 h-5 text-primary-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="flex items-center gap-2 bg-white/5 backdrop-blur-sm px-4 py-2 rounded-full border border-white/10">
+              <svg className="w-5 h-5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
-              <span>2 Minute Assessment</span>
+              <span className="text-sm">2 Minute Assessment</span>
             </div>
           </div>
         </div>
@@ -211,11 +235,287 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Body Areas Section */}
+      <section className="py-20 bg-black text-white" id="areas">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <div className="inline-block bg-amber-500/10 text-amber-400 px-6 py-3 rounded-full text-sm font-semibold uppercase tracking-wider mb-6">
+              Treatment Areas
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+              Professional Results for Every Area
+            </h2>
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              See real transformations from our ProMax Lipo treatments. Select an area to view before & after results.
+            </p>
+          </div>
+
+          {!selectedArea ? (
+            <div className="max-w-5xl mx-auto">
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+                {[
+                  { 
+                    id: 'stomach', 
+                    label: 'Stomach', 
+                    icon: '🎯',
+                    description: 'Tighten loose abdominal skin',
+                    severity: 'Most Popular'
+                  },
+                  { 
+                    id: 'thighs', 
+                    label: 'Thighs', 
+                    icon: '🦵',
+                    description: 'Smooth inner thigh contouring',
+                    severity: 'High Demand'
+                  },
+                  { 
+                    id: 'bum', 
+                    label: 'Bum', 
+                    icon: '🍑',
+                    description: 'Lift and restore volume',
+                    severity: 'Popular'
+                  },
+                  { 
+                    id: 'arms', 
+                    label: 'Arms', 
+                    icon: '💪',
+                    description: 'Tone and sculpt upper arms',
+                    severity: 'Common'
+                  },
+                  { 
+                    id: 'bingo-wings', 
+                    label: 'Bingo Wings', 
+                    icon: '🦋',
+                    description: 'Eliminate under-arm hanging',
+                    severity: 'Very Popular'
+                  }
+                ].map((area) => (
+                  <button
+                    key={area.id}
+                    onClick={() => {
+                      setSelectedArea(area.id)
+                      console.log(`User viewing ${area.label} results - engaged visitor`)
+                    }}
+                    className="group text-left bg-gray-900/50 border border-gray-700 rounded-2xl p-6 hover:border-amber-500 hover:bg-gray-900/80 transition-all duration-300 transform hover:scale-105"
+                  >
+                    <div className="flex items-center justify-between mb-4">
+                      <div className="text-4xl">{area.icon}</div>
+                      <span className="text-xs text-amber-400 bg-amber-400/10 px-3 py-1 rounded-full font-semibold">
+                        {area.severity}
+                      </span>
+                    </div>
+                    <h3 className="text-xl font-bold text-white mb-2">{area.label}</h3>
+                    <p className="text-gray-300 text-sm mb-4">{area.description}</p>
+                    <div className="text-amber-400 text-sm font-semibold group-hover:text-amber-300 transition-colors">
+                      View Results →
+                    </div>
+                  </button>
+                ))}
+              </div>
+              
+              <div className="text-center">
+                <p className="text-gray-400 text-sm">Click any area to see real patient transformations</p>
+              </div>
+            </div>
+          ) : (
+            <div className="max-w-4xl mx-auto animate-fadeIn">
+              {selectedArea === 'stomach' && (
+                <div>
+                  <p className="text-amber-400 text-sm uppercase tracking-wider mb-6 text-center">Abdominal Transformation</p>
+                  <div className="bg-gray-900 rounded-3xl p-4 mb-8">
+                    <img 
+                      src="/images/Before and After/stomach.png" 
+                      alt="Stomach transformation results" 
+                      className="w-full h-auto object-contain rounded-2xl"
+                    />
+                  </div>
+                  <div className="text-center mb-8">
+                    <h3 className="text-3xl font-bold text-white mb-4">Dramatic Abdominal Tightening</h3>
+                    <p className="text-gray-300 text-lg mb-6">Complete transformation of loose abdominal skin using our advanced ProMax Lipo system</p>
+                    <div className="bg-amber-500/10 border border-amber-500/30 rounded-xl p-6 max-w-2xl mx-auto">
+                      <div className="grid md:grid-cols-3 gap-4 text-center">
+                        <div>
+                          <div className="text-2xl font-bold text-amber-400">6-8</div>
+                          <p className="text-sm text-gray-300">Sessions</p>
+                        </div>
+                        <div>
+                          <div className="text-2xl font-bold text-amber-400">0</div>
+                          <p className="text-sm text-gray-300">Downtime</p>
+                        </div>
+                        <div>
+                          <div className="text-2xl font-bold text-amber-400">Permanent</div>
+                          <p className="text-sm text-gray-300">Results</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+              
+              {selectedArea === 'thighs' && (
+                <div>
+                  <p className="text-amber-400 text-sm uppercase tracking-wider mb-6 text-center">Thigh Contouring</p>
+                  <div className="bg-gray-900 rounded-3xl p-4 mb-8">
+                    <img 
+                      src="/images/Before and After/legs.jpg" 
+                      alt="Thigh transformation results" 
+                      className="w-full h-auto object-cover rounded-2xl"
+                    />
+                  </div>
+                  <div className="text-center mb-8">
+                    <h3 className="text-3xl font-bold text-white mb-4">Smooth Thigh Contouring</h3>
+                    <p className="text-gray-300 text-lg mb-6">Inner and outer thigh sculpting for a confident, smooth silhouette</p>
+                    <div className="bg-amber-500/10 border border-amber-500/30 rounded-xl p-6 max-w-2xl mx-auto">
+                      <div className="grid md:grid-cols-3 gap-4 text-center">
+                        <div>
+                          <div className="text-2xl font-bold text-amber-400">8-10</div>
+                          <p className="text-sm text-gray-300">Sessions</p>
+                        </div>
+                        <div>
+                          <div className="text-2xl font-bold text-amber-400">None</div>
+                          <p className="text-sm text-gray-300">Pain</p>
+                        </div>
+                        <div>
+                          <div className="text-2xl font-bold text-amber-400">2 Weeks</div>
+                          <p className="text-sm text-gray-300">First Results</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+              
+              {selectedArea === 'bum' && (
+                <div>
+                  <p className="text-amber-400 text-sm uppercase tracking-wider mb-6 text-center">Bum Lifting</p>
+                  <div className="bg-gray-900 rounded-3xl p-4 mb-8">
+                    <img 
+                      src="/images/Before and After/bum.jpg" 
+                      alt="Bum transformation results" 
+                      className="w-full h-auto object-cover rounded-2xl"
+                    />
+                  </div>
+                  <div className="text-center mb-8">
+                    <h3 className="text-3xl font-bold text-white mb-4">Natural Lift & Volume</h3>
+                    <p className="text-gray-300 text-lg mb-6">Restore lost volume and achieve a natural lift without surgery</p>
+                    <div className="bg-amber-500/10 border border-amber-500/30 rounded-xl p-6 max-w-2xl mx-auto">
+                      <div className="grid md:grid-cols-3 gap-4 text-center">
+                        <div>
+                          <div className="text-2xl font-bold text-amber-400">6-8</div>
+                          <p className="text-sm text-gray-300">Sessions</p>
+                        </div>
+                        <div>
+                          <div className="text-2xl font-bold text-amber-400">Comfortable</div>
+                          <p className="text-sm text-gray-300">Treatment</p>
+                        </div>
+                        <div>
+                          <div className="text-2xl font-bold text-amber-400">Natural</div>
+                          <p className="text-sm text-gray-300">Look</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+              
+              {selectedArea === 'arms' && (
+                <div>
+                  <p className="text-amber-400 text-sm uppercase tracking-wider mb-6 text-center">Arm Contouring</p>
+                  <div className="bg-gray-900 rounded-3xl p-4 mb-8">
+                    <img 
+                      src="/images/Before and After/arms.jpg" 
+                      alt="Arm transformation results" 
+                      className="w-full h-auto object-cover rounded-2xl"
+                    />
+                  </div>
+                  <div className="text-center mb-8">
+                    <h3 className="text-3xl font-bold text-white mb-4">Sculpted Upper Arms</h3>
+                    <p className="text-gray-300 text-lg mb-6">Dramatic improvement in arm definition and skin tightness</p>
+                    <div className="bg-amber-500/10 border border-amber-500/30 rounded-xl p-6 max-w-2xl mx-auto">
+                      <div className="grid md:grid-cols-3 gap-4 text-center">
+                        <div>
+                          <div className="text-2xl font-bold text-amber-400">8</div>
+                          <p className="text-sm text-gray-300">Sessions</p>
+                        </div>
+                        <div>
+                          <div className="text-2xl font-bold text-amber-400">Painless</div>
+                          <p className="text-sm text-gray-300">Process</p>
+                        </div>
+                        <div>
+                          <div className="text-2xl font-bold text-amber-400">Visible</div>
+                          <p className="text-sm text-gray-300">Week 2</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+              
+              {selectedArea === 'bingo-wings' && (
+                <div>
+                  <p className="text-amber-400 text-sm uppercase tracking-wider mb-6 text-center">Bingo Wings Treatment</p>
+                  <div className="bg-gray-900 rounded-3xl p-4 mb-8">
+                    <img 
+                      src="/images/Before and After/bingo wings.jpg" 
+                      alt="Bingo wings transformation results" 
+                      className="w-full h-auto object-cover rounded-2xl"
+                    />
+                  </div>
+                  <div className="text-center mb-8">
+                    <h3 className="text-3xl font-bold text-white mb-4">Eliminate Bingo Wings</h3>
+                    <p className="text-gray-300 text-lg mb-6">Complete elimination of hanging under-arm skin for confident arm movement</p>
+                    <div className="bg-amber-500/10 border border-amber-500/30 rounded-xl p-6 max-w-2xl mx-auto">
+                      <div className="grid md:grid-cols-3 gap-4 text-center">
+                        <div>
+                          <div className="text-2xl font-bold text-amber-400">6-10</div>
+                          <p className="text-sm text-gray-300">Sessions</p>
+                        </div>
+                        <div>
+                          <div className="text-2xl font-bold text-amber-400">98%</div>
+                          <p className="text-sm text-gray-300">Success Rate</p>
+                        </div>
+                        <div>
+                          <div className="text-2xl font-bold text-amber-400">Long-term</div>
+                          <p className="text-sm text-gray-300">Results</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+              
+              <div className="flex gap-4 justify-center mt-12">
+                <button
+                  onClick={() => {
+                    setSelectedArea(null)
+                    console.log('User browsing more areas - high engagement')
+                  }}
+                  className="px-8 py-4 bg-gray-800 text-white rounded-full hover:bg-gray-700 transition-all font-semibold"
+                >
+                  ← View All Areas
+                </button>
+                <button
+                  onClick={() => {
+                    console.log(`User interested in ${selectedArea} treatment - HOT LEAD`)
+                    // Find and click the assessment button to open modal
+                    const assessmentBtn = document.querySelector('[data-assessment-trigger]') as HTMLButtonElement
+                    if (assessmentBtn) assessmentBtn.click()
+                  }}
+                  className="px-8 py-4 bg-gradient-to-r from-amber-500 to-amber-600 text-black font-bold rounded-full hover:shadow-xl hover:shadow-amber-500/25 transform hover:scale-105 transition-all"
+                >
+                  Start Free Assessment →
+                </button>
+              </div>
+            </div>
+          )}
+        </div>
+      </section>
+
       {/* How It Works Section */}
       <section className="py-20 bg-white" id="process">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <div className="inline-block bg-blue-50 text-primary-500 px-4 py-2 rounded-md text-xs font-semibold uppercase tracking-wider mb-6">
+            <div className="inline-block bg-amber-50 text-primary-500 px-4 py-2 rounded-md text-xs font-semibold uppercase tracking-wider mb-6">
               The Process
             </div>
             <h2 className="text-4xl md:text-5xl font-light text-dark mb-4">
