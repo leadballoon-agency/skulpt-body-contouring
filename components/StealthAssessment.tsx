@@ -5,6 +5,7 @@ import React, { useState, useEffect } from 'react'
 interface AssessmentData {
   name?: string
   method?: string
+  currentWeight?: string
   amount?: string
   area?: string
   timeline?: string
@@ -12,6 +13,7 @@ interface AssessmentData {
   phone?: string
   feelingAbout?: string
   motivation?: string
+  percentageLost?: number
 }
 
 export default function StealthAssessment() {
@@ -61,6 +63,26 @@ export default function StealthAssessment() {
 
   const selectOption = (field: keyof AssessmentData, value: string, nextStep: number) => {
     setAssessmentData(prev => ({ ...prev, [field]: value }))
+    
+    // Calculate weight loss percentage after getting amount lost
+    if (field === 'amount' && assessmentData.currentWeight) {
+      const currentWeightStr = assessmentData.currentWeight.split('-')[0]
+      const currentWeight = parseFloat(currentWeightStr)
+      
+      // Convert amount lost to a number (assuming stone for now)
+      let amountLost = 0
+      if (value === '1-2stone') amountLost = 1.5
+      else if (value === '2-4stone') amountLost = 3
+      else if (value === '4-6stone') amountLost = 5
+      else if (value === '6plus') amountLost = 7
+      
+      // Calculate original weight and percentage
+      const originalWeight = currentWeight + amountLost
+      const percentageLost = (amountLost / originalWeight) * 100
+      
+      setAssessmentData(prev => ({ ...prev, percentageLost: Math.round(percentageLost) }))
+    }
+    
     setCurrentStep(nextStep + 1)
   }
 
@@ -121,7 +143,7 @@ export default function StealthAssessment() {
             <div className="bg-white rounded-t-2xl sm:rounded-2xl shadow-2xl w-full sm:max-w-4xl h-[85vh] sm:h-auto sm:max-h-[90vh] overflow-hidden flex flex-col transform transition-all duration-300 slide-up sm:scale-100 pointer-events-auto">
               
               {/* Modal Header - Gorgeous Design */}
-              <div className="flex-shrink-0 bg-gradient-to-r from-primary-600 via-primary-500 to-accent-500 p-4 flex justify-between items-center relative overflow-hidden">
+              <div className="flex-shrink-0 bg-gradient-to-r from-amber-600 via-amber-500 to-amber-400 p-4 flex justify-between items-center relative overflow-hidden">
                 <div className="absolute inset-0 bg-white opacity-5">
                   <div className="absolute -top-4 -left-4 w-24 h-24 bg-white rounded-full opacity-10 animate-pulse"></div>
                   <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-white rounded-full opacity-10 animate-pulse animation-delay-1000"></div>
@@ -158,7 +180,7 @@ export default function StealthAssessment() {
               {currentStep > 0 && (
                 <div className="flex-shrink-0 bg-gradient-to-r from-gray-100 to-gray-200 h-2 overflow-hidden relative">
                   <div 
-                    className="bg-gradient-to-r from-primary-500 via-primary-400 to-accent-500 h-full transition-all duration-700 ease-out relative shadow-sm"
+                    className="bg-gradient-to-r from-amber-500 via-amber-400 to-amber-300 h-full transition-all duration-700 ease-out relative shadow-sm"
                     style={{ width: `${progressPercentage}%` }}
                   >
                     <div className="absolute inset-0 bg-white opacity-30 animate-pulse"></div>
@@ -173,10 +195,10 @@ export default function StealthAssessment() {
           {currentStep === 1 && (
             <div className="fade-in-up text-center">
               <div className="mb-8">
-                <div className="w-20 h-20 bg-gradient-to-br from-primary-400 to-accent-400 rounded-full mx-auto mb-6 flex items-center justify-center animate-bounce-slow">
+                <div className="w-20 h-20 bg-gradient-to-br from-amber-400 to-amber-500 rounded-full mx-auto mb-6 flex items-center justify-center animate-bounce-slow">
                   <span className="text-3xl">👋</span>
                 </div>
-                <h3 className="text-3xl font-bold bg-gradient-to-r from-primary-600 to-accent-600 bg-clip-text text-transparent mb-3">
+                <h3 className="text-3xl font-bold bg-gradient-to-r from-amber-600 to-amber-500 bg-clip-text text-transparent mb-3">
                   Welcome to Your Transformation
                 </h3>
                 <p className="text-gray-600 text-lg">Let's start with something simple...</p>
@@ -188,13 +210,13 @@ export default function StealthAssessment() {
                   type="text"
                   id="firstName"
                   placeholder="Enter your first name"
-                  className="w-full px-6 py-4 border-2 border-gray-200 rounded-2xl text-lg mb-6 focus:border-primary-500 focus:outline-none focus:ring-4 focus:ring-primary-100 transition-all"
+                  className="w-full px-6 py-4 border-2 border-gray-200 rounded-2xl text-lg mb-6 focus:border-amber-500 focus:outline-none focus:ring-4 focus:ring-amber-100 transition-all"
                   onKeyPress={(e) => e.key === 'Enter' && assessmentNext(1)}
                   autoFocus
                 />
                 <button 
                   onClick={() => assessmentNext(1)}
-                  className="w-full bg-gradient-to-r from-primary-500 to-primary-600 text-white py-4 rounded-2xl text-lg font-semibold hover:from-primary-600 hover:to-primary-700 transition-all transform hover:scale-[1.02] shadow-lg"
+                  className="w-full bg-gradient-to-r from-amber-500 to-amber-600 text-black py-4 rounded-2xl text-lg font-semibold hover:from-amber-600 hover:to-amber-700 transition-all transform hover:scale-[1.02] shadow-lg"
                 >
                   Let's Begin →
                 </button>
@@ -216,9 +238,9 @@ export default function StealthAssessment() {
                   <span>💚</span> Safe Space - No Judgment Here
                 </div>
                 <h3 className="text-3xl font-bold text-dark mb-3">
-                  Amazing work <span className="text-primary-500">{assessmentData.name}</span>! 🎊
+                  Hi <span className="text-amber-500">{assessmentData.name}</span>
                 </h3>
-                <p className="text-gray-600 text-lg">You've already done the hard part. How did you achieve your weight loss?</p>
+                <p className="text-gray-600 text-lg">Let's learn about your journey. How did you lose weight?</p>
               </div>
               
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl mx-auto">
@@ -231,13 +253,13 @@ export default function StealthAssessment() {
                   <button
                     key={option.value}
                     onClick={() => selectOption('method', option.value, 2)}
-                    className="relative p-6 border-2 border-gray-200 rounded-2xl text-center hover:border-primary-500 hover:shadow-xl transition-all duration-200 ease-out group bg-white transform hover:scale-[1.02] hover:-translate-y-0.5"
+                    className="relative p-6 border-2 border-gray-200 rounded-2xl text-center hover:border-amber-500 hover:shadow-xl transition-all duration-200 ease-out group bg-white transform hover:scale-[1.02] hover:-translate-y-0.5"
                   >
                     {option.popular && (
-                      <span className="absolute -top-2 -right-2 bg-accent-500 text-white text-xs px-2 py-1 rounded-full font-semibold">Popular</span>
+                      <span className="absolute -top-2 -right-2 bg-amber-500 text-black text-xs px-2 py-1 rounded-full font-semibold">Popular</span>
                     )}
                     <div className="text-3xl mb-3">{option.icon}</div>
-                    <div className="font-semibold text-dark group-hover:text-primary-500 transition-colors">
+                    <div className="font-semibold text-dark group-hover:text-amber-500 transition-colors">
                       {option.title}
                     </div>
                     <div className="text-gray-500 text-sm mt-1">{option.subtitle}</div>
@@ -247,14 +269,54 @@ export default function StealthAssessment() {
             </div>
           )}
           
-          {/* Step 3: How They Feel - Emotional Connection */}
+          {/* Step 3: Current Weight - For Percentage Calculation */}
           {currentStep === 3 && (
             <div className="fade-in-up">
               <div className="text-center mb-8">
                 <h3 className="text-3xl font-bold text-dark mb-3">
-                  How are you feeling about your body now?
+                  What's your current weight?
                 </h3>
-                <p className="text-gray-600 text-lg">It's completely normal to have mixed feelings...</p>
+                <p className="text-gray-600 text-lg">This helps us calculate your transformation percentage</p>
+              </div>
+              
+              <div className="max-w-md mx-auto">
+                <div className="flex gap-4 mb-6">
+                  <input
+                    type="number"
+                    id="currentWeight"
+                    placeholder="Weight"
+                    className="flex-1 px-6 py-4 border-2 border-gray-200 rounded-2xl text-lg focus:border-amber-500 focus:outline-none focus:ring-4 focus:ring-amber-100 transition-all"
+                    onKeyPress={(e) => {
+                      if (e.key === 'Enter') {
+                        const weight = (document.getElementById('currentWeight') as HTMLInputElement)?.value
+                        const unit = (document.getElementById('weightUnit') as HTMLSelectElement)?.value
+                        if (weight) {
+                          selectOption('currentWeight', `${weight}-${unit}`, 3)
+                        }
+                      }
+                    }}
+                  />
+                  <select
+                    id="weightUnit"
+                    className="px-6 py-4 border-2 border-gray-200 rounded-2xl text-lg focus:border-amber-500 focus:outline-none transition-all"
+                  >
+                    <option value="kg">kg</option>
+                    <option value="stone">stone</option>
+                    <option value="lbs">lbs</option>
+                  </select>
+                </div>
+                <button
+                  onClick={() => {
+                    const weight = (document.getElementById('currentWeight') as HTMLInputElement)?.value
+                    const unit = (document.getElementById('weightUnit') as HTMLSelectElement)?.value
+                    if (weight) {
+                      selectOption('currentWeight', `${weight}-${unit}`, 3)
+                    }
+                  }}
+                  className="w-full bg-amber-500 text-black py-4 rounded-2xl text-lg font-semibold hover:bg-amber-600 transition-all transform hover:scale-[1.02] shadow-lg"
+                >
+                  Continue →
+                </button>
               </div>
               
               <div className="space-y-3 max-w-xl mx-auto">
@@ -267,27 +329,24 @@ export default function StealthAssessment() {
                   <button
                     key={option.value}
                     onClick={() => selectOption('feelingAbout', option.value, 3)}
-                    className="w-full p-5 border-2 border-gray-200 rounded-2xl text-left hover:border-primary-500 hover:bg-gradient-to-r hover:from-primary-50 hover:to-accent-50 transition-all duration-200 ease-out group flex items-center gap-4 transform hover:scale-[1.01]"
+                    className="w-full p-5 border-2 border-gray-200 rounded-2xl text-left hover:border-amber-500 hover:bg-gradient-to-r hover:from-amber-50 hover:to-amber-100 transition-all duration-200 ease-out group flex items-center gap-4 transform hover:scale-[1.01]"
                   >
                     <span className="text-2xl">{option.emoji}</span>
-                    <span className="flex-1 font-medium text-gray-800 group-hover:text-primary-600">{option.text}</span>
+                    <span className="flex-1 font-medium text-gray-800 group-hover:text-amber-600">{option.text}</span>
                   </button>
                 ))}
               </div>
             </div>
           )}
           
-          {/* Step 4: Amount Lost - Celebration */}
+          {/* Step 4: Amount Lost - Now We Calculate and Maybe Celebrate */}
           {currentStep === 4 && (
             <div className="fade-in-up">
               <div className="text-center mb-8">
-                <div className="w-20 h-20 bg-gradient-to-br from-green-400 to-green-500 rounded-full mx-auto mb-4 flex items-center justify-center animate-pulse">
-                  <span className="text-3xl">🏆</span>
-                </div>
                 <h3 className="text-3xl font-bold text-dark mb-3">
-                  Incredible! How much did you lose?
+                  How much weight did you lose?
                 </h3>
-                <p className="text-gray-600 text-lg">Every pound is an achievement worth celebrating</p>
+                <p className="text-gray-600 text-lg">We'll calculate what percentage that represents</p>
               </div>
               
               <div className="grid grid-cols-2 gap-4 max-w-md mx-auto">
@@ -300,10 +359,10 @@ export default function StealthAssessment() {
                   <button
                     key={option.value}
                     onClick={() => selectOption('amount', option.value, 4)}
-                    className="p-6 border-2 border-gray-200 rounded-2xl hover:border-primary-500 hover:shadow-xl transition-all group bg-white text-center"
+                    className="p-6 border-2 border-gray-200 rounded-2xl hover:border-amber-500 hover:shadow-xl transition-all group bg-white text-center"
                   >
                     <div className="text-2xl mb-2">{option.emoji}</div>
-                    <div className="font-bold text-lg text-dark group-hover:text-primary-500 transition-colors">
+                    <div className="font-bold text-lg text-dark group-hover:text-amber-500 transition-colors">
                       {option.title}
                     </div>
                   </button>
@@ -312,14 +371,54 @@ export default function StealthAssessment() {
             </div>
           )}
           
-          {/* Step 5: Problem Area - Visual */}
+          {/* Step 5: Weight Loss Reaction - Based on Percentage */}
           {currentStep === 5 && (
             <div className="fade-in-up">
               <div className="text-center mb-8">
-                <h3 className="text-3xl font-bold text-dark mb-3">
-                  Which area bothers you most?
-                </h3>
-                <p className="text-gray-600 text-lg">Don't worry, we can address multiple areas</p>
+                {assessmentData.percentageLost && assessmentData.percentageLost >= 15 ? (
+                  // Significant weight loss - NOW we celebrate
+                  <>
+                    <div className="w-20 h-20 bg-gradient-to-br from-green-400 to-green-500 rounded-full mx-auto mb-4 flex items-center justify-center animate-bounce-slow">
+                      <span className="text-3xl">🏆</span>
+                    </div>
+                    <h3 className="text-3xl font-bold text-dark mb-3">
+                      Wow, {assessmentData.name}! That's incredible!
+                    </h3>
+                    <p className="text-xl text-green-600 font-semibold mb-2">
+                      You've lost {assessmentData.percentageLost}% of your body weight!
+                    </p>
+                    <p className="text-gray-600 text-lg">
+                      That's a massive transformation. Now let's address the loose skin that often comes with such significant weight loss.
+                    </p>
+                  </>
+                ) : assessmentData.percentageLost && assessmentData.percentageLost >= 10 ? (
+                  // Moderate weight loss - Encouraging
+                  <>
+                    <h3 className="text-3xl font-bold text-dark mb-3">
+                      Good progress, {assessmentData.name}!
+                    </h3>
+                    <p className="text-lg text-amber-600 font-medium mb-2">
+                      A {assessmentData.percentageLost}% weight loss is solid work
+                    </p>
+                    <p className="text-gray-600">
+                      Many people experience skin changes at this level. Let's see how we can help.
+                    </p>
+                  </>
+                ) : (
+                  // Smaller weight loss - Supportive
+                  <>
+                    <h3 className="text-3xl font-bold text-dark mb-3">
+                      Every journey is unique
+                    </h3>
+                    <p className="text-gray-600 text-lg">
+                      Even smaller weight changes can affect skin elasticity. Let's explore your concerns.
+                    </p>
+                  </>
+                )}
+              </div>
+              
+              <div className="text-center mb-8 mt-8">
+                <p className="text-gray-600 text-lg mb-6">Which area concerns you most?</p>
               </div>
               
               <div className="grid grid-cols-2 gap-4 max-w-lg mx-auto">
@@ -332,10 +431,10 @@ export default function StealthAssessment() {
                   <button
                     key={option.value}
                     onClick={() => selectOption('area', option.value, 5)}
-                    className="p-6 border-2 border-gray-200 rounded-2xl hover:border-primary-500 hover:shadow-xl hover:scale-105 transition-all group bg-white text-center"
+                    className="p-6 border-2 border-gray-200 rounded-2xl hover:border-amber-500 hover:shadow-xl hover:scale-105 transition-all group bg-white text-center"
                   >
                     <div className="text-4xl mb-3">{option.icon}</div>
-                    <div className="font-bold text-dark group-hover:text-primary-500 transition-colors">
+                    <div className="font-bold text-dark group-hover:text-amber-500 transition-colors">
                       {option.title}
                     </div>
                     <div className="text-xs text-gray-500 mt-1">{option.desc}</div>
@@ -365,10 +464,10 @@ export default function StealthAssessment() {
                   <button
                     key={option.value}
                     onClick={() => selectOption('motivation', option.value, 6)}
-                    className="w-full p-5 border-2 border-gray-200 rounded-2xl text-left hover:border-primary-500 hover:bg-gradient-to-r hover:from-primary-50 hover:to-accent-50 transition-all duration-200 ease-out group flex items-center gap-4 transform hover:scale-[1.01]"
+                    className="w-full p-5 border-2 border-gray-200 rounded-2xl text-left hover:border-amber-500 hover:bg-gradient-to-r hover:from-amber-50 hover:to-amber-100 transition-all duration-200 ease-out group flex items-center gap-4 transform hover:scale-[1.01]"
                   >
                     <span className="text-2xl">{option.emoji}</span>
-                    <span className="flex-1 font-medium text-gray-800 group-hover:text-primary-600">{option.text}</span>
+                    <span className="flex-1 font-medium text-gray-800 group-hover:text-amber-600">{option.text}</span>
                   </button>
                 ))}
               </div>
@@ -400,17 +499,17 @@ export default function StealthAssessment() {
                     onClick={() => selectOption('timeline', option.value, 7)}
                     className={`w-full p-5 border-2 rounded-2xl text-left transition-all group flex items-center gap-4 ${
                       option.highlight 
-                        ? 'border-accent-400 bg-gradient-to-r from-accent-50 to-primary-50 hover:shadow-xl' 
-                        : 'border-gray-200 hover:border-primary-500 hover:bg-gray-50'
+                        ? 'border-amber-400 bg-gradient-to-r from-amber-50 to-amber-100 hover:shadow-xl' 
+                        : 'border-gray-200 hover:border-amber-500 hover:bg-gray-50'
                     }`}
                   >
                     <span className="text-2xl">{option.emoji}</span>
                     <div className="flex-1">
-                      <div className="font-semibold text-dark group-hover:text-primary-600">{option.title}</div>
+                      <div className="font-semibold text-dark group-hover:text-amber-600">{option.title}</div>
                       <div className="text-sm text-gray-500">{option.desc}</div>
                     </div>
                     {option.highlight && (
-                      <span className="bg-accent-500 text-white text-xs px-2 py-1 rounded-full">Best Value</span>
+                      <span className="bg-amber-500 text-black text-xs px-2 py-1 rounded-full">Best Value</span>
                     )}
                   </button>
                 ))}
@@ -454,7 +553,7 @@ export default function StealthAssessment() {
               
               <button 
                 onClick={() => setCurrentStep(9)}
-                className="w-full bg-gradient-to-r from-primary-500 to-primary-600 text-white py-4 rounded-2xl text-lg font-semibold hover:from-primary-600 hover:to-primary-700 transition-all transform hover:scale-[1.02] shadow-lg"
+                className="w-full bg-gradient-to-r from-amber-500 to-amber-600 text-black py-4 rounded-2xl text-lg font-semibold hover:from-amber-600 hover:to-amber-700 transition-all transform hover:scale-[1.02] shadow-lg"
               >
                 Access My Personalized Platform →
               </button>
@@ -465,7 +564,7 @@ export default function StealthAssessment() {
           {currentStep === 9 && (
             <div className="fade-in-up">
               <div className="text-center mb-8">
-                <div className="w-20 h-20 bg-gradient-to-br from-primary-400 to-accent-400 rounded-full mx-auto mb-4 flex items-center justify-center animate-pulse">
+                <div className="w-20 h-20 bg-gradient-to-br from-amber-400 to-amber-500 rounded-full mx-auto mb-4 flex items-center justify-center animate-pulse">
                   <span className="text-3xl">🔐</span>
                 </div>
                 <h3 className="text-3xl font-bold text-dark mb-3">
@@ -475,13 +574,13 @@ export default function StealthAssessment() {
               </div>
               
               <div className="grid grid-cols-2 gap-3 max-w-lg mx-auto mb-8">
-                <div className="bg-gradient-to-br from-primary-50 to-primary-100 p-4 rounded-xl">
+                <div className="bg-gradient-to-br from-amber-50 to-amber-100 p-4 rounded-xl">
                   <span className="text-2xl mb-2 block">📸</span>
-                  <span className="text-sm font-medium text-primary-900">Photo Journey Tracker</span>
+                  <span className="text-sm font-medium text-amber-900">Photo Journey Tracker</span>
                 </div>
-                <div className="bg-gradient-to-br from-accent-50 to-accent-100 p-4 rounded-xl">
+                <div className="bg-gradient-to-br from-amber-50 to-amber-100 p-4 rounded-xl">
                   <span className="text-2xl mb-2 block">📊</span>
-                  <span className="text-sm font-medium text-accent-900">Progress Dashboard</span>
+                  <span className="text-sm font-medium text-amber-900">Progress Dashboard</span>
                 </div>
                 <div className="bg-gradient-to-br from-green-50 to-green-100 p-4 rounded-xl">
                   <span className="text-2xl mb-2 block">💬</span>
@@ -505,7 +604,7 @@ export default function StealthAssessment() {
                   type="email"
                   id="userEmail"
                   placeholder="your@email.com"
-                  className="w-full px-6 py-4 border-2 border-gray-200 rounded-2xl text-lg mb-3 focus:border-primary-500 focus:outline-none focus:ring-4 focus:ring-primary-100 transition-all"
+                  className="w-full px-6 py-4 border-2 border-gray-200 rounded-2xl text-lg mb-3 focus:border-amber-500 focus:outline-none focus:ring-4 focus:ring-amber-100 transition-all"
                   required
                   autoFocus
                   onKeyPress={(e) => e.key === 'Enter' && assessmentComplete()}
@@ -515,7 +614,7 @@ export default function StealthAssessment() {
                 <button 
                   onClick={assessmentComplete}
                   disabled={isSubmitting}
-                  className="w-full bg-gradient-to-r from-primary-500 to-primary-600 text-white py-4 rounded-2xl text-lg font-semibold hover:from-primary-600 hover:to-primary-700 transition-all transform hover:scale-[1.02] shadow-lg disabled:opacity-50"
+                  className="w-full bg-gradient-to-r from-amber-500 to-amber-600 text-black py-4 rounded-2xl text-lg font-semibold hover:from-amber-600 hover:to-amber-700 transition-all transform hover:scale-[1.02] shadow-lg disabled:opacity-50"
                 >
                   {isSubmitting ? 'Creating Your Account...' : 'Unlock My Platform Access 🚀'}
                 </button>
@@ -555,7 +654,7 @@ export default function StealthAssessment() {
                     // Redirect to dashboard for wow moment
                     window.location.href = '/dashboard'
                   }}
-                  className="w-full bg-primary-500 text-white py-4 rounded-lg text-lg font-semibold hover:bg-primary-600 transition-all transform hover:scale-105 shadow-lg"
+                  className="w-full bg-amber-500 text-black py-4 rounded-lg text-lg font-semibold hover:bg-amber-600 transition-all transform hover:scale-105 shadow-lg"
                 >
                   🚀 Start Your Journey →
                 </button>
@@ -564,7 +663,7 @@ export default function StealthAssessment() {
                 
                 <button 
                   onClick={bookConsultation}
-                  className="w-full bg-white border-2 border-primary-500 text-primary-500 py-3 rounded-lg font-semibold hover:bg-primary-50 transition-colors"
+                  className="w-full bg-white border-2 border-amber-500 text-amber-500 py-3 rounded-lg font-semibold hover:bg-amber-50 transition-colors"
                 >
                   Book Free Consultation First
                 </button>
