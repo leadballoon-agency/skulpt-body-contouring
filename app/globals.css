@@ -2,6 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Force scroll to top and smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Ensure page starts at top on load/refresh */
+body {
+  overflow-x: hidden;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -218,6 +228,17 @@
   to {
     opacity: 1;
     transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes confetti {
+  0% {
+    transform: translateY(-100vh) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(720deg);
+    opacity: 0;
   }
 }
 

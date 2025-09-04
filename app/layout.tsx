@@ -64,6 +64,19 @@ export default function RootLayout({
     <html lang="en" className={`${inter.variable} ${poppins.variable}`}>
       <body className={`${inter.className} antialiased`}>
         {children}
+        
+        {/* Scroll Restoration Fix */}
+        <script dangerouslySetInnerHTML={{
+          __html: `
+            // Force scroll to top on page load and disable browser scroll restoration
+            if (typeof window !== 'undefined') {
+              window.scrollTo(0, 0);
+              if ('scrollRestoration' in history) {
+                history.scrollRestoration = 'manual';
+              }
+            }
+          `
+        }} />
       </body>
     </html>
   )
