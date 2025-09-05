@@ -85,6 +85,14 @@ export default function Navbar() {
           </button>
           
           <button
+            onClick={() => navigateToPage('/recovery-detox')}
+            className="text-dark hover:text-primary-500 font-medium transition-colors relative group"
+          >
+            Recovery
+            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-500 transition-all group-hover:w-full" />
+          </button>
+          
+          <button
             onClick={() => scrollToSection('treatment')}
             className="text-dark hover:text-primary-500 font-medium transition-colors relative group"
           >
@@ -138,6 +146,12 @@ export default function Navbar() {
               className="block w-full text-left text-dark hover:text-primary-500 font-medium py-2"
             >
               SkinTite
+            </button>
+            <button
+              onClick={() => navigateToPage('/recovery-detox')}
+              className="block w-full text-left text-dark hover:text-primary-500 font-medium py-2"
+            >
+              Recovery
             </button>
             <button
               onClick={() => scrollToSection('treatment')}
