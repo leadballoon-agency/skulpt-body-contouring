@@ -210,7 +210,7 @@ export default function TummyResetPage() {
                 <svg className="w-6 h-6 text-red-500 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
                 </svg>
-                <p className="text-gray-300">{item}</p>
+                <p className="text-gray-700">{item}</p>
               </div>
             ))}
           </div>
@@ -219,7 +219,7 @@ export default function TummyResetPage() {
             <p className="text-2xl text-amber-400 font-bold mb-4">
               You're Not Alone - And There IS A Solution
             </p>
-            <p className="text-gray-300 max-w-2xl mx-auto">
+            <p className="text-gray-700 max-w-2xl mx-auto">
               Over 2,847 people just like you have discovered the secret to finally achieving 
               the tight, toned body they deserve after weight loss - without surgery.
             </p>
@@ -233,7 +233,7 @@ export default function TummyResetPage() {
           <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-4">
             The ProMax Lipo Advantage
           </h2>
-          <p className="text-center text-gray-400 mb-12 max-w-2xl mx-auto">
+          <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
             Why thousands are choosing ProMax Lipo over surgery for their post-weight loss transformation
           </p>
 
@@ -273,7 +273,7 @@ export default function TummyResetPage() {
               <div key={index} className="bg-gradient-to-br from-gray-900 to-black p-6 rounded-xl border border-amber-500/20 hover:border-amber-500/40 transition-all">
                 <div className="text-4xl mb-4">{benefit.icon}</div>
                 <h3 className="text-xl font-bold text-gray-900 mb-2">{benefit.title}</h3>
-                <p className="text-gray-400">{benefit.description}</p>
+                <p className="text-gray-600">{benefit.description}</p>
               </div>
             ))}
           </div>
@@ -289,12 +289,12 @@ export default function TummyResetPage() {
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
               Book Your Transformation
             </h2>
-            <p className="text-xl text-gray-400 mb-8">Professional skin tightening treatment</p>
+            <p className="text-xl text-gray-600 mb-8">Professional skin tightening treatment</p>
             
             {!selectedArea ? (
               <div className="max-w-4xl mx-auto">
-                <p className="text-amber-400 text-lg font-bold mb-2">OZEMPIC/MOUNJARO PATIENT SPECIAL: £149</p>
-                <p className="text-gray-300 mb-8">Tighten 2 areas of loose skin in 1 hour - Save £301 (Usually £450)</p>
+                <p className="text-amber-600 text-lg font-bold mb-2">OZEMPIC/MOUNJARO PATIENT SPECIAL: £149</p>
+                <p className="text-gray-700 mb-8">Tighten 2 areas of loose skin in 1 hour - Save £301 (Usually £450)</p>
                 <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-4">
                   {[
                     { id: 'stomach', label: 'Stomach', icon: '🎯', description: 'Flatten and tighten' },
@@ -426,7 +426,7 @@ export default function TummyResetPage() {
       </section>
 
       {/* Testimonials with 3D Glassmorphism */}
-      <section className="py-20 bg-gradient-to-b from-gray-900 to-black relative overflow-hidden">
+      <section className="py-20 bg-gradient-to-b from-white to-gray-50 relative overflow-hidden">
         {/* Background decoration */}
         <div className="absolute inset-0">
           <div className="absolute top-20 left-10 w-72 h-72 bg-amber-500/20 rounded-full blur-3xl"></div>
@@ -434,16 +434,16 @@ export default function TummyResetPage() {
         </div>
 
         <div className="max-w-6xl mx-auto px-4 relative z-10">
-          <h2 className="text-4xl md:text-5xl font-bold text-center text-white mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-center text-gray-900 mb-4">
             Real Skulpt Clients. Real Results.
           </h2>
           <div className="text-center mb-16">
             <div className="flex justify-center items-center gap-2 mb-2">
               {[...Array(5)].map((_, i) => (
-                <span key={i} className="text-amber-400 text-3xl drop-shadow-glow">⭐</span>
+                <span key={i} className="text-amber-500 text-3xl">⭐</span>
               ))}
             </div>
-            <p className="text-gray-400 text-lg">5.0 average from 59 verified Google reviews</p>
+            <p className="text-gray-600 text-lg">5.0 average from 59 verified Google reviews</p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 perspective-1000">
@@ -506,31 +506,31 @@ export default function TummyResetPage() {
                 }}
               >
                 {/* Glassmorphism card */}
-                <div className="relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-2xl p-6 border border-white/20 shadow-2xl hover:shadow-amber-500/20 transition-all duration-300 hover:rotate-y-5">
+                <div className="relative bg-white rounded-2xl p-6 border-2 border-amber-200 shadow-xl hover:shadow-amber-500/20 transition-all duration-300 hover:scale-105">
                   {/* Glow effect on hover */}
                   <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-amber-500/0 to-amber-500/0 hover:from-amber-500/10 hover:to-transparent transition-all duration-300"></div>
                   
                   <div className="relative z-10">
                     <div className="flex items-start justify-between mb-4">
                       <div>
-                        <p className="font-bold text-white text-lg">{testimonial.name}</p>
-                        <p className="text-sm text-gray-300">{testimonial.timeAgo}</p>
-                        <p className="text-sm text-amber-400 font-medium mt-1">{testimonial.treatment}</p>
+                        <p className="font-bold text-gray-900 text-lg">{testimonial.name}</p>
+                        <p className="text-sm text-gray-600">{testimonial.timeAgo}</p>
+                        <p className="text-sm text-amber-600 font-medium mt-1">{testimonial.treatment}</p>
                       </div>
                       <div className="flex gap-0.5">
                         {[...Array(testimonial.rating)].map((_, i) => (
-                          <span key={i} className="text-amber-400 drop-shadow-glow">⭐</span>
+                          <span key={i} className="text-amber-500">⭐</span>
                         ))}
                       </div>
                     </div>
                     
-                    <p className="text-gray-200 leading-relaxed text-sm italic">
+                    <p className="text-gray-700 leading-relaxed text-sm italic">
                       "{testimonial.quote}"
                     </p>
                     
                     {testimonial.verified && (
-                      <div className="mt-4 pt-4 border-t border-white/10">
-                        <p className="text-xs text-amber-400 flex items-center gap-1">
+                      <div className="mt-4 pt-4 border-t border-amber-100">
+                        <p className="text-xs text-amber-600 flex items-center gap-1">
                           <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                             <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                           </svg>
@@ -580,26 +580,26 @@ export default function TummyResetPage() {
       <section className="py-16">
         <div className="max-w-4xl mx-auto px-4">
           <div className="bg-gradient-to-br from-amber-500/10 to-transparent p-8 rounded-2xl border border-amber-500/30">
-            <h2 className="text-2xl md:text-3xl font-bold text-white mb-6 text-center">
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6 text-center">
               The Science Behind Your Transformation
             </h2>
             
             <div className="grid md:grid-cols-3 gap-6 text-center">
               <div>
-                <div className="text-4xl font-bold text-amber-400 mb-2">89%</div>
-                <p className="text-gray-400">Report firmer, tighter skin after treatment</p>
+                <div className="text-4xl font-bold text-amber-600 mb-2">89%</div>
+                <p className="text-gray-600">Report firmer, tighter skin after treatment</p>
               </div>
               <div>
-                <div className="text-4xl font-bold text-amber-400 mb-2">3-5"</div>
-                <p className="text-gray-400">Average inch reduction from treatment area</p>
+                <div className="text-4xl font-bold text-amber-600 mb-2">3-5"</div>
+                <p className="text-gray-600">Average inch reduction from treatment area</p>
               </div>
               <div>
-                <div className="text-4xl font-bold text-amber-400 mb-2">94%</div>
-                <p className="text-gray-400">Would recommend to friends & family</p>
+                <div className="text-4xl font-bold text-amber-600 mb-2">94%</div>
+                <p className="text-gray-600">Would recommend to friends & family</p>
               </div>
             </div>
 
-            <p className="text-center text-gray-300 mt-8">
+            <p className="text-center text-gray-700 mt-8">
               ProMax Lipo uses revolutionary ultrasound cavitation, radio frequency, and vacuum therapy 
               to tighten skin, reduce fat deposits, and contour your body - all without surgery.
             </p>
@@ -633,11 +633,11 @@ export default function TummyResetPage() {
         />
         
         {/* Modal */}
-        <div className="relative bg-gradient-to-br from-gray-900 to-black rounded-3xl shadow-2xl max-w-md w-full p-8 border border-amber-500/20 animate-fadeIn">
+        <div className="relative bg-white rounded-3xl shadow-2xl max-w-md w-full p-8 border-2 border-amber-300 animate-fadeIn">
           {/* Close button */}
           <button
             onClick={() => setShowBookingModal(false)}
-            className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors"
+            className="absolute top-4 right-4 text-gray-600 hover:text-gray-900 transition-colors"
           >
             <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -647,12 +647,12 @@ export default function TummyResetPage() {
           {/* Content */}
           <div className="text-center">
             <div className="text-5xl mb-4">✨</div>
-            <h3 className="text-2xl font-bold text-white mb-3">
+            <h3 className="text-2xl font-bold text-gray-900 mb-3">
               Book Your 2 Area Transformation - £149
             </h3>
             
-            <p className="text-gray-300 mb-6">
-              Area selected: <span className="text-amber-400 font-semibold">
+            <p className="text-gray-700 mb-6">
+              Area selected: <span className="text-amber-600 font-semibold">
                 {bookingArea === 'stomach' && 'Stomach'}
                 {bookingArea === 'thighs' && 'Thighs'}
                 {bookingArea === 'bum' && 'Bum'}
@@ -660,13 +660,13 @@ export default function TummyResetPage() {
                 {bookingArea === 'bingo-wings' && 'Bingo Wings'}
               </span>
               <br/>
-              <span className="text-sm text-gray-400">Choose 1 more area at your appointment</span>
+              <span className="text-sm text-gray-600">Choose 1 more area at your appointment</span>
             </p>
             
-            <div className="bg-amber-500/10 border border-amber-500/30 rounded-xl p-4 mb-6">
-              <p className="text-amber-400 text-sm font-semibold mb-2">Limited Availability</p>
-              <p className="text-white text-lg">Book Your FREE Consultation</p>
-              <p className="text-gray-400 text-xs mt-1">Worth £450 • Special Price £149 • Only 3 Spots Left Today</p>
+            <div className="bg-amber-50 border border-amber-300 rounded-xl p-4 mb-6">
+              <p className="text-amber-700 text-sm font-semibold mb-2">Limited Availability</p>
+              <p className="text-gray-900 text-lg">Book Your FREE Consultation</p>
+              <p className="text-gray-600 text-xs mt-1">Worth £450 • Special Price £149 • Only 3 Spots Left Today</p>
             </div>
             
             {/* Beautiful GHL Calendar - Mobile Optimized */}
@@ -676,7 +676,7 @@ export default function TummyResetPage() {
                    style={{ display: 'block' }}
                    id="calendar-loader-tummy">
                 <div className="flex items-center justify-center h-full">
-                  <div className="text-amber-400 text-sm">Loading booking calendar...</div>
+                  <div className="text-amber-600 text-sm">Loading booking calendar...</div>
                 </div>
               </div>
               
@@ -703,7 +703,7 @@ export default function TummyResetPage() {
               </div>
             </div>
             
-            <p className="text-gray-500 text-xs mt-4">
+            <p className="text-gray-600 text-xs mt-4">
               No obligation • Results guaranteed • Cancel anytime
             </p>
           </div>
