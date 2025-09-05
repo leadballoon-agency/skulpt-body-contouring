@@ -99,9 +99,9 @@ export default function TummyResetPage() {
   return (
     <>
       <Navbar />
-      <div className="min-h-screen bg-gradient-to-b from-black via-gray-900 to-black">
+      <div className="min-h-screen bg-white">
       {/* Urgent Header Bar */}
-      <div className="bg-gradient-to-r from-red-600 to-red-700 text-white py-2 px-4 text-center sticky top-0 z-50">
+      <div className="bg-gradient-to-r from-amber-500 to-amber-600 text-white py-2 px-4 text-center sticky top-0 z-50">
         <p className="text-sm font-bold animate-pulse">
           ⚠️ LIMITED TIME: Special Pricing Ends In {timeLeft.hours}h {timeLeft.minutes}m {timeLeft.seconds}s
         </p>
@@ -118,28 +118,28 @@ export default function TummyResetPage() {
         <div className="relative z-10 max-w-6xl mx-auto px-4 py-12 md:py-20">
           {/* Trust Badge */}
           <div className="text-center mb-8">
-            <div className="inline-flex items-center gap-2 bg-green-500/10 border border-green-500/30 rounded-full px-4 py-2">
-              <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-              <span className="text-green-400 text-sm font-medium">2,847 UK Residents Have Transformed Their Bodies</span>
+            <div className="inline-flex items-center gap-2 bg-amber-50 border border-amber-300 rounded-full px-4 py-2">
+              <div className="w-2 h-2 bg-amber-500 rounded-full animate-pulse"></div>
+              <span className="text-amber-700 text-sm font-medium">2,847 UK Residents Have Transformed Their Bodies</span>
             </div>
           </div>
 
           {/* Main Headline */}
           <div className="text-center mb-12">
-            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
-              The <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-amber-600">Ozempic Tummy Reset</span>
+            <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+              The <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-500 to-amber-600">Ozempic Tummy Reset</span>
               <br />
               <span className="text-3xl md:text-5xl">Fix Your Loose Skin - 2 Areas Only £149</span>
             </h1>
             
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-8">
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
               Lost weight with Ozempic, Wegovy or Mounjaro? The loose skin nobody warned you about?
               We fix it. Non-surgical skin tightening that actually works.
             </p>
 
             {/* Subheadline with urgency */}
-            <div className="bg-amber-500/10 border border-amber-500/30 rounded-lg p-4 max-w-2xl mx-auto">
-              <p className="text-amber-400 font-semibold">
+            <div className="bg-amber-50 border border-amber-300 rounded-lg p-4 max-w-2xl mx-auto">
+              <p className="text-amber-700 font-semibold">
                 Watch this short video to see how Sarah lost 3 stone with Ozempic 
                 and finally got rid of her loose belly skin in just 6 weeks
               </p>
@@ -166,8 +166,8 @@ export default function TummyResetPage() {
             
             {/* Video CTA */}
             <div className="text-center mt-6">
-              <p className="text-gray-400 text-sm">
-                <span className="text-white font-semibold">93% of viewers</span> book a consultation after watching
+              <p className="text-gray-500 text-sm">
+                <span className="text-gray-900 font-semibold">93% of viewers</span> book a consultation after watching
               </p>
             </div>
           </div>
@@ -185,16 +185,16 @@ export default function TummyResetPage() {
             >
               YES! I Want To Fix My Loose Skin →
             </button>
-            <p className="text-gray-500 text-sm mt-3">Limited spots available this week</p>
-            <p className="text-xs text-gray-600 mt-2">Takes just 60 seconds to qualify</p>
+            <p className="text-gray-600 text-sm mt-3">Limited spots available this week</p>
+            <p className="text-xs text-gray-500 mt-2">Takes just 60 seconds to qualify</p>
           </div>
         </div>
       </section>
 
       {/* Problem/Agitation Section */}
-      <section className="py-16 bg-gray-900/50">
+      <section className="py-16 bg-gradient-to-b from-gray-50 to-white">
         <div className="max-w-4xl mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center text-white mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">
             Does This Sound Like You?
           </h2>
           
@@ -206,7 +206,7 @@ export default function TummyResetPage() {
               "You're frustrated that after all your hard work, you still don't have the body you want",
               "Surgery seems too extreme, expensive, and risky"
             ].map((item, index) => (
-              <div key={index} className="flex items-start gap-4 bg-black/50 p-4 rounded-lg border border-red-500/20">
+              <div key={index} className="flex items-start gap-4 bg-white p-4 rounded-lg border border-amber-200 shadow-md">
                 <svg className="w-6 h-6 text-red-500 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
                 </svg>
@@ -230,7 +230,7 @@ export default function TummyResetPage() {
       {/* Benefits Section */}
       <section className="py-16">
         <div className="max-w-6xl mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center text-white mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-4">
             The ProMax Lipo Advantage
           </h2>
           <p className="text-center text-gray-400 mb-12 max-w-2xl mx-auto">
@@ -272,7 +272,7 @@ export default function TummyResetPage() {
             ].map((benefit, index) => (
               <div key={index} className="bg-gradient-to-br from-gray-900 to-black p-6 rounded-xl border border-amber-500/20 hover:border-amber-500/40 transition-all">
                 <div className="text-4xl mb-4">{benefit.icon}</div>
-                <h3 className="text-xl font-bold text-white mb-2">{benefit.title}</h3>
+                <h3 className="text-xl font-bold text-gray-900 mb-2">{benefit.title}</h3>
                 <p className="text-gray-400">{benefit.description}</p>
               </div>
             ))}
@@ -283,10 +283,10 @@ export default function TummyResetPage() {
       {/* Widget sections hidden for deployment */}
 
       {/* Visual Results Gallery - Interactive Body Area Selector */}
-      <section id="booking-section" className="py-16 bg-black">
+      <section id="booking-section" className="py-16 bg-gradient-to-b from-white to-gray-50">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
               Book Your Transformation
             </h2>
             <p className="text-xl text-gray-400 mb-8">Professional skin tightening treatment</p>
@@ -309,11 +309,11 @@ export default function TummyResetPage() {
                         setSelectedArea(area.id)
                         console.log(`User selected ${area.label} - high intent for ${area.id} treatment`)
                       }}
-                      className="group bg-gray-900 border border-gray-800 rounded-xl p-6 hover:border-amber-500 hover:bg-gray-800 transition-all duration-300"
+                      className="group bg-white border-2 border-amber-200 rounded-xl p-6 hover:border-amber-500 hover:bg-amber-50 transition-all duration-300 shadow-md hover:shadow-xl"
                     >
                       <div className="text-4xl mb-3">{area.icon}</div>
-                      <h3 className="text-white font-bold mb-1">{area.label}</h3>
-                      <p className="text-gray-500 text-sm">{area.description}</p>
+                      <h3 className="text-gray-900 font-bold mb-1">{area.label}</h3>
+                      <p className="text-gray-600 text-sm">{area.description}</p>
                     </button>
                   ))}
                 </div>
@@ -326,57 +326,71 @@ export default function TummyResetPage() {
                 {/* Show selected area results */}
                 {selectedArea === 'stomach' && (
                   <div>
-                    <div className="bg-gray-900 rounded-2xl p-2 mb-6">
+                    <div className="bg-white border-2 border-amber-200 rounded-2xl p-2 mb-6 shadow-lg">
                       <img 
                         src="/images/Before and After/stomach.png" 
                         alt="Stomach transformation - complete before and after" 
                         className="w-full h-auto object-contain rounded-xl"
                       />
                     </div>
-                    <h3 className="text-2xl font-bold text-white mb-3">Abdominal Transformation</h3>
-                    <p className="text-gray-400 mb-6">Complete tummy tightening achieved in 4-6 weeks</p>
+                    <h3 className="text-2xl font-bold text-gray-900 mb-3">Abdominal Transformation</h3>
+                    <p className="text-gray-600 mb-6">Complete tummy tightening achieved in 4-6 weeks</p>
                   </div>
                 )}
                 
                 {selectedArea === 'arms' && (
                   <div>
-                    <div className="bg-gray-900 rounded-2xl p-2 mb-6">
+                    <div className="bg-white border-2 border-amber-200 rounded-2xl p-2 mb-6 shadow-lg">
                       <img 
                         src="/images/Before and After/arms.jpg" 
                         alt="Upper arms transformation" 
                         className="w-full h-auto object-cover rounded-xl"
                       />
                     </div>
-                    <h3 className="text-2xl font-bold text-white mb-3">Upper Arm Contouring</h3>
-                    <p className="text-gray-400 mb-6">Dramatic tightening of loose upper arm skin</p>
+                    <h3 className="text-2xl font-bold text-gray-900 mb-3">Upper Arm Contouring</h3>
+                    <p className="text-gray-600 mb-6">Dramatic tightening of loose upper arm skin</p>
                   </div>
                 )}
                 
-                {selectedArea === 'bingo' && (
+                {selectedArea === 'bingo-wings' && (
                   <div>
-                    <div className="bg-gray-900 rounded-2xl p-2 mb-6">
+                    <div className="bg-white border-2 border-amber-200 rounded-2xl p-2 mb-6 shadow-lg">
                       <img 
                         src="/images/Before and After/bingo wings.jpg" 
                         alt="Under arms (bingo wings) transformation" 
                         className="w-full h-auto object-cover rounded-xl"
                       />
                     </div>
-                    <h3 className="text-2xl font-bold text-white mb-3">Under Arm Transformation</h3>
-                    <p className="text-gray-400 mb-6">Say goodbye to bingo wings permanently</p>
+                    <h3 className="text-2xl font-bold text-gray-900 mb-3">Under Arm Transformation</h3>
+                    <p className="text-gray-600 mb-6">Say goodbye to bingo wings permanently</p>
                   </div>
                 )}
                 
-                {selectedArea === 'legs' && (
+                {selectedArea === 'thighs' && (
                   <div>
-                    <div className="bg-gray-900 rounded-2xl p-2 mb-6">
+                    <div className="bg-white border-2 border-amber-200 rounded-2xl p-2 mb-6 shadow-lg">
                       <img 
                         src="/images/Before and After/legs.jpg" 
                         alt="Legs and thighs transformation" 
                         className="w-full h-auto object-cover rounded-xl"
                       />
                     </div>
-                    <h3 className="text-2xl font-bold text-white mb-3">Leg & Thigh Contouring</h3>
-                    <p className="text-gray-400 mb-6">Smooth, toned legs without surgery</p>
+                    <h3 className="text-2xl font-bold text-gray-900 mb-3">Leg & Thigh Contouring</h3>
+                    <p className="text-gray-600 mb-6">Smooth, toned legs without surgery</p>
+                  </div>
+                )}
+                
+                {selectedArea === 'bum' && (
+                  <div>
+                    <div className="bg-white border-2 border-amber-200 rounded-2xl p-2 mb-6 shadow-lg">
+                      <img 
+                        src="/images/Before and After/bum.jpg" 
+                        alt="Bum lifting and contouring" 
+                        className="w-full h-auto object-cover rounded-xl"
+                      />
+                    </div>
+                    <h3 className="text-2xl font-bold text-gray-900 mb-3">Bum Lifting & Contouring</h3>
+                    <p className="text-gray-600 mb-6">Restore volume and achieve a natural lift</p>
                   </div>
                 )}
                 
@@ -386,7 +400,7 @@ export default function TummyResetPage() {
                       setSelectedArea(null)
                       console.log('User viewing more areas - extended engagement')
                     }}
-                    className="px-6 py-3 bg-gray-800 text-white rounded-full hover:bg-gray-700 transition-all"
+                    className="px-6 py-3 bg-white border-2 border-amber-500 text-amber-600 rounded-full hover:bg-amber-50 transition-all font-semibold"
                   >
                     ← View Other Areas
                   </button>
