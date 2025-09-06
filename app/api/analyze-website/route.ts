@@ -1,22 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server'
-import OpenAI from 'openai'
+// OpenAI removed - not needed for this project
 import Anthropic from '@anthropic-ai/sdk'
 import { scrapeWithPlaywright, buildKnowledgeBase } from '@/lib/playwright-scraper'
 import { scrapeFacebookAds, scrapeIndustryAds } from '@/lib/facebook-ads-scraper'
 
-// Initialize AI clients
-let openai: OpenAI | null = null
+// Initialize Anthropic client only (OpenAI not needed)
 let anthropic: Anthropic | null = null
-
-try {
-  if (process.env.OPENAI_API_KEY) {
-    openai = new OpenAI({
-      apiKey: process.env.OPENAI_API_KEY
-    })
-  }
-} catch (error) {
-  console.warn('OpenAI client initialization failed:', error)
-}
 
 try {
   if (process.env.ANTHROPIC_API_KEY) {
@@ -167,62 +156,7 @@ async function analyzeWithClaude(url: string) {
   }
 }
 
-// Analyze with GPT (good for quick analysis)
-async function analyzeWithOpenAI(url: string) {
-  try {
-    let scrapedData = null
-    let knowledge = null
-    
-    // Try to scrape the website for real data (optional - falls back if not available)
-    try {
-      scrapedData = await scrapeWithPlaywright(url, true) // Use Oxylabs proxy
-      knowledge = buildKnowledgeBase(scrapedData)
-      console.log('📊 Scraped data for GPT:', {
-        prices: scrapedData.prices.length,
-        currency: scrapedData.currency
-      })
-    } catch (scrapeError) {
-      console.log('⚠️ Scraping unavailable for GPT, using AI analysis only')
-    }
-    const completion = await openai.chat.completions.create({
-      model: "gpt-4-turbo", // GPT-4 Turbo - Best for September 2025
-      // model: "gpt-4o", // GPT-4o - Multimodal model
-      // model: "gpt-4", // GPT-4 - Standard
-      // model: "gpt-3.5-turbo", // Faster, cheaper option
-      messages: [
-        { 
-          role: "system", 
-          content: `You are an expert at creating irresistible offers. Analyze businesses and create high-converting offers using value stacking. ${scrapedData ? 'Use the REAL DATA provided.' : ''} Return ONLY valid JSON with no markdown, no backticks, no other text.`
-        },
-        { 
-          role: "user", 
-          content: scrapedData ? 
-          `Based on scraped data from ${url}:
-          
-          ${knowledge?.businessContext || ''}
-          ${knowledge?.pricing || ''}
-          ${knowledge?.messaging || ''}
-          
-          Currency: ${scrapedData.currency}
-          Actual prices: ${scrapedData.prices.slice(0, 3).join(', ')}
-          
-          Create offer JSON with: businessType, targetAudience, mainPainPoints (array), competitors (array), suggestedOffer (with dreamOutcome, valueStack array, pricing, guarantee, urgency, bonuses array)` :
-          `Analyze ${url} and create an offer. If UK site (.uk/.co.uk) use £ pounds. Create offer JSON with: businessType, targetAudience, mainPainPoints (array), competitors (array), suggestedOffer (with dreamOutcome, valueStack array, pricing, guarantee, urgency, bonuses array)`
-        }
-      ],
-      temperature: 0.7,
-      max_tokens: 1000
-    })
-
-    let response = completion.choices[0].message.content || '{}'
-    // Remove markdown code block if present
-    response = response.replace(/^```json\s*/, '').replace(/\s*```$/, '').trim()
-    return JSON.parse(response)
-  } catch (error) {
-    console.error('OpenAI error:', error)
-    throw error
-  }
-}
+// OpenAI function removed - not needed for this project
 
 // Detect industry from URL for targeted Facebook Ads search
 function detectIndustry(url: string): string[] {
@@ -377,23 +311,11 @@ export async function POST(req: NextRequest) {
         modelUsed = 'claude'
         console.log('✅ Claude analysis successful')
       } catch (error) {
-        console.log('⚠️ Claude failed, trying OpenAI...')
+        console.log('⚠️ Claude failed, using fallback')
       }
     }
     
-    // Try OpenAI if Claude fails or not available
-    if (!analysis && process.env.OPENAI_API_KEY && (aiModel === 'openai' || aiModel === 'auto')) {
-      try {
-        console.log('🤖 Trying OpenAI...')
-        analysis = await analyzeWithOpenAI(url)
-        modelUsed = 'openai'
-        console.log('✅ OpenAI analysis successful')
-      } catch (error) {
-        console.log('⚠️ OpenAI failed, using fallback')
-      }
-    }
-    
-    // Use intelligent fallback if both fail
+    // Use intelligent fallback if Claude fails or not available
     if (!analysis) {
       console.log('📌 AI models unavailable, using fallback')
       
@@ -401,7 +323,7 @@ export async function POST(req: NextRequest) {
       if (aiModel !== 'auto') {
         return NextResponse.json({ 
           success: false,
-          error: 'AI models are currently offline. Both Claude and OpenAI are unavailable.',
+          error: 'AI model is currently offline. Claude is unavailable.',
           details: 'Please check your API keys or try again later.'
         }, { status: 503 })
       }
