@@ -101,7 +101,7 @@ export default function TummyResetPage() {
       <Navbar />
       <div className="min-h-screen bg-white">
       {/* Urgent Header Bar */}
-      <div className="bg-gradient-to-r from-amber-500 to-amber-600 text-white py-2 px-4 text-center sticky top-0 z-50">
+      <div className="bg-gradient-to-r from-amber-500 to-amber-600 text-white py-2 px-4 text-center sticky top-16 z-40">
         <p className="text-sm font-bold animate-pulse">
           ⚠️ LIMITED TIME: Special Pricing Ends In {timeLeft.hours}h {timeLeft.minutes}m {timeLeft.seconds}s
         </p>
@@ -157,7 +157,7 @@ export default function TummyResetPage() {
                 preload="metadata"
               >
                 <source 
-                  src="https://assets.cdn.filesafe.space/Zxwa5vR7uZAspoKrKMtY/media/688019a79a702ed17a0ba51f.mp4" 
+                  src="https://storage.googleapis.com/msgsndr/dVD6QbgqAF7fiHM3MCrz/media/68bbda681ff6ea68881525c1.mp4" 
                   type="video/mp4" 
                 />
                 Your browser does not support the video tag.
@@ -231,10 +231,10 @@ export default function TummyResetPage() {
       <section className="py-16">
         <div className="max-w-6xl mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-4">
-            The ProMax Lipo Advantage
+            The Skulpt Advantage
           </h2>
           <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
-            Why thousands are choosing ProMax Lipo over surgery for their post-weight loss transformation
+            Why thousands are choosing our advanced treatment over surgery for their post-weight loss transformation
           </p>
 
           <div className="grid md:grid-cols-3 gap-8">
@@ -270,7 +270,7 @@ export default function TummyResetPage() {
                 description: "59 verified Google reviews, all 5 stars - 100% client satisfaction"
               }
             ].map((benefit, index) => (
-              <div key={index} className="bg-gradient-to-br from-gray-900 to-black p-6 rounded-xl border border-amber-500/20 hover:border-amber-500/40 transition-all">
+              <div key={index} className="bg-white p-6 rounded-xl border-2 border-amber-200 hover:border-amber-500 hover:shadow-xl transition-all">
                 <div className="text-4xl mb-4">{benefit.icon}</div>
                 <h3 className="text-xl font-bold text-gray-900 mb-2">{benefit.title}</h3>
                 <p className="text-gray-600">{benefit.description}</p>
@@ -451,8 +451,8 @@ export default function TummyResetPage() {
               {
                 name: "Emma",
                 timeAgo: "2 months ago",
-                treatment: "ProMax Lipo Full Course",
-                quote: "All I can say is Wow!! Even after my first ProMax Lipo session I could see a difference, I had a full course and I was so so pleased with the results. Skulpt is a lovely clinic with a great team!",
+                treatment: "Full Body Contouring Course",
+                quote: "All I can say is Wow!! Even after my first session I could see a difference, I had a full course and I was so so pleased with the results. Skulpt is a lovely clinic with a great team!",
                 rating: 5,
                 verified: true
               },
@@ -467,7 +467,7 @@ export default function TummyResetPage() {
               {
                 name: "Adila Robinson",
                 timeAgo: "3 months ago",
-                treatment: "ProMax Non-Invasive Lipo",
+                treatment: "Non-Invasive Body Contouring",
                 quote: "I can honestly say what a difference it has made. Lost inches and noticeably tightened skin. If you're on the fence, just do it!",
                 rating: 5,
                 verified: true
@@ -492,7 +492,7 @@ export default function TummyResetPage() {
                 name: "Sarah M.",
                 timeAgo: "1 month ago",
                 treatment: "Tummy Reset Program",
-                quote: "After losing weight with Ozempic, ProMax Lipo gave me the flat stomach I'd dreamed of. Finally confident in a bikini!",
+                quote: "After losing weight with Ozempic, Skulpt's treatment gave me the flat stomach I'd dreamed of. Finally confident in a bikini!",
                 rating: 5,
                 verified: true
               }
@@ -600,7 +600,7 @@ export default function TummyResetPage() {
             </div>
 
             <p className="text-center text-gray-700 mt-8">
-              ProMax Lipo uses revolutionary ultrasound cavitation, radio frequency, and vacuum therapy 
+              Our advanced treatment uses revolutionary ultrasound cavitation, radio frequency, and vacuum therapy 
               to tighten skin, reduce fat deposits, and contour your body - all without surgery.
             </p>
           </div>

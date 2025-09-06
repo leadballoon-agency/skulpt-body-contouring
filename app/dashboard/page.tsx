@@ -16,18 +16,22 @@ export default function DashboardPage() {
   const router = useRouter()
   const [showWowMoment, setShowWowMoment] = useState(false)
   const [userEmail, setUserEmail] = useState<string>('')
+  const [userName, setUserName] = useState<string>('')
   const [progressPhotos, setProgressPhotos] = useState<ProgressPhoto[]>([])
   const [isPhotoUploading, setIsPhotoUploading] = useState(false)
+  const [showUserMenu, setShowUserMenu] = useState(false)
 
   useEffect(() => {
     // Check if user came from assessment
     const email = sessionStorage.getItem('assessmentEmail')
+    const name = sessionStorage.getItem('userName')
     if (!email) {
       router.push('/')
       return
     }
     
     setUserEmail(email)
+    setUserName(name || 'User')
     
     // Trigger wow moment after a brief delay
     setTimeout(() => {
@@ -97,6 +101,14 @@ export default function DashboardPage() {
     window.open('https://link.skintight.uk/widget/booking/85AnUNYWb63J1DyMo1g9', '_blank')
   }
 
+  const handleLogout = () => {
+    // Clear session storage
+    sessionStorage.removeItem('assessmentEmail')
+    sessionStorage.removeItem('userName')
+    // Redirect to home
+    router.push('/')
+  }
+
   if (!showWowMoment) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-primary-50 to-accent-50 flex items-center justify-center">
@@ -110,22 +122,118 @@ export default function DashboardPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-primary-50 via-white to-accent-50">
-      {/* Wow Moment Header */}
-      <div className="relative overflow-hidden bg-gradient-to-r from-primary-600 to-primary-700 text-white">
+      {/* User Account Bar with Skulpt Branding - Luxury */}
+      <div className="bg-black shadow-xl border-b border-gold-500/20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center py-4">
+            <div className="flex items-center gap-6">
+              {/* Skulpt Logo */}
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 bg-gradient-to-br from-amber-400 to-yellow-600 rounded flex items-center justify-center shadow-lg">
+                  <span className="text-black font-bold text-xl">S</span>
+                </div>
+                <div>
+                  <h1 className="text-white font-light text-lg tracking-wider">SKULPT</h1>
+                  <p className="text-amber-400 text-xs -mt-1 tracking-widest uppercase">Premium Body Contouring</p>
+                </div>
+              </div>
+              
+              <div className="border-l border-amber-400/30 pl-6">
+                <p className="text-xs text-amber-400/70 uppercase tracking-wider">Welcome back</p>
+                <p className="text-white font-light text-lg">{userName}</p>
+              </div>
+            </div>
+            
+            <div className="flex items-center gap-4">
+              <span className="text-xs bg-gradient-to-r from-amber-400 to-yellow-600 text-black px-4 py-1.5 rounded-full font-medium shadow-lg uppercase tracking-wider">
+                ✓ VIP Member
+              </span>
+              
+              {/* User Menu Dropdown */}
+              <div className="relative">
+                <button
+                  onClick={() => setShowUserMenu(!showUserMenu)}
+                  className="flex items-center gap-2 text-sm text-gray-300 hover:text-white font-medium transition-colors"
+                >
+                  <span>My Account</span>
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+                
+                {showUserMenu && (
+                  <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-1 z-50">
+                    <div className="px-4 py-2 border-b border-gray-100">
+                      <p className="text-xs text-gray-500">Signed in as</p>
+                      <p className="text-sm font-medium text-gray-900 truncate">{userEmail}</p>
+                    </div>
+                    
+                    <button
+                      onClick={() => {
+                        setShowUserMenu(false)
+                        // Navigate to profile settings (future feature)
+                      }}
+                      className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
+                    >
+                      👤 Profile Settings
+                    </button>
+                    
+                    <button
+                      onClick={() => {
+                        setShowUserMenu(false)
+                        // Navigate to treatment plan (future feature)
+                      }}
+                      className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
+                    >
+                      📋 My Treatment Plan
+                    </button>
+                    
+                    <button
+                      onClick={() => {
+                        setShowUserMenu(false)
+                        bookConsultation()
+                      }}
+                      className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
+                    >
+                      📅 Book Consultation
+                    </button>
+                    
+                    <div className="border-t border-gray-100 mt-1">
+                      <button
+                        onClick={() => {
+                          setShowUserMenu(false)
+                          handleLogout()
+                        }}
+                        className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors"
+                      >
+                        🚪 Sign Out
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Wow Moment Header - Luxury Black/Gold */}
+      <div className="relative overflow-hidden bg-gradient-to-b from-black via-gray-900 to-black text-white">
         <div className="absolute inset-0">
-          <div className="absolute top-10 left-10 w-72 h-72 bg-white bg-opacity-10 rounded-full animate-blob"></div>
-          <div className="absolute top-0 right-4 w-72 h-72 bg-accent-500 bg-opacity-20 rounded-full animate-blob animation-delay-2000"></div>
+          <div className="absolute top-10 left-10 w-72 h-72 bg-amber-400 bg-opacity-5 rounded-full animate-blob"></div>
+          <div className="absolute top-0 right-4 w-72 h-72 bg-yellow-600 bg-opacity-5 rounded-full animate-blob animation-delay-2000"></div>
+          <div className="absolute bottom-0 left-1/2 w-96 h-96 bg-amber-500 bg-opacity-5 rounded-full animate-blob animation-delay-4000"></div>
         </div>
         
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
           <div className="animate-pulse mb-6">
-            <span className="inline-block bg-white bg-opacity-20 px-6 py-2 rounded-full text-sm font-semibold">
-              🎉 CONGRATULATIONS!
+            <span className="inline-block bg-gradient-to-r from-amber-400 to-yellow-600 px-8 py-3 rounded text-sm font-medium text-black shadow-xl uppercase tracking-widest">
+              ⭐ Exclusive Qualification ⭐
             </span>
           </div>
           
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 fade-in-up">
-            You're <span className="text-accent-300">Perfect</span> for ProMax Lipo!
+          <h1 className="text-4xl md:text-6xl font-light mb-6 fade-in-up tracking-wide">
+            You're <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-yellow-600 font-normal">Perfect</span> for ProMax Lipo
           </h1>
           
           <p className="text-xl md:text-2xl max-w-3xl mx-auto mb-8 opacity-90">
@@ -134,30 +242,30 @@ export default function DashboardPage() {
           </p>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto mb-12">
-            <div className="bg-white bg-opacity-10 backdrop-blur-md p-6 rounded-2xl">
-              <div className="text-3xl font-bold text-accent-300">95%</div>
-              <p className="text-sm">Match Score</p>
+            <div className="bg-white bg-opacity-10 backdrop-blur-md p-6 rounded-2xl border border-white border-opacity-20">
+              <div className="text-3xl font-bold text-yellow-300">95%</div>
+              <p className="text-sm text-purple-100">Match Score</p>
             </div>
-            <div className="bg-white bg-opacity-10 backdrop-blur-md p-6 rounded-2xl">
-              <div className="text-3xl font-bold text-accent-300">6</div>
-              <p className="text-sm">Recommended Sessions</p>
+            <div className="bg-white bg-opacity-10 backdrop-blur-md p-6 rounded-2xl border border-white border-opacity-20">
+              <div className="text-3xl font-bold text-yellow-300">6</div>
+              <p className="text-sm text-purple-100">Recommended Sessions</p>
             </div>
-            <div className="bg-white bg-opacity-10 backdrop-blur-md p-6 rounded-2xl">
-              <div className="text-3xl font-bold text-accent-300">89%</div>
-              <p className="text-sm">Success Rate for Your Profile</p>
+            <div className="bg-white bg-opacity-10 backdrop-blur-md p-6 rounded-2xl border border-white border-opacity-20">
+              <div className="text-3xl font-bold text-yellow-300">89%</div>
+              <p className="text-sm text-purple-100">Success Rate for Your Profile</p>
             </div>
           </div>
           
           <button
             onClick={bookConsultation}
-            className="bg-accent-500 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-accent-600 transition-all hover:-translate-y-1 hover:shadow-xl mr-4"
+            className="bg-gradient-to-r from-yellow-400 to-orange-400 text-gray-900 px-8 py-4 rounded-lg text-lg font-semibold hover:from-yellow-300 hover:to-orange-300 transition-all hover:-translate-y-1 hover:shadow-xl mr-4"
           >
             Book Your Free Consultation
           </button>
           
           <button
             onClick={startPhotoJourney}
-            className="bg-white bg-opacity-20 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-opacity-30 transition-all border border-white border-opacity-30"
+            className="bg-white bg-opacity-20 backdrop-blur text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-opacity-30 transition-all border-2 border-white border-opacity-30"
           >
             📸 Start Photo Journey
           </button>

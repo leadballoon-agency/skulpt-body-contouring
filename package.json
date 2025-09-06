@@ -10,20 +10,28 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.61.0",
     "@neondatabase/serverless": "^0.6.0",
+    "@sparticuz/chromium-min": "^138.0.2",
+    "cheerio": "^1.1.2",
     "cloudinary": "^1.41.0",
     "dotenv": "^16.3.1",
     "next": "^14.2.0",
+    "openai": "^5.19.1",
+    "puppeteer-core": "^24.18.0",
     "react": "^18.3.0",
+    "react-confetti-explosion": "^3.0.3",
     "react-dom": "^18.3.0"
   },
   "devDependencies": {
+    "@playwright/test": "^1.55.0",
     "@types/node": "^20.0.0",
     "@types/react": "^18.3.0",
     "@types/react-dom": "^18.3.0",
     "autoprefixer": "^10.4.20",
     "eslint": "^8.0.0",
     "eslint-config-next": "^14.2.0",
+    "playwright": "^1.55.0",
     "postcss": "^8.4.41",
     "tailwindcss": "^3.4.0",
     "typescript": "^5.5.0",

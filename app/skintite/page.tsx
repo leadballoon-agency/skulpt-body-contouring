@@ -95,7 +95,7 @@ export default function SkinTitePage() {
           <div className="flex justify-between items-center mb-20">
             <div>
               <h3 className="text-amber-400 font-light text-sm tracking-widest mb-1">EXCLUSIVE TREATMENT</h3>
-              <h2 className="text-2xl font-bold">ProMax Lipo by Lynton</h2>
+              <h2 className="text-2xl font-bold">Advanced Skin Tightening</h2>
             </div>
             <div className="text-right">
               <p className="text-sm text-gray-400">Transform your body</p>
@@ -355,7 +355,7 @@ export default function SkinTitePage() {
                   <p className="font-semibold text-amber-900 mb-2">The Science:</p>
                   <p className="text-sm">
                     When you lose weight quickly, your skin's collagen and elastin fibers 
-                    can't contract fast enough. ProMax Lipo stimulates new collagen production 
+                    can't contract fast enough. Our treatment stimulates new collagen production 
                     while tightening existing fibers.
                   </p>
                 </div>
@@ -482,7 +482,7 @@ export default function SkinTitePage() {
                       />
                     </div>
                     <h3 className="text-3xl font-bold text-white mb-3">Abdominal Skin Tightening</h3>
-                    <p className="text-gray-300 mb-4">This patient lost 45 lbs with Ozempic and tightened the loose skin with ProMax Lipo</p>
+                    <p className="text-gray-300 mb-4">This patient lost 45 lbs with Ozempic and tightened the loose skin with our advanced treatment</p>
                     <div className="bg-amber-500/10 border border-amber-500/30 rounded-lg p-4 mb-6">
                       <p className="text-amber-400 text-sm">
                         <strong>Treatment Time:</strong> 6 sessions over 4 weeks • <strong>Recovery:</strong> None • <strong>Results:</strong> Permanent with maintenance
@@ -522,7 +522,7 @@ export default function SkinTitePage() {
                       />
                     </div>
                     <h3 className="text-3xl font-bold text-white mb-3">Bum Lifting & Contouring</h3>
-                    <p className="text-gray-300 mb-4">Restore volume and lift after weight loss with ProMax Lipo treatment</p>
+                    <p className="text-gray-300 mb-4">Restore volume and lift after weight loss with skin tightening treatment</p>
                     <div className="bg-amber-500/10 border border-amber-500/30 rounded-lg p-4 mb-6">
                       <p className="text-amber-400 text-sm">
                         <strong>Treatment:</strong> Lifting & tightening • <strong>Sessions:</strong> 8-10 treatments • <strong>Results:</strong> Natural lift
@@ -545,7 +545,7 @@ export default function SkinTitePage() {
                     <p className="text-gray-300 mb-4">Complete elimination of hanging under-arm skin after significant weight loss</p>
                     <div className="bg-amber-500/10 border border-amber-500/30 rounded-lg p-4 mb-6">
                       <p className="text-amber-400 text-sm">
-                        <strong>Problem:</strong> Bingo wings from rapid weight loss • <strong>Solution:</strong> ProMax skin tightening • <strong>Satisfaction:</strong> 98%
+                        <strong>Problem:</strong> Bingo wings from rapid weight loss • <strong>Solution:</strong> Advanced skin tightening • <strong>Satisfaction:</strong> 98%
                       </p>
                     </div>
                   </div>
@@ -606,7 +606,7 @@ export default function SkinTitePage() {
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold mb-4">How ProMax Lipo Works</h2>
+            <h2 className="text-4xl font-bold mb-4">How Our Treatment Works</h2>
             <p className="text-xl text-gray-600">Three technologies. One treatment. Amazing results.</p>
           </div>
 
@@ -652,7 +652,7 @@ export default function SkinTitePage() {
                   
                   {/* Video Title Overlay */}
                   <div className="absolute bottom-4 left-4 max-w-md">
-                    <h3 className="text-white text-lg font-bold mb-1">See The ProMax Lipo Difference</h3>
+                    <h3 className="text-white text-lg font-bold mb-1">See The Skulpt Difference</h3>
                     <p className="text-white/80 text-sm">Watch how we transform loose skin without surgery</p>
                   </div>
                   
@@ -674,7 +674,7 @@ export default function SkinTitePage() {
                     className="w-full h-full"
                     controls
                     controlsList="nodownload"
-                    src="https://assets.cdn.filesafe.space/Zxwa5vR7uZAspoKrKMtY/media/688019a79a702ed17a0ba51f.mp4"
+                    src="https://storage.googleapis.com/msgsndr/dVD6QbgqAF7fiHM3MCrz/media/68bbda681ff6ea68881525c1.mp4"
                   >
                     Your browser does not support the video tag.
                   </video>
@@ -696,7 +696,7 @@ export default function SkinTitePage() {
             {/* Video CTA text */}
             <div className="text-center mt-6">
               <p className="text-gray-600">
-                <span className="font-semibold">Click to watch</span> how ProMax Lipo can transform your body
+                <span className="font-semibold">Click to watch</span> how our treatment can transform your body
               </p>
             </div>
           </div>
@@ -748,7 +748,7 @@ export default function SkinTitePage() {
           <div className="mt-12 bg-amber-50 rounded-2xl p-8">
             <div className="grid md:grid-cols-2 gap-8 items-center">
               <div>
-                <h3 className="text-2xl font-bold mb-4">Why ProMax Lipo vs Surgery?</h3>
+                <h3 className="text-2xl font-bold mb-4">Why Choose Non-Surgical Treatment?</h3>
                 <ul className="space-y-3">
                   <li className="flex items-start gap-3">
                     <svg className="w-6 h-6 text-green-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
@@ -835,7 +835,7 @@ export default function SkinTitePage() {
               </div>
               <p className="text-gray-600 mb-4">
                 "Lost 4 stone on Ozempic but was devastated by the loose skin. 
-                ProMax Lipo gave me the body I worked so hard for. No surgery needed!"
+                The treatment gave me the body I worked so hard for. No surgery needed!"
               </p>
               <div className="font-semibold">Sarah M.</div>
               <div className="text-sm text-gray-500">Lost 56 lbs • Stomach & arms treated</div>
@@ -867,7 +867,7 @@ export default function SkinTitePage() {
               </div>
               <p className="text-gray-600 mb-4">
                 "Mounjaro helped me lose weight but left me with bat wings. 
-                ProMax Lipo tightened everything. Worth every penny!"
+                The skin tightening treatment fixed everything. Worth every penny!"
               </p>
               <div className="font-semibold">Lisa K.</div>
               <div className="text-sm text-gray-500">Lost 38 lbs • Arms & thighs treated</div>
@@ -914,7 +914,7 @@ export default function SkinTitePage() {
             <div>
               <h3 className="font-bold text-amber-400 mb-4">SkinTite Clinic</h3>
               <p className="text-sm text-gray-400">
-                Specialist skin tightening clinic using ProMax Lipo by Lynton. 
+                Specialist skin tightening clinic using advanced medical technology. 
                 Helping post-weight loss clients achieve their dream body.
               </p>
             </div>

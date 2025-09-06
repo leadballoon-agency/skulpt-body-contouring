@@ -17,14 +17,14 @@ const poppins = Poppins({
 
 export const metadata: Metadata = {
   title: 'Skulpt - Fix Loose Skin After Weight Loss | Non-Surgical Solutions Peterborough',
-  description: 'Lost weight with Ozempic or Mounjaro? Get rid of loose skin without surgery. ProMax Lipo by Lynton - Peterborough\'s premier body contouring clinic.',
-  keywords: 'loose skin after weight loss, ProMax Lipo, Ozempic loose skin, Wegovy loose skin, Mounjaro loose skin, body contouring Peterborough, non-surgical skin tightening, Lynton ProMax Lipo, post weight loss skin treatment, skinny jab loose skin',
+  description: 'Lost weight with Ozempic or Mounjaro? Get rid of loose skin without surgery. Advanced body contouring - Peterborough\'s premier skin tightening clinic.',
+  keywords: 'loose skin after weight loss, body contouring, Ozempic loose skin, Wegovy loose skin, Mounjaro loose skin, body contouring Peterborough, non-surgical skin tightening, advanced skin tightening, post weight loss skin treatment, skinny jab loose skin',
   authors: [{ name: 'Skulpt Body Contouring' }],
   creator: 'Skulpt Body Contouring',
   publisher: 'Skulpt Body Contouring',
   openGraph: {
     title: 'Skulpt - Fix Loose Skin After Weight Loss | Peterborough',
-    description: 'Lost weight with Ozempic or Mounjaro? Professional ProMax Lipo treatment for loose skin. Peterborough\'s leading body contouring clinic.',
+    description: 'Lost weight with Ozempic or Mounjaro? Professional skin tightening treatment for loose skin. Peterborough\'s leading body contouring clinic.',
     type: 'website',
     locale: 'en_GB',
     siteName: 'Skulpt Body Contouring',
@@ -34,14 +34,14 @@ export const metadata: Metadata = {
         url: '/images/logo.webp',
         width: 1200,
         height: 630,
-        alt: 'Skulpt Body Contouring - ProMax Lipo Treatment'
+        alt: 'Skulpt Body Contouring - Advanced Skin Tightening'
       }
     ]
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Skulpt - Fix Loose Skin After Weight Loss',
-    description: 'Professional ProMax Lipo treatment for post-weight loss loose skin. Peterborough\'s premier clinic.',
+    description: 'Professional skin tightening treatment for post-weight loss loose skin. Peterborough\'s premier clinic.',
     images: ['/images/logo.webp']
   },
   robots: 'index, follow',
