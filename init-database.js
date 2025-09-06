@@ -225,7 +225,7 @@ async function initializeDatabase() {
         if (createSampleData) {
             const [user] = await sql`
                 INSERT INTO users (email, first_name, last_name, phone, postcode)
-                VALUES ('test@skulpt.co.uk', 'Test', 'User', '07700000000', 'PE1 1AA')
+                VALUES ('test@skintight.uk', 'Test', 'User', '07700000000', 'PE1 1AA')
                 RETURNING id
             `;
             

@@ -125,7 +125,7 @@
               cursor: pointer;
               font-weight: bold;
               width: 100%;
-            " onclick="window.open('https://skulpt.co.uk/book', '_blank')">
+            " onclick="window.open('https://skintight.uk/book', '_blank')">
               CLAIM YOUR SPOT NOW →
             </button>
           </div>

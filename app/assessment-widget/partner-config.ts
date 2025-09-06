@@ -81,7 +81,7 @@ export const partners: Record<string, PartnerConfig> = {
   skulpt: {
     id: 'skulpt',
     name: 'Skulpt Body Contouring',
-    domain: 'skulpt.co.uk',
+    domain: 'skintight.uk',
     tracking: {
       metaPixel: {
         enabled: true,

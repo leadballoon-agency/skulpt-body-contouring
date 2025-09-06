@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_GB',
     siteName: 'Skulpt Body Contouring',
-    url: 'https://skulpt.co.uk',
+    url: 'https://skintight.uk',
     images: [
       {
         url: '/images/logo.webp',
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
   },
   robots: 'index, follow',
   alternates: {
-    canonical: 'https://skulpt.co.uk'
+    canonical: 'https://skintight.uk'
   }
 }
 

@@ -116,7 +116,7 @@ export default function AnalyzeStep({ config, updateConfig }: Props) {
   }
 
   const exampleSites = [
-    { type: 'Your Site', url: 'https://skulpt.co.uk', icon: '🏢' },
+    { type: 'Your Site', url: 'https://skintight.uk', icon: '🏢' },
     { type: 'Competitor', url: 'https://coolsculpting.com', icon: '🔍' },
     { type: 'Top Performer', url: 'https://idealimage.com', icon: '🏆' }
   ]
