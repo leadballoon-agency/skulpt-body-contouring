@@ -35,7 +35,18 @@ export default function TummyResetPage() {
 
           <div className="flex flex-col sm:flex-row gap-4">
             <button 
-              onClick={() => setShowBookingModal(true)}
+              onClick={() => {
+                // Track Facebook Pixel conversion event
+                if (typeof window !== 'undefined' && (window as any).fbq) {
+                  (window as any).fbq('track', 'InitiateCheckout', {
+                    value: 149.00,
+                    currency: 'GBP',
+                    content_name: 'Tummy Reset Treatment',
+                    content_category: 'Body Contouring'
+                  });
+                }
+                setShowBookingModal(true)
+              }}
               className="px-8 py-4 bg-[#967e15] text-black font-bold rounded hover:bg-[#b59518] transition-colors"
             >
               Book Your £149 Treatment →
@@ -120,7 +131,16 @@ export default function TummyResetPage() {
             ].map((area) => (
               <button
                 key={area.id}
-                onClick={() => setSelectedArea(area.id)}
+                onClick={() => {
+                  // Track area selection engagement
+                  if (typeof window !== 'undefined' && (window as any).fbq) {
+                    (window as any).fbq('track', 'ViewContent', {
+                      content_name: `Selected Area: ${area.label}`,
+                      content_category: 'Body Area Selection'
+                    });
+                  }
+                  setSelectedArea(area.id)
+                }}
                 className={`p-6 rounded-lg border-2 transition-all ${
                   selectedArea === area.id 
                     ? 'border-[#967e15] bg-[#967e15]/10' 
@@ -165,7 +185,18 @@ export default function TummyResetPage() {
                   ← View Other Areas
                 </button>
                 <button
-                  onClick={() => setShowBookingModal(true)}
+                  onClick={() => {
+                    // Track Facebook Pixel conversion event
+                    if (typeof window !== 'undefined' && (window as any).fbq) {
+                      (window as any).fbq('track', 'InitiateCheckout', {
+                        value: 149.00,
+                        currency: 'GBP',
+                        content_name: 'Tummy Reset Treatment - ' + selectedArea,
+                        content_category: 'Body Contouring'
+                      });
+                    }
+                    setShowBookingModal(true)
+                  }}
                   className="flex-1 px-6 py-3 bg-[#967e15] text-black font-bold rounded hover:bg-[#b59518] transition-colors"
                 >
                   Book This Treatment →
@@ -253,7 +284,18 @@ export default function TummyResetPage() {
             Limited time offer: £149 for 2 areas (Save £301)
           </p>
           <button 
-            onClick={() => setShowBookingModal(true)}
+            onClick={() => {
+              // Track Facebook Pixel conversion event
+              if (typeof window !== 'undefined' && (window as any).fbq) {
+                (window as any).fbq('track', 'InitiateCheckout', {
+                  value: 149.00,
+                  currency: 'GBP',
+                  content_name: 'Tummy Reset Treatment - CTA',
+                  content_category: 'Body Contouring'
+                });
+              }
+              setShowBookingModal(true)
+            }}
             className="px-12 py-5 bg-[#967e15] text-black font-bold text-lg rounded hover:bg-[#b59518] transition-colors"
           >
             Book Your Treatment Now →
