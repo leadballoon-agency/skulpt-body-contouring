@@ -58,120 +58,18 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Desktop Navigation */}
+        {/* Desktop Navigation - Hidden for now, just show logo */}
         <div className="hidden md:flex items-center space-x-8">
-          <button
-            onClick={() => navigateToPage('/')}
-            className="text-dark hover:text-primary-500 font-medium transition-colors relative group"
-          >
-            Home
-            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-500 transition-all group-hover:w-full" />
-          </button>
-          
-          <button
-            onClick={() => navigateToPage('/tummy-reset')}
-            className="text-dark hover:text-primary-500 font-medium transition-colors relative group"
-          >
-            Tummy Reset
-            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-500 transition-all group-hover:w-full" />
-          </button>
-          
-          <button
-            onClick={() => navigateToPage('/skintite')}
-            className="text-dark hover:text-primary-500 font-medium transition-colors relative group"
-          >
-            SkinTite
-            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-500 transition-all group-hover:w-full" />
-          </button>
-          
-          <button
-            onClick={() => navigateToPage('/recovery-detox')}
-            className="text-dark hover:text-primary-500 font-medium transition-colors relative group"
-          >
-            Recovery
-            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-500 transition-all group-hover:w-full" />
-          </button>
-          
-          <button
-            onClick={() => scrollToSection('treatment')}
-            className="text-dark hover:text-primary-500 font-medium transition-colors relative group"
-          >
-            Treatment
-            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-500 transition-all group-hover:w-full" />
-          </button>
-          
-          <button
-            onClick={() => scrollToSection('faq')}
-            className="text-dark hover:text-primary-500 font-medium transition-colors relative group"
-          >
-            FAQ
-            <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-500 transition-all group-hover:w-full" />
-          </button>
-          
-          <button
-            onClick={() => scrollToSection('assessment')}
-            className="bg-primary-500 text-white px-6 py-2 rounded-full font-semibold hover:bg-primary-600 transition-all hover:-translate-y-0.5 hover:shadow-lg"
-          >
-            Get Started
-          </button>
+          {/* Navigation temporarily hidden - tummy-reset page only */}
         </div>
 
-        {/* Mobile Menu Button */}
-        <button
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="md:hidden text-dark text-xl"
-        >
-          {isMobileMenuOpen ? '✕' : '☰'}
-        </button>
+        {/* Mobile Menu Button - Hidden for now */}
       </div>
 
-      {/* Mobile Menu */}
-      {isMobileMenuOpen && (
+      {/* Mobile Menu - Hidden for now */}
+      {false && isMobileMenuOpen && (
         <div className="md:hidden mt-4 bg-white bg-opacity-95 backdrop-blur-md rounded-lg mx-4 shadow-lg">
-          <div className="px-6 py-4 space-y-4">
-            <button
-              onClick={() => navigateToPage('/')}
-              className="block w-full text-left text-dark hover:text-primary-500 font-medium py-2"
-            >
-              Home
-            </button>
-            <button
-              onClick={() => navigateToPage('/tummy-reset')}
-              className="block w-full text-left text-dark hover:text-primary-500 font-medium py-2"
-            >
-              Tummy Reset
-            </button>
-            <button
-              onClick={() => navigateToPage('/skintite')}
-              className="block w-full text-left text-dark hover:text-primary-500 font-medium py-2"
-            >
-              SkinTite
-            </button>
-            <button
-              onClick={() => navigateToPage('/recovery-detox')}
-              className="block w-full text-left text-dark hover:text-primary-500 font-medium py-2"
-            >
-              Recovery
-            </button>
-            <button
-              onClick={() => scrollToSection('treatment')}
-              className="block w-full text-left text-dark hover:text-primary-500 font-medium py-2"
-            >
-              Treatment
-            </button>
-            <button
-              onClick={() => scrollToSection('faq')}
-              className="block w-full text-left text-dark hover:text-primary-500 font-medium py-2"
-            >
-              FAQ
-            </button>
-            <button
-              onClick={() => scrollToSection('assessment')}
-              className="block w-full bg-primary-500 text-white px-4 py-3 rounded-lg font-semibold hover:bg-primary-600 transition-colors"
-            >
-              Get Started
-            </button>
-          </div>
+          {/* Mobile menu temporarily hidden - tummy-reset page only */}
         </div>
       )}
     </nav>
