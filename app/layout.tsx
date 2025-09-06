@@ -83,20 +83,67 @@ export default function RootLayout({
             src="https://www.facebook.com/tr?id=1337105897562752&ev=PageView&noscript=1"
           />
         </noscript>
+        
+        {/* Force scroll to top on every page load/refresh - placed in head for early execution */}
+        <script dangerouslySetInnerHTML={{
+          __html: `
+            // Immediately disable scroll restoration
+            if ('scrollRestoration' in history) {
+              history.scrollRestoration = 'manual';
+            }
+            // Force immediate scroll to top
+            window.scrollTo(0, 0);
+          `
+        }} />
       </head>
       <body className={`${inter.className} antialiased`}>
         {children}
         
-        {/* Scroll Restoration Fix */}
+        {/* Additional scroll fix for all scenarios */}
         <script dangerouslySetInnerHTML={{
           __html: `
-            // Force scroll to top on page load and disable browser scroll restoration
-            if (typeof window !== 'undefined') {
+            (function() {
+              // Multiple strategies to ensure scroll to top
+              
+              // 1. Immediate execution
               window.scrollTo(0, 0);
-              if ('scrollRestoration' in history) {
-                history.scrollRestoration = 'manual';
+              document.documentElement.scrollTop = 0;
+              document.body.scrollTop = 0;
+              
+              // 2. On DOM ready
+              if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', function() {
+                  window.scrollTo(0, 0);
+                  document.documentElement.scrollTop = 0;
+                  document.body.scrollTop = 0;
+                });
+              } else {
+                window.scrollTo(0, 0);
+                document.documentElement.scrollTop = 0;
+                document.body.scrollTop = 0;
               }
-            }
+              
+              // 3. On full page load
+              window.addEventListener('load', function() {
+                window.scrollTo(0, 0);
+                document.documentElement.scrollTop = 0;
+                document.body.scrollTop = 0;
+              });
+              
+              // 4. After a tiny delay to catch any late-loading content
+              setTimeout(function() {
+                window.scrollTo(0, 0);
+                document.documentElement.scrollTop = 0;
+                document.body.scrollTop = 0;
+              }, 100);
+              
+              // 5. On page show (handles back button)
+              window.addEventListener('pageshow', function(event) {
+                window.scrollTo(0, 0);
+                document.documentElement.scrollTop = 0;
+                document.body.scrollTop = 0;
+              });
+            })();
           `
         }} />
       </body>

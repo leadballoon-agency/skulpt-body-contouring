@@ -1,11 +1,66 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Navbar from '@/components/Navbar'
 
 export default function TummyResetPage() {
   const [selectedArea, setSelectedArea] = useState<string | null>(null)
   const [showBookingModal, setShowBookingModal] = useState(false)
+  const [medicationIndex, setMedicationIndex] = useState(0)
+  const medications = ['Ozempic', 'Mounjaro']
+
+  // Animate medication names
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setMedicationIndex((prev) => (prev + 1) % medications.length)
+    }, 3000) // Change every 3 seconds
+
+    return () => clearInterval(interval)
+  }, [medications.length])
+
+  // Scroll to top on page load and reset
+  useEffect(() => {
+    // Scroll to top immediately
+    window.scrollTo(0, 0)
+    
+    // Also handle browser navigation (back/forward buttons)
+    const handleScrollReset = () => {
+      window.scrollTo(0, 0)
+    }
+    
+    // Force scroll to top after page fully loads
+    if (document.readyState === 'complete') {
+      window.scrollTo(0, 0)
+    } else {
+      window.addEventListener('load', handleScrollReset)
+    }
+    
+    // Handle browser navigation events
+    window.addEventListener('popstate', handleScrollReset)
+    
+    return () => {
+      window.removeEventListener('load', handleScrollReset)
+      window.removeEventListener('popstate', handleScrollReset)
+    }
+  }, [])
+
+  // Load GHL form embed script when booking modal is shown
+  useEffect(() => {
+    if (showBookingModal) {
+      const script = document.createElement('script')
+      script.src = 'https://link.skintight.uk/js/form_embed.js'
+      script.type = 'text/javascript'
+      script.async = true
+      document.body.appendChild(script)
+
+      return () => {
+        // Cleanup script when modal closes
+        if (document.body.contains(script)) {
+          document.body.removeChild(script)
+        }
+      }
+    }
+  }, [showBookingModal])
 
   return (
     <>
@@ -31,7 +86,43 @@ export default function TummyResetPage() {
           
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-8">
             Lost Weight with
-            <span className="block text-[#967e15] mt-2">Ozempic?</span>
+            <span className="block text-[#967e15] mt-2 relative h-[1.2em] overflow-hidden">
+              <style jsx>{`
+                @keyframes shimmer {
+                  0% { background-position: -200% center; }
+                  100% { background-position: 200% center; }
+                }
+                .shimmer-text {
+                  background: linear-gradient(
+                    90deg,
+                    #967e15 40%,
+                    #d4af37 50%,
+                    #967e15 60%
+                  );
+                  background-size: 200% auto;
+                  -webkit-background-clip: text;
+                  background-clip: text;
+                  -webkit-text-fill-color: transparent;
+                  animation: shimmer 3s ease-in-out infinite;
+                }
+              `}</style>
+              {medications.map((med, index) => (
+                <span
+                  key={med}
+                  className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
+                    index === medicationIndex 
+                      ? 'opacity-100 transform translate-y-0 scale-100' 
+                      : index < medicationIndex 
+                        ? 'opacity-0 transform -translate-y-full scale-95'
+                        : 'opacity-0 transform translate-y-full scale-95'
+                  }`}
+                >
+                  <span className={index === medicationIndex ? 'shimmer-text' : ''}>
+                    {med}?
+                  </span>
+                </span>
+              ))}
+            </span>
             <span className="block text-3xl md:text-4xl lg:text-5xl mt-4 text-white">Fix Your Loose Skin</span>
           </h1>
           
@@ -350,8 +441,9 @@ export default function TummyResetPage() {
               <div className="relative bg-gray-50 rounded-lg p-2">
                 <iframe 
                   src="https://link.skintight.uk/widget/booking/BkV9yMGSHFDGj6RV4cAI" 
-                  style={{ width: '100%', height: '600px', border: 'none' }}
+                  style={{ width: '100%', height: '600px', border: 'none', overflow: 'hidden' }}
                   scrolling="no"
+                  id="BkV9yMGSHFDGj6RV4cAI_1757157986836"
                 ></iframe>
               </div>
             </div>
