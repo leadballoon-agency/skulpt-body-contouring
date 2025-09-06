@@ -11,24 +11,31 @@ export default function TummyResetPage() {
     <>
       <Navbar />
       
-      {/* Hero Section - Skulpt Branding */}
-      <section className="relative min-h-[70vh] bg-black text-white">
-        {/* Simple gradient background */}
+      {/* Hero Section - Full Viewport */}
+      <section className="relative min-h-screen bg-black text-white flex items-center">
+        {/* Gradient background with subtle animation */}
         <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black opacity-90"></div>
         
-        <div className="relative z-10 max-w-6xl mx-auto px-4 py-20">
+        {/* Animated accent circles */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-20 -left-20 w-96 h-96 bg-[#967e15]/10 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-20 -right-20 w-96 h-96 bg-[#967e15]/5 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        </div>
+        
+        <div className="relative z-10 max-w-6xl mx-auto px-4 py-20 w-full">
           {/* Urgent Banner */}
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#967e15]/20 border border-[#967e15] rounded-full mb-8">
             <span className="w-2 h-2 bg-[#967e15] rounded-full animate-pulse"></span>
             <span className="text-[#967e15] text-sm font-semibold">Limited Time: £149 for 2 Areas</span>
           </div>
           
-          <h1 className="text-4xl md:text-6xl font-bold mb-6">
-            Lost Weight with Ozempic?
-            <span className="block text-[#967e15] mt-2">Fix Your Loose Skin</span>
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-8">
+            Lost Weight with
+            <span className="block text-[#967e15] mt-2">Ozempic?</span>
+            <span className="block text-3xl md:text-4xl lg:text-5xl mt-4 text-white">Fix Your Loose Skin</span>
           </h1>
           
-          <p className="text-xl text-gray-300 mb-8 max-w-2xl">
+          <p className="text-xl md:text-2xl text-gray-300 mb-10 max-w-2xl">
             Professional skin tightening treatment. No surgery. No downtime. 
             Just 1 hour to transform 2 problem areas.
           </p>
@@ -47,13 +54,13 @@ export default function TummyResetPage() {
                 }
                 setShowBookingModal(true)
               }}
-              className="px-8 py-4 bg-[#967e15] text-black font-bold rounded hover:bg-[#b59518] transition-colors"
+              className="px-10 py-5 bg-[#967e15] text-black text-lg font-bold rounded-lg hover:bg-[#b59518] transition-all transform hover:scale-105 hover:shadow-2xl"
             >
               Book Your £149 Treatment →
             </button>
             <a 
               href="#results"
-              className="px-8 py-4 border border-[#967e15] text-[#967e15] font-semibold rounded hover:bg-[#967e15]/10 transition-colors text-center"
+              className="px-10 py-5 border-2 border-[#967e15] text-[#967e15] text-lg font-semibold rounded-lg hover:bg-[#967e15]/10 transition-all text-center"
             >
               See Real Results
             </a>
@@ -79,6 +86,13 @@ export default function TummyResetPage() {
               </svg>
               <span>Instant Results</span>
             </div>
+          </div>
+          
+          {/* Scroll Indicator */}
+          <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <svg className="w-6 h-6 text-[#967e15]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+            </svg>
           </div>
         </div>
       </section>
