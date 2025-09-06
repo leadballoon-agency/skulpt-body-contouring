@@ -5,13 +5,28 @@ import { scrapeWithPlaywright, buildKnowledgeBase } from '@/lib/playwright-scrap
 import { scrapeFacebookAds, scrapeIndustryAds } from '@/lib/facebook-ads-scraper'
 
 // Initialize AI clients
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY
-})
+let openai: OpenAI | null = null
+let anthropic: Anthropic | null = null
 
-const anthropic = new Anthropic({
-  apiKey: process.env.ANTHROPIC_API_KEY
-})
+try {
+  if (process.env.OPENAI_API_KEY) {
+    openai = new OpenAI({
+      apiKey: process.env.OPENAI_API_KEY
+    })
+  }
+} catch (error) {
+  console.warn('OpenAI client initialization failed:', error)
+}
+
+try {
+  if (process.env.ANTHROPIC_API_KEY) {
+    anthropic = new Anthropic({
+      apiKey: process.env.ANTHROPIC_API_KEY
+    })
+  }
+} catch (error) {
+  console.warn('Anthropic client initialization failed:', error)
+}
 
 // Analyze with Claude (better for understanding context and creating copy)
 async function analyzeWithClaude(url: string) {
@@ -72,6 +87,10 @@ async function analyzeWithClaude(url: string) {
         currency: scrapedData.currency
       })
     }
+    if (!anthropic) {
+      throw new Error('Anthropic API not configured')
+    }
+    
     const response = await anthropic.messages.create({
       model: 'claude-sonnet-4-20250514', // Claude 4 Sonnet - May 2025 version
       // model: 'claude-3-5-sonnet-20241022', // Claude 3.5 Sonnet - October 2024 version
