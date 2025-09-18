@@ -7,7 +7,7 @@ export default function HomePage() {
   const [selectedArea, setSelectedArea] = useState<string | null>('stomach')
   const [showBookingModal, setShowBookingModal] = useState(false)
   const [medicationIndex, setMedicationIndex] = useState(0)
-  const medications = ['Ozempic', 'Mounjaro']
+  const medications = ['Ozempic', 'Wegovy', 'Mounjaro']
 
   // Animate medication names
   useEffect(() => {
