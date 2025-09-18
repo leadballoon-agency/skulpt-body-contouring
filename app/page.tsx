@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import Navbar from '@/components/Navbar'
 
 export default function HomePage() {
-  const [selectedArea, setSelectedArea] = useState<string | null>(null)
+  const [selectedArea, setSelectedArea] = useState<string | null>('stomach')
   const [showBookingModal, setShowBookingModal] = useState(false)
   const [medicationIndex, setMedicationIndex] = useState(0)
   const medications = ['Ozempic', 'Mounjaro']
@@ -81,7 +81,7 @@ export default function HomePage() {
           {/* Urgent Banner */}
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#967e15]/20 border border-[#967e15] rounded-full mb-8">
             <span className="w-2 h-2 bg-[#967e15] rounded-full animate-pulse"></span>
-            <span className="text-[#967e15] text-sm font-semibold">Limited Time: £149 for 2 Areas</span>
+            <span className="text-[#967e15] text-sm font-semibold">Limited Time: £50 Consultation & Treatment</span>
           </div>
           
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-8">
@@ -128,7 +128,7 @@ export default function HomePage() {
           
           <p className="text-xl md:text-2xl text-gray-300 mb-10 max-w-2xl">
             Professional skin tightening treatment. No surgery. No downtime. 
-            Just 1 hour to transform 2 problem areas.
+            Professional consultation and treatment from just £50.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4">
@@ -137,7 +137,7 @@ export default function HomePage() {
                 // Track Facebook Pixel conversion event
                 if (typeof window !== 'undefined' && (window as any).fbq) {
                   (window as any).fbq('track', 'InitiateCheckout', {
-                    value: 149.00,
+                    value: 50.00,
                     currency: 'GBP',
                     content_name: 'Tummy Reset Treatment',
                     content_category: 'Body Contouring'
@@ -147,7 +147,7 @@ export default function HomePage() {
               }}
               className="px-10 py-5 bg-[#967e15] text-black text-lg font-bold rounded-lg hover:bg-[#b59518] transition-all transform hover:scale-105 hover:shadow-2xl"
             >
-              Book Your £149 Treatment →
+              Book Your £50 Consultation →
             </button>
             <a 
               href="#results"
@@ -218,10 +218,10 @@ export default function HomePage() {
       <section id="results" className="py-16 bg-gray-50">
         <div className="max-w-6xl mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
-            Choose Your 2 Problem Areas
+            Choose Your Problem Area
           </h2>
           <p className="text-center text-gray-600 mb-12">
-            Each area takes just 30 minutes. Select 2 areas for your £149 treatment.
+            Select the area you'd like to focus on during your consultation.
           </p>
 
           {/* Area Selection Grid */}
@@ -294,7 +294,7 @@ export default function HomePage() {
                     // Track Facebook Pixel conversion event
                     if (typeof window !== 'undefined' && (window as any).fbq) {
                       (window as any).fbq('track', 'InitiateCheckout', {
-                        value: 149.00,
+                        value: 50.00,
                         currency: 'GBP',
                         content_name: 'Tummy Reset Treatment - ' + selectedArea,
                         content_category: 'Body Contouring'
@@ -331,7 +331,7 @@ export default function HomePage() {
             <div className="text-center">
               <div className="text-4xl mb-4">💰</div>
               <h3 className="font-bold text-xl mb-2">Amazing Value</h3>
-              <p className="text-gray-600">Just £149 for 2 areas (normally £450)</p>
+              <p className="text-gray-600">Just £50 for consultation and treatment</p>
             </div>
           </div>
         </div>
@@ -386,14 +386,14 @@ export default function HomePage() {
         <div className="max-w-4xl mx-auto px-4">
           <h2 className="text-4xl font-bold mb-4">Ready to Love Your Body Again?</h2>
           <p className="text-xl text-gray-300 mb-8">
-            Limited time offer: £149 for 2 areas (Save £301)
+            Limited time offer: £50 consultation & treatment
           </p>
           <button 
             onClick={() => {
               // Track Facebook Pixel conversion event
               if (typeof window !== 'undefined' && (window as any).fbq) {
                 (window as any).fbq('track', 'InitiateCheckout', {
-                  value: 149.00,
+                  value: 50.00,
                   currency: 'GBP',
                   content_name: 'Tummy Reset Treatment - CTA',
                   content_category: 'Body Contouring'
@@ -434,7 +434,7 @@ export default function HomePage() {
             </button>
             
             <div className="p-6">
-              <h2 className="text-2xl font-bold mb-4">Book Your £149 Treatment</h2>
+              <h2 className="text-2xl font-bold mb-4">Book Your £50 Consultation</h2>
               <p className="text-gray-600 mb-6">Select your preferred date and time below:</p>
               
               {/* GHL Calendar */}

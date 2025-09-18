@@ -212,6 +212,24 @@
             color: var(--primary);
         }
 
+        .medication-rotate {
+            display: inline-block;
+            color: var(--primary);
+            font-weight: 700;
+            min-width: 110px;
+        }
+
+        .medication-rotate::after {
+            content: 'Ozempic';
+            animation: rotateText 9s infinite;
+        }
+
+        @keyframes rotateText {
+            0%, 30% { content: 'Ozempic'; }
+            33%, 63% { content: 'Wegovy'; }
+            66%, 100% { content: 'Mounjaro'; }
+        }
+
         .hero-subtitle {
             font-size: 1.25rem;
             color: var(--gray);
@@ -952,8 +970,8 @@
     <!-- Full Viewport Hero Section -->
     <section class="hero" id="home">
         <div class="hero-content">
-            <div class="hero-badge">⚠️ The Truth About Weight Loss Injections</div>
-            <h1>Lost Weight?<br>Let's Fix That <span class="highlight">Loose Skin</span></h1>
+            <div class="hero-badge">💷 £50 Consultation & Treatment</div>
+            <h1>Lost Weight with <span class="medication-rotate"></span>?<br>Let's Fix That <span class="highlight">Loose Skin</span></h1>
             <p class="hero-subtitle">Professional non-surgical treatment for your post-weight loss transformation. Find out if you're suitable in just 2 minutes.</p>
             <button class="cta-button" onclick="document.getElementById('assessment').scrollIntoView({ behavior: 'smooth' })">Start Free Assessment →</button>
             
