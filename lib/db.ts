@@ -1,6 +1,7 @@
 import { neon } from '@neondatabase/serverless';
 
-const sql = neon(process.env.DATABASE_URL!);
+// Only initialize if DATABASE_URL is available
+const sql = process.env.DATABASE_URL ? neon(process.env.DATABASE_URL) : null;
 
 export interface User {
   id: string;
@@ -24,6 +25,10 @@ export interface Assessment {
 }
 
 export async function createUser(userData: Partial<User>) {
+  if (!sql) {
+    console.warn('Database not configured - skipping user creation');
+    return null;
+  }
   try {
     const [user] = await sql`
       INSERT INTO users (email, phone, first_name, last_name, postcode)
@@ -38,6 +43,10 @@ export async function createUser(userData: Partial<User>) {
 }
 
 export async function createAssessment(assessmentData: Partial<Assessment>) {
+  if (!sql) {
+    console.warn('Database not configured - skipping assessment creation');
+    return null;
+  }
   try {
     const [assessment] = await sql`
       INSERT INTO assessments (
@@ -68,6 +77,10 @@ export async function createAssessment(assessmentData: Partial<Assessment>) {
 }
 
 export async function saveFeedback(feedbackData: any) {
+  if (!sql) {
+    console.warn('Database not configured - skipping feedback save');
+    return null;
+  }
   try {
     const [feedback] = await sql`
       INSERT INTO feedback (
