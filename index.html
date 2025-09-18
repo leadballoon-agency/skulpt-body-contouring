@@ -971,7 +971,7 @@
     <section class="hero" id="home">
         <div class="hero-content">
             <div class="hero-badge">💷 £50 Consultation & Treatment</div>
-            <h1>Lost Weight with <span class="medication-rotate"></span>?<br>Let's Fix That <span class="highlight">Loose Skin</span></h1>
+            <h1>Lost Weight with <span class="medication-rotate" id="medicationRotate">Ozempic</span>?<br>Let's Fix That <span class="highlight">Loose Skin</span></h1>
             <p class="hero-subtitle">Professional non-surgical treatment for your post-weight loss transformation. Find out if you're suitable in just 2 minutes.</p>
             <button class="cta-button" onclick="document.getElementById('assessment').scrollIntoView({ behavior: 'smooth' })">Start Free Assessment →</button>
             
@@ -1601,6 +1601,27 @@
     </footer>
 
     <script>
+        // Medication rotation
+        const medications = ['Ozempic', 'Wegovy', 'Mounjaro'];
+        let currentMedIndex = 0;
+
+        function rotateMedication() {
+            const element = document.getElementById('medicationRotate');
+            if (element) {
+                element.style.opacity = '0';
+                setTimeout(() => {
+                    currentMedIndex = (currentMedIndex + 1) % medications.length;
+                    element.textContent = medications[currentMedIndex];
+                    element.style.opacity = '1';
+                }, 300);
+            }
+        }
+
+        // Start rotation when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            setInterval(rotateMedication, 3000); // Change every 3 seconds
+        });
+
         // Navbar scroll effect
         let lastScroll = 0;
         const navbar = document.getElementById('navbar');
