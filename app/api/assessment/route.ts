@@ -74,7 +74,7 @@ export async function POST(request: NextRequest) {
     const matchScore = calculateMatchScore(data)
     
     // Save assessment to database
-    const assessmentRecord = await createAssessment({
+    const assessmentRecord = user ? await createAssessment({
       user_id: user.id,
       weight_loss_method: data.medicalHistory.includes('ozempic') ? 'ozempic' : 'other',
       weight_lost_kg: 0, // This would come from assessment questions
@@ -82,7 +82,7 @@ export async function POST(request: NextRequest) {
       recommended_treatment: 'ProMax Lipo',
       match_score: matchScore,
       qualification_status: qualification,
-    })
+    }) : null
     
     // Generate recommendations
     const recommendations = generateRecommendations(assessment)
