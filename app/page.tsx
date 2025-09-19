@@ -191,9 +191,9 @@ export default function HomePage() {
       {/* Video Section */}
       <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-4">Watch Sarah's Transformation</h2>
+          <h2 className="text-3xl font-bold text-center mb-4">Real Before & After Results</h2>
           <p className="text-center text-gray-600 mb-8">
-            See how our treatment helped Sarah after her Ozempic weight loss
+            See actual transformations: stomach, arms, thighs and bottom
           </p>
           
           <div className="relative rounded-lg overflow-hidden shadow-2xl">
