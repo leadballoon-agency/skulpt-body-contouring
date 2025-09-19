@@ -201,7 +201,7 @@ export default function HomePage() {
               className="w-full"
               controls
               controlsList="nodownload"
-              poster=""
+              poster="/images/thumbnail.png"
               preload="metadata"
             >
               <source 
