@@ -406,7 +406,7 @@ export default function HomePage() {
             Book Your Treatment Now →
           </button>
           <p className="text-sm text-gray-500 mt-4">
-            £25 redeemable deposit secures your appointment
+            Limited time offer - £50 for consultation and treatment
           </p>
         </div>
       </section>
@@ -434,8 +434,8 @@ export default function HomePage() {
             </button>
             
             <div className="p-6">
-              <h2 className="text-2xl font-bold mb-4">Book Your £50 Consultation</h2>
-              <p className="text-gray-600 mb-6">Select your preferred date and time below:</p>
+              <h2 className="text-2xl font-bold mb-4">Book Your £50 Consultation & Treatment</h2>
+              <p className="text-gray-600 mb-6">Includes both consultation and your first treatment session:</p>
               
               {/* GHL Calendar */}
               <div className="relative bg-gray-50 rounded-lg p-2">
