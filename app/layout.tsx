@@ -63,32 +63,24 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${inter.variable} ${poppins.variable}`}>
-      {/* Facebook Pixel Code - Moved outside head for proper loading */}
-      <Script
-        id="facebook-pixel"
-        strategy="afterInteractive"
-        dangerouslySetInnerHTML={{
-          __html: `
-            !function(f,b,e,v,n,t,s)
-            {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-            n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-            if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-            n.queue=[];t=b.createElement(e);t.async=!0;
-            t.src=v;s=b.getElementsByTagName(e)[0];
-            s.parentNode.insertBefore(t,s)}(window, document,'script',
-            'https://connect.facebook.net/en_US/fbevents.js');
-            fbq('init', '1337105897562752');
-            fbq('track', 'PageView');
-          `
-        }}
-      />
-      <noscript>
-        <img height="1" width="1" style={{ display: 'none' }}
-          src="https://www.facebook.com/tr?id=1337105897562752&ev=PageView&noscript=1"
-        />
-      </noscript>
-
       <head>
+        {/* Facebook Pixel Code */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              !function(f,b,e,v,n,t,s)
+              {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+              n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+              if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+              n.queue=[];t=b.createElement(e);t.async=!0;
+              t.src=v;s=b.getElementsByTagName(e)[0];
+              s.parentNode.insertBefore(t,s)}(window, document,'script',
+              'https://connect.facebook.net/en_US/fbevents.js');
+              fbq('init', '1337105897562752');
+              fbq('track', 'PageView');
+            `
+          }}
+        />
         
         {/* Force scroll to top on every page load/refresh - placed in head for early execution */}
         <script dangerouslySetInnerHTML={{
@@ -103,8 +95,35 @@ export default function RootLayout({
         }} />
       </head>
       <body className={`${inter.className} antialiased`}>
+        {/* Facebook Pixel Noscript */}
+        <noscript>
+          <img
+            height="1"
+            width="1"
+            style={{ display: 'none' }}
+            src="https://www.facebook.com/tr?id=1337105897562752&ev=PageView&noscript=1"
+          />
+        </noscript>
+
         {children}
-        
+
+        {/* Facebook Pixel Verification */}
+        <Script
+          id="fb-pixel-check"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              console.log('Checking Facebook Pixel...');
+              if (typeof fbq !== 'undefined') {
+                console.log('✅ Facebook Pixel is loaded');
+                fbq('track', 'PageView');
+              } else {
+                console.error('❌ Facebook Pixel not found');
+              }
+            `
+          }}
+        />
+
         {/* Additional scroll fix for all scenarios */}
         <script dangerouslySetInnerHTML={{
           __html: `
