@@ -230,6 +230,102 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* IMPORTANT: Start During Your Journey Section */}
+      <section className="py-20 bg-gradient-to-r from-red-50 to-orange-50 relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-orange-100 rounded-full opacity-20 blur-3xl"></div>
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-red-100 rounded-full opacity-20 blur-3xl"></div>
+
+        <div className="max-w-4xl mx-auto px-4 relative z-10">
+          <div className="text-center mb-8">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-red-600 text-white rounded-full mb-6">
+              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+              </svg>
+              <span className="font-semibold">DON'T WAIT - START NOW</span>
+            </div>
+
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900">
+              The Biggest Mistake People Make?<br/>
+              <span className="text-red-600">Waiting Until They've Lost All The Weight</span>
+            </h2>
+
+            <p className="text-xl text-gray-700 mb-8 leading-relaxed">
+              Your skin needs help <strong>during</strong> your weight loss journey, not after.
+              Starting treatments while losing weight means your skin can adapt gradually,
+              preventing severe sagging and excess skin.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6 mb-12">
+            <div className="bg-white rounded-xl p-6 shadow-lg border-l-4 border-red-500">
+              <div className="text-3xl mb-3">⏰</div>
+              <h3 className="font-bold text-lg mb-2">Week 4-8 of Ozempic?</h3>
+              <p className="text-gray-600">Perfect time to start! Your skin is beginning to lose elasticity. Early intervention = better results.</p>
+            </div>
+
+            <div className="bg-white rounded-xl p-6 shadow-lg border-l-4 border-orange-500">
+              <div className="text-3xl mb-3">📉</div>
+              <h3 className="font-bold text-lg mb-2">Lost 1-2 Stone Already?</h3>
+              <p className="text-gray-600">Don't wait! Start tightening now while your skin still has some natural bounce-back ability.</p>
+            </div>
+
+            <div className="bg-white rounded-xl p-6 shadow-lg border-l-4 border-yellow-500">
+              <div className="text-3xl mb-3">✨</div>
+              <h3 className="font-bold text-lg mb-2">Monthly Maintenance</h3>
+              <p className="text-gray-600">Regular treatments during weight loss = tight skin when you reach your goal weight.</p>
+            </div>
+          </div>
+
+          <div className="bg-white rounded-2xl p-8 shadow-xl">
+            <div className="flex items-start gap-4 mb-6">
+              <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
+                <svg className="w-6 h-6 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                </svg>
+              </div>
+              <div>
+                <h3 className="font-bold text-xl mb-2">The Smart Approach: Concurrent Treatment</h3>
+                <p className="text-gray-700 mb-4">
+                  Studies show that skin tightening treatments during weight loss are
+                  <strong> 3x more effective</strong> than waiting until after. Your skin's collagen
+                  production is still active, making it more responsive to treatment.
+                </p>
+                <ul className="space-y-2 text-gray-600">
+                  <li className="flex items-center gap-2">
+                    <span className="text-green-500">✓</span>
+                    Prevents severe skin sagging
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="text-green-500">✓</span>
+                    Maintains skin elasticity throughout journey
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="text-green-500">✓</span>
+                    Achieve tight, toned results at goal weight
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="text-green-500">✓</span>
+                    Avoid costly surgery later
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div className="text-center pt-6 border-t">
+              <p className="text-sm text-gray-500 mb-4">
+                Most clients wish they'd started sooner. Don't make the same mistake.
+              </p>
+              <button
+                onClick={() => setShowBookingModal(true)}
+                className="px-8 py-4 bg-gradient-to-r from-red-600 to-orange-600 text-white font-bold rounded-lg hover:from-red-700 hover:to-orange-700 transform hover:scale-105 transition-all shadow-lg"
+              >
+                Start Your Treatments Today - £50 Consultation
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Problem Areas Section */}
       <section id="results" className="py-16 bg-gray-50">
         <div className="max-w-6xl mx-auto px-4">
