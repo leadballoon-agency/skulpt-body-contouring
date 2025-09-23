@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Inter, Poppins } from 'next/font/google'
+import Script from 'next/script'
 import './globals.css'
 
 const inter = Inter({ 
@@ -62,9 +63,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${inter.variable} ${poppins.variable}`}>
-      <head>
-        {/* Facebook Pixel Code */}
-        <script dangerouslySetInnerHTML={{
+      {/* Facebook Pixel Code - Moved outside head for proper loading */}
+      <Script
+        id="facebook-pixel"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
           __html: `
             !function(f,b,e,v,n,t,s)
             {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -77,12 +80,15 @@ export default function RootLayout({
             fbq('init', '1337105897562752');
             fbq('track', 'PageView');
           `
-        }} />
-        <noscript>
-          <img height="1" width="1" style={{ display: 'none' }}
-            src="https://www.facebook.com/tr?id=1337105897562752&ev=PageView&noscript=1"
-          />
-        </noscript>
+        }}
+      />
+      <noscript>
+        <img height="1" width="1" style={{ display: 'none' }}
+          src="https://www.facebook.com/tr?id=1337105897562752&ev=PageView&noscript=1"
+        />
+      </noscript>
+
+      <head>
         
         {/* Force scroll to top on every page load/refresh - placed in head for early execution */}
         <script dangerouslySetInnerHTML={{

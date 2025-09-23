@@ -18,6 +18,22 @@ export default function HomePage() {
     return () => clearInterval(interval)
   }, [medications.length])
 
+  // Verify Facebook Pixel is loaded
+  useEffect(() => {
+    // Check if Facebook Pixel is loaded
+    if (typeof window !== 'undefined') {
+      setTimeout(() => {
+        if ((window as any).fbq) {
+          console.log('Facebook Pixel is loaded and ready')
+          // Track a test event to verify it's working
+          ;(window as any).fbq('track', 'PageView')
+        } else {
+          console.warn('Facebook Pixel not loaded yet')
+        }
+      }, 2000)
+    }
+  }, [])
+
   // Scroll to top on page load and reset
   useEffect(() => {
     // Scroll to top immediately
