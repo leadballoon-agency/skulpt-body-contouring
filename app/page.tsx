@@ -424,6 +424,80 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Post-Pregnancy Recovery Section */}
+      <section className="py-16 bg-gray-50">
+        <div className="max-w-6xl mx-auto px-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
+            More Than Just Weight Loss
+          </h2>
+          <p className="text-center text-gray-600 mb-12 max-w-3xl mx-auto">
+            Pregnancy, weight loss, or natural aging - we treat all causes of loose skin with the same professional expertise
+          </p>
+
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            {/* Left: Post-pregnancy specific content */}
+            <div>
+              <h3 className="text-2xl font-bold mb-4">Post-Pregnancy Recovery</h3>
+              <p className="text-gray-700 mb-6">
+                Your body did something incredible. Now let us help restore your confidence
+                with treatments specifically designed for post-pregnancy skin concerns.
+              </p>
+
+              <ul className="space-y-3 mb-6">
+                <li className="flex items-start gap-3">
+                  <span className="text-green-500 mt-1">✓</span>
+                  <span>Safe to start 3 months postpartum</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-green-500 mt-1">✓</span>
+                  <span>Addresses both loose skin and stretch marks</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-green-500 mt-1">✓</span>
+                  <span>C-section scar and overhang treatment</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-green-500 mt-1">✓</span>
+                  <span>Can help with diastasis recti appearance</span>
+                </li>
+              </ul>
+
+              {/* Use existing testimonial as proof */}
+              <div className="bg-white p-4 rounded-lg border-l-4 border-[#967e15]">
+                <p className="text-sm italic text-gray-600 mb-2">
+                  "My problematic lower tummy following cesarean is now completely flat
+                  and skin tightened after just 3 sessions."
+                </p>
+                <p className="text-sm font-semibold">- Melissa B. ⭐⭐⭐⭐⭐</p>
+              </div>
+            </div>
+
+            {/* Right: Professional statistics */}
+            <div className="bg-white rounded-lg p-8 shadow-lg">
+              <h4 className="font-bold text-lg mb-4">Common Post-Pregnancy Concerns We Treat:</h4>
+              <div className="space-y-4">
+                <div className="flex justify-between items-center pb-3 border-b border-gray-200">
+                  <span>Loose abdominal skin</span>
+                  <span className="text-[#967e15] font-bold">98% improvement</span>
+                </div>
+                <div className="flex justify-between items-center pb-3 border-b border-gray-200">
+                  <span>C-section overhang</span>
+                  <span className="text-[#967e15] font-bold">95% reduction</span>
+                </div>
+                <div className="flex justify-between items-center pb-3 border-b border-gray-200">
+                  <span>Stretch mark appearance</span>
+                  <span className="text-[#967e15] font-bold">70% improvement</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span>Overall tummy tightening</span>
+                  <span className="text-[#967e15] font-bold">100% see results</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Benefits Section */}
       <section className="py-16 bg-white">
         <div className="max-w-6xl mx-auto px-4">
